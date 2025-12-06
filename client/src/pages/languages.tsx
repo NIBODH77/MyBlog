@@ -346,45 +346,6 @@ export default function QuoraLanguageSettings() {
             {/* Countries Section */}
             <div className="mt-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Countries & Regions</h2>
-
-              <div className="bg-white rounded-lg shadow-sm">
-                <div className="h-[850px] overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                  <style>{`
-                    .scrollbar-hide::-webkit-scrollbar {
-                      display: none;
-                    }
-                  `}</style>
-                  {loading ? (
-                    <div className="p-8 text-center text-gray-500">Loading countries...</div>
-                  ) : (
-                    <div className="divide-y divide-gray-200">
-                      {countries.map((country) => (
-                        <button
-                          key={country.code}
-                          onClick={() => handleCountryClick(country)}
-                          className="w-full p-4 hover:bg-gray-50 transition-colors text-left"
-                        >
-                          <div className="flex items-center space-x-3">
-                            <img 
-                              src={country.flag} 
-                              alt={country.name}
-                              className="w-8 h-6 object-cover rounded shadow-sm"
-                            />
-                            <div className="flex-1">
-                              <span className="text-sm text-gray-900">{country.name}</span>
-                              {country.languages.length > 0 && (
-                                <p className="text-xs text-gray-500 mt-0.5">
-                                  {country.languages[0]}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
             </div>
 
             {/* Implementation Notes */}
