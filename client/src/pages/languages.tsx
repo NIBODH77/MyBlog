@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MoreHorizontal, Search, Check, Plus, Trash2 } from 'lucide-react';
 import { Link } from "wouter";
+import { Header } from "@/components/layout/Header";
 
 declare global {
   interface Window {
@@ -208,6 +209,7 @@ export default function QuoraLanguageSettings() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Header />
       <div id="google_translate_element" style={{ display: 'none' }}></div>
 
       <div className="max-w-7xl mx-auto px-4 py-6">
