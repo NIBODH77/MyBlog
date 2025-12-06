@@ -1,0 +1,81 @@
+import React from 'react';
+
+export default function QuoraDrafts() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex gap-6">
+          {/* Left Sidebar */}
+          <aside className="w-64 flex-shrink-0">
+            <div className="bg-white rounded-lg shadow-sm">
+              <div className="p-3">
+                <h2 className="text-sm font-semibold text-gray-700 mb-2">Questions</h2>
+                <nav className="space-y-1">
+                  <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
+                    Questions for you
+                  </a>
+                  <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
+                    Answer requests
+                  </a>
+                  <a href="#" className="block px-3 py-2 text-sm text-red-600 bg-red-50 rounded font-medium">
+                    Drafts
+                  </a>
+                  <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
+                    AI Interviewer
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </aside>
+
+          {/* Main Content */}
+          <main className="flex-1">
+            <div className="bg-white rounded-lg shadow-sm min-h-96 flex flex-col items-center justify-center p-12">
+              {/* Empty State Icon */}
+              <div className="mb-6">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" className="text-gray-400">
+                  <path 
+                    d="M25 25 C25 22 27 20 30 20 L50 20 C53 20 55 22 55 25 L55 45 C55 48 53 50 50 50 L40 50 L35 58 L35 50 L30 50 C27 50 25 48 25 45 Z" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5" 
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <line x1="52" y1="22" x2="56" y2="18" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <line x1="52" y1="28" x2="58" y2="28" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+
+              {/* Empty State Text */}
+              <h2 className="text-xl font-normal text-gray-700 mb-2">No answer drafts</h2>
+              <p className="text-gray-500 text-sm mb-6 text-center max-w-md">
+                Start writing answers by finding questions to answer in Questions for You.
+              </p>
+
+              {/* CTA Button */}
+              <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-full transition-colors">
+                See questions for you
+              </button>
+            </div>
+          </main>
+
+          {/* Right Sidebar */}
+          <aside className="w-80 flex-shrink-0">
+            <div className="bg-white rounded-lg shadow-sm p-5">
+              <h3 className="text-base font-semibold text-gray-800 mb-2">
+                Add topics you know about
+              </h3>
+              <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                Adding topics helps us find questions for you to answer
+              </p>
+              <button className="px-5 py-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 text-sm font-medium rounded-full transition-colors">
+                Add topics
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  );
+}

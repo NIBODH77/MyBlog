@@ -1,0 +1,455 @@
+🎯 Project Brief
+
+Design and develop a complete, production-grade, premium frontend for a modern community-driven Questions & Answers platform.
+The interface must be elegant, ultra-clean, extremely readable, and optimized for long-form content consumption.
+Every screen, interaction, animation, and component should be designed with professional UX standards, mobile-first performance, and pixel-perfect finesse.
+
+This project is frontend-only — NO backend logic required. Use mock data or local JSON fixtures.
+
+1️⃣ High-Level Goals
+
+Build a fully responsive UI (mobile-first → tablet → desktop).
+
+Create a central design system with complete design tokens:
+
+Color palette
+
+Typography scale
+
+Spacing scale
+
+Radius
+
+Elevation
+
+Component states
+
+Develop reusable, composable, scalable frontend components.
+
+Implement real-world UI behaviors:
+
+Infinite scroll
+
+Optimistic UI
+
+Skeleton loading
+
+Toast/snackbar notifications
+
+Sticky headers
+
+Interactive animations & feedback
+
+Provide exports in React, React Native, Tailwind CSS, and production-ready UI code patterns.
+
+2️⃣ Required Screens (Full, Detailed, Complete)
+A. Onboarding & Authentication
+
+Welcome screen with illustration
+
+Login page
+
+Signup page
+
+Password reset
+
+Verification input UI
+
+Interest selection (topics list with multi-select chips)
+
+Personalized feed onboarding confirmation
+
+B. Home Feed (Primary UI)
+
+Design three feed variations:
+
+Personalized feed
+
+Top Questions feed
+
+Following feed (users + topics)
+
+Home feed must include:
+
+Sticky top navigation bar with search
+
+Side navigation (desktop):
+
+Home
+
+Following
+
+Topics
+
+Notifications
+
+Profile
+
+Settings
+
+Right sidebar widgets:
+
+Suggested users to follow
+
+Suggested topics
+
+Trending questions
+
+Infinite scroll
+
+Smooth card appearance animation
+
+Pull-to-refresh (mobile)
+
+C. Question Detail Page
+
+Question title (large, bold)
+
+Rich description area
+
+Topic tags
+
+Follow button + follower count
+
+Ask-to-answer UI (list of expert users)
+
+Share dropdown
+
+Action bar:
+
+Follow
+
+Bookmark
+
+Share
+
+Report
+
+Sorting options for answers:
+
+Most Relevant
+
+Most Upvoted
+
+Newest
+
+Answer list with smooth transitions
+
+Comment threads with nesting
+
+Inline reply UI
+
+Add comment popover
+
+Expand/collapse long answers
+
+D. Ask Question Flow
+
+Two steps:
+
+Step 1: Ask Modal
+
+Question title input
+
+Auto-suggest topics
+
+Related questions preview
+
+Continue button
+
+Step 2: Full Ask Page
+
+Rich-text editor (toolbar: bold, italic, underline, lists, image upload, code block, quotes)
+
+Topic-selector chips
+
+Anonymous toggle
+
+Preview mode
+
+Publish button
+
+E. User Profile Page
+
+Sections:
+
+Header with cover image
+
+Avatar, name, bio, expertise tags
+
+Stats: followers, following, answers, questions
+
+Tabs:
+
+Answers
+
+Questions
+
+Followers
+
+Following
+
+Activity
+
+Each list should be a card layout similar to feed but filtered by user
+
+Edit profile modal
+
+F. Topic Page
+
+Topic name, icon, description
+
+Follow button
+
+Followers count
+
+Tabs:
+
+Top questions
+
+New questions
+
+Most followed questions
+
+Topic guidelines card
+
+Top contributors list
+
+G. Notifications Page
+
+Notifications grouped by date
+
+Types:
+
+Upvotes
+
+New answers
+
+New followers
+
+Mentions
+
+Replies
+
+System updates
+
+Read/unread visual state
+
+Mark all as read
+
+H. Search System
+Search Bar + Auto-Suggest
+
+Recent searches
+
+Suggested questions
+
+Suggested topics
+
+Suggested users
+
+Search Results Page
+
+Tabs:
+
+Top
+
+Questions
+
+Answers
+
+Topics
+
+Users
+
+Each tab uses unique card layouts.
+
+3️⃣ Critical Frontend Components (Highly Detailed)
+Core Components
+
+AppShell Layout (header, sidebar, right widgets)
+
+Card System (question, answer, comment, topic, user)
+
+SearchBar with live suggestions
+
+Modal System
+
+Bottom Sheet (mobile)
+
+Toast Notifications
+
+Rich Text Editor
+
+Avatar with Online Indicator
+
+Follow Button (3 states: follow, following, requested)
+
+Interaction Components
+
+Upvote button (animated)
+
+Downvote / upvote-only mode
+
+Share dropdown
+
+Bookmark toggle
+
+More actions menu
+
+Topic chip group with auto-wrap
+
+Infinite scroll loader
+
+Skeleton loader animations
+
+Sticky tabs
+
+Smooth transitions between pages
+
+Comment Thread Components
+
+Expandable replies
+
+Inline reply editor
+
+Collapsible comment chains
+
+Animated insert & delete
+
+4️⃣ Micro-Interactions (must include)
+
+Heartbeat animation on follow/unfollow
+
+Bounce animation on upvote
+
+Smooth fade-in for new feed items
+
+Skeleton shimmer for loading cards
+
+Soft shadow elevation on hover
+
+Button press ripple on mobile
+
+Page transitions with slide & fade
+
+Auto-highlight new notifications
+
+5️⃣ Design System Requirements
+Typography
+
+Font family: Inter / system UI
+
+Title scale: 32 / 28 / 24 / 20
+
+Body: 16 / 15 / 14
+
+Reading line-height: 1.55
+
+Spacing Tokens
+4, 8, 12, 16, 20, 24, 32, 40, 48
+
+Radius Tokens
+r-6, r-8, r-12
+
+Elevation Tokens
+
+0 (flat)
+
+1 (hover card)
+
+2 (floating modals)
+
+3 (menus, dropdowns)
+
+6️⃣ Color Theme (Primary Palette Already Provided)
+Light Mode (Primary)
+
+Background: #F6F8FB
+
+Surface: #FFFFFF
+
+Border: #E5E7EB
+
+Text Primary: #111827
+
+Text Muted: #6B7280
+
+Primary: #1F6FEB
+
+Primary Hover: #1557C9
+
+Accent: #FF7A59
+
+Success: #16A34A
+
+Warning: #F59E0B
+
+Error: #EF4444
+
+Dark Mode
+
+Background: #0D1117
+
+Surface: #161B22
+
+Border: #2C313A
+
+Text Primary: #E6EDF5
+
+Text Muted: #9BA3AF
+
+Primary: #58A6FF
+
+Accent: #F78166
+
+7️⃣ Technical Frontend Requirements
+Deliverables
+
+Figma Design System
+
+All screens for mobile + desktop
+
+UI component library documentation
+
+Frontend code templates (React or React Native)
+
+Reusable stateful components with mock data
+
+Animations using Framer Motion (web) / RN Reanimated (mobile)
+
+Fully responsive grid system
+
+Accessibility compliance (WCAG AA)
+
+Code Guidelines
+
+Use Tailwind CSS or styled components
+
+Create modular components (atomic design)
+
+Use context or zustand for UI-only state
+
+Use mock JSON for lists (questions/answers/users)
+
+Provide loading, empty & error UI states
+
+8️⃣ Overall UX Feel
+
+The platform must feel:
+
+Premium
+
+Minimal
+
+Calm
+
+Fast
+
+Clean
+
+Highly interactive
+
+Designed for long reading sessions and high user engagement
+
+User actions should feel instant due to optimistic UI and micro-animations.
