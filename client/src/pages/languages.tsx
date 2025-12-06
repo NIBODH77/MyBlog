@@ -117,7 +117,7 @@ export default function QuoraLanguageSettings() {
       .then((data: any[]) => {
         // Filter only major countries
         const filteredCountries = data
-          .filter((country: any) => majorCountries.includes(country.name.common))
+          // .filter((country: any) => majorCountries.includes(country.name.common))
           .map((country: any) => ({
             name: country.name.common,
             flag: country.flags.svg,
