@@ -400,7 +400,7 @@ export default function QuoraLanguageSettings() {
   const handleCountryClick = (country: Country) => {
     // Map country to language code
     const countryToLanguageMap: { [key: string]: string } = {
-      'US': 'en', 'GB': 'en', 'AU': 'en', 'CA': 'en', 'NZ': 'en',
+      'EN': 'en', 'US': 'en', 'GB': 'en', 'AU': 'en', 'CA': 'en', 'NZ': 'en', 'IE': 'en',
       'CN': 'zh-CN', 'TW': 'zh-CN', 'HK': 'zh-CN',
       'IN': 'hi', 'PK': 'hi', 'BD': 'bn',
       'ID': 'id',
@@ -426,12 +426,13 @@ export default function QuoraLanguageSettings() {
 
     const languageCode = countryToLanguageMap[country.code] || 'en';
     
-    // Add language if not already in selected languages
+    // Only add language if not already in selected languages
     if (!selectedLanguages.includes(languageCode)) {
       setSelectedLanguages([...selectedLanguages, languageCode]);
     }
     
-    // Set as primary language
+    // Set as primary language (this will trigger changeLanguage)
+    setPrimaryLanguage(languageCode);
     changeLanguage(languageCode);
     
     console.log('Selected country:', country.name, '- Language:', languageCode);
