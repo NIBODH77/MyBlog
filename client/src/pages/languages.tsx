@@ -117,6 +117,7 @@ export default function QuoraLanguageSettings() {
 
   // Hardcoded countries data to ensure display when API fails
   const allCountriesData: Country[] = [
+    { name: 'English', code: 'EN', languages: ['English'], population: 2000000000, flag: 'https://flagcdn.com/w80/gb.png' }, // Added English as requested
     { name: 'United States', code: 'US', languages: ['English'], population: 331000000, flag: 'https://flagcdn.com/w80/us.png' },
     { name: 'China', code: 'CN', languages: ['Chinese'], population: 1402000000, flag: 'https://flagcdn.com/w80/cn.png' },
     { name: 'India', code: 'IN', languages: ['Hindi', 'English'], population: 1380000000, flag: 'https://flagcdn.com/w80/in.png' },
