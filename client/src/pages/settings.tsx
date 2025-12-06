@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "wouter";
 
 export default function QuoraAccountSettings() {
   const [emailVerification, setEmailVerification] = useState(false);
@@ -25,9 +26,11 @@ export default function QuoraAccountSettings() {
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Email & Notifications
                   </a>
-                  <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
-                    Languages
-                  </a>
+                  <Link href="/languages">
+                    <a className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">
+                      Languages
+                    </a>
+                  </Link>
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Subscriptions & Billing
                   </a>

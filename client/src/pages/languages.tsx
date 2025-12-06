@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MoreHorizontal, Search, Check, Plus, Trash2 } from 'lucide-react';
+import { Link } from "wouter";
 
 declare global {
   interface Window {
@@ -207,9 +208,11 @@ export default function QuoraLanguageSettings() {
               <div className="p-3">
                 <h2 className="text-sm font-semibold text-gray-700 mb-3 px-3">Settings</h2>
                 <nav className="space-y-1">
-                  <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
-                    Account
-                  </a>
+                  <Link href="/settings">
+                    <a className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">
+                      Account
+                    </a>
+                  </Link>
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Privacy
                   </a>
@@ -219,9 +222,11 @@ export default function QuoraLanguageSettings() {
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Email & Notifications
                   </a>
-                  <a href="#" className="block px-3 py-2 text-sm text-red-600 bg-red-50 rounded font-medium">
-                    Languages
-                  </a>
+                  <Link href="/languages">
+                    <a className="block px-3 py-2 text-sm text-red-600 bg-red-50 rounded font-medium cursor-pointer">
+                      Languages
+                    </a>
+                  </Link>
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Subscriptions & Billing
                   </a>
