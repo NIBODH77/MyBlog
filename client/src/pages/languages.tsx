@@ -1,15 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { MoreHorizontal, Search, Check, Plus, Trash2 } from 'lucide-react';
 
+declare global {
+  interface Window {
+    google: any;
+    googleTranslateElementInit: any;
+  }
+}
+
+interface Country {
+  name: string;
+  flag: string;
+  code: string;
+  languages: string[];
+  population: number;
+}
+
+interface Language {
+  code: string;
+  name: string;
+  color: string;
+}
+
 export default function QuoraLanguageSettings() {
-  const [primaryLanguage, setPrimaryLanguage] = useState('en');
-  const [selectedLanguages, setSelectedLanguages] = useState(['en']);
-  const [countries, setCountries] = useState([]);
+  const [primaryLanguage, setPrimaryLanguage] = useState<string>('en');
+  const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['en']);
+  const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddLanguage, setShowAddLanguage] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const allLanguages = [
+  const allLanguages: Language[] = [
     { code: 'en', name: 'English', color: 'bg-blue-500' },
     { code: 'nl', name: 'Nederlands', color: 'bg-red-600' },
     { code: 'es', name: 'Español', color: 'bg-orange-500' },
@@ -92,15 +113,15 @@ export default function QuoraLanguageSettings() {
   useEffect(() => {
     fetch('https://restcountries.com/v3.1/all')
       .then(response => response.json())
-      .then(data => {
+      .then((data: any[]) => {
         // Filter only major countries
         const filteredCountries = data
-          .filter(country => majorCountries.includes(country.name.common))
-          .map(country => ({
+          .filter((country: any) => majorCountries.includes(country.name.common))
+          .map((country: any) => ({
             name: country.name.common,
             flag: country.flags.svg,
             code: country.cca2,
-            languages: country.languages ? Object.values(country.languages) : [],
+            languages: country.languages ? Object.values(country.languages) as string[] : [],
             population: country.population || 0
           }))
           .sort((a, b) => b.population - a.population); // Sort by population (most popular first)
@@ -115,7 +136,7 @@ export default function QuoraLanguageSettings() {
   }, []);
 
   // Change language using Google Translate
-  const changeLanguage = (langCode) => {
+  const changeLanguage = (langCode: string) => {
     // IMPLEMENTATION NOTE: When integrating into your project:
     // 1. Save the selected language to localStorage or state management (Redux/Context)
     // 2. Apply the language across all pages using Google Translate API
@@ -123,7 +144,7 @@ export default function QuoraLanguageSettings() {
     //    localStorage.setItem('preferredLanguage', langCode);
     //    window.location.reload(); // to apply translation
 
-    const selectElement = document.querySelector('.goog-te-combo');
+    const selectElement = document.querySelector('.goog-te-combo') as HTMLSelectElement;
     if (selectElement) {
       selectElement.value = langCode;
       selectElement.dispatchEvent(new Event('change'));
@@ -137,7 +158,7 @@ export default function QuoraLanguageSettings() {
     }
   };
 
-  const addLanguage = (code) => {
+  const addLanguage = (code: string) => {
     if (!selectedLanguages.includes(code)) {
       setSelectedLanguages([...selectedLanguages, code]);
       // IMPLEMENTATION NOTE: Save to localStorage or backend
@@ -147,7 +168,7 @@ export default function QuoraLanguageSettings() {
     setSearchQuery('');
   };
 
-  const removeLanguage = (code) => {
+  const removeLanguage = (code: string) => {
     if (code === 'en') {
       alert('Cannot remove English (default language)');
       return;
@@ -161,7 +182,7 @@ export default function QuoraLanguageSettings() {
     // localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages.filter(lang => lang !== code)));
   };
 
-  const handleCountryClick = (country) => {
+  const handleCountryClick = (country: Country) => {
     // IMPLEMENTATION NOTE: When a country is selected, you can:
     // 1. Get the primary language of that country
     // 2. Automatically switch to that language
