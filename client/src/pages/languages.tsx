@@ -384,25 +384,56 @@ export default function QuoraLanguageSettings() {
       alert('Cannot remove English (default language)');
       return;
     }
+    
+    // If removing primary language, set English as primary
     if (code === primaryLanguage) {
-      alert('Cannot remove primary language. Set another language as primary first.');
-      return;
+      setPrimaryLanguage('en');
+      changeLanguage('en');
     }
+    
     setSelectedLanguages(selectedLanguages.filter(lang => lang !== code));
     // IMPLEMENTATION NOTE: Update localStorage or backend
     // localStorage.setItem('selectedLanguages', JSON.stringify(selectedLanguages.filter(lang => lang !== code)));
   };
 
   const handleCountryClick = (country: Country) => {
-    // IMPLEMENTATION NOTE: When a country is selected, you can:
-    // 1. Get the primary language of that country
-    // 2. Automatically switch to that language
-    // Example:
-    // const countryLang = getCountryPrimaryLanguage(country.code);
-    // changeLanguage(countryLang);
+    // Map country to language code
+    const countryToLanguageMap: { [key: string]: string } = {
+      'US': 'en', 'GB': 'en', 'AU': 'en', 'CA': 'en', 'NZ': 'en',
+      'CN': 'zh-CN', 'TW': 'zh-CN', 'HK': 'zh-CN',
+      'IN': 'hi', 'PK': 'hi', 'BD': 'bn',
+      'ID': 'id',
+      'BR': 'pt', 'PT': 'pt', 'AO': 'pt', 'MZ': 'pt',
+      'MX': 'es', 'ES': 'es', 'AR': 'es', 'CO': 'es', 'CL': 'es', 'PE': 'es', 'VE': 'es',
+      'FR': 'fr', 'CD': 'fr', 'CM': 'fr', 'BE': 'fr',
+      'DE': 'de', 'AT': 'de', 'CH': 'de',
+      'IT': 'it',
+      'JP': 'ja',
+      'KR': 'ko',
+      'RU': 'ru',
+      'TR': 'tr',
+      'PL': 'pl',
+      'VN': 'vi',
+      'TH': 'th',
+      'NL': 'nl',
+      'DK': 'da',
+      'FI': 'fi',
+      'NO': 'no',
+      'SE': 'sv',
+      'EG': 'ar', 'SA': 'ar', 'AE': 'ar', 'IQ': 'ar', 'MA': 'ar', 'DZ': 'ar'
+    };
 
-    console.log('Selected country:', country.name);
-    // For now, just log the selection
+    const languageCode = countryToLanguageMap[country.code] || 'en';
+    
+    // Add language if not already in selected languages
+    if (!selectedLanguages.includes(languageCode)) {
+      setSelectedLanguages([...selectedLanguages, languageCode]);
+    }
+    
+    // Set as primary language
+    changeLanguage(languageCode);
+    
+    console.log('Selected country:', country.name, '- Language:', languageCode);
   };
 
   return (
@@ -522,22 +553,35 @@ export default function QuoraLanguageSettings() {
                         </div>
                       </div>
                       <div className="flex items-center space-x-2">
-                        {primaryLanguage !== language.code && (
-                          <button
-                            onClick={() => changeLanguage(language.code)}
-                            className="px-4 py-1.5 border-2 border-blue-600 text-blue-600 text-sm font-medium rounded-full hover:bg-blue-50 transition-colors"
-                          >
-                            Set as primary
-                          </button>
-                        )}
-                        {language.code !== 'en' && (
-                          <button
-                            onClick={() => removeLanguage(language.code)}
-                            className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors"
-                            title="Remove language"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                        {primaryLanguage !== language.code ? (
+                          <>
+                            <button
+                              onClick={() => changeLanguage(language.code)}
+                              className="px-4 py-1.5 border-2 border-blue-600 text-blue-600 text-sm font-medium rounded-full hover:bg-blue-50 transition-colors"
+                            >
+                              Set as primary
+                            </button>
+                            {language.code !== 'en' && (
+                              <button
+                                onClick={() => removeLanguage(language.code)}
+                                className="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors"
+                                title="Remove language"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            )}
+                          </>
+                        ) : (
+                          language.code !== 'en' && (
+                            <button
+                              onClick={() => removeLanguage(language.code)}
+                              className="px-4 py-1.5 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-full transition-colors flex items-center space-x-1"
+                              title="Remove primary language"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              <span>Remove</span>
+                            </button>
+                          )
                         )}
                       </div>
                     </div>
