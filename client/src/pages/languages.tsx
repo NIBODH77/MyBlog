@@ -195,16 +195,19 @@ export default function QuoraLanguageSettings() {
   };
 
   const handleCountryClick = (country: Country) => {
+    console.log('Clicked country:', country.name, 'Code:', country.code);
+    
     const languageCode = countryToLanguageMap[country.code] || 'en';
+    console.log('Selected language code:', languageCode);
 
-    // Add language to selected list if not already present
-    if (!selectedLanguages.includes(languageCode)) {
-      setSelectedLanguages([...selectedLanguages, languageCode]);
-    }
+    // Replace all selected languages with only this one
+    setSelectedLanguages([languageCode]);
 
     // Set as primary language
     setPrimaryLanguage(languageCode);
     changeLanguage(languageCode);
+    
+    console.log('Selected country:', country.name, '- Language:', languageCode);
   };
 
   return (
@@ -400,14 +403,14 @@ export default function QuoraLanguageSettings() {
                     <div className="divide-y divide-gray-200">
                       {filteredCountries.map((country) => {
                         const languageCode = countryToLanguageMap[country.code] || 'en';
-                        const isSelected = selectedLanguages.includes(languageCode);
+                        const isSelected = primaryLanguage === languageCode;
 
                         return (
                           <button
                             key={country.code}
                             onClick={() => handleCountryClick(country)}
                             className={`w-full p-4 hover:bg-gray-50 transition-colors text-left ${
-                              isSelected ? 'bg-blue-50' : ''
+                              isSelected ? 'bg-blue-50 border-l-4 border-blue-600' : ''
                             }`}
                           >
                             <div className="flex items-center justify-between">
@@ -416,9 +419,12 @@ export default function QuoraLanguageSettings() {
                                   src={country.flag} 
                                   alt={country.name}
                                   className="w-8 h-6 object-cover rounded shadow-sm"
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                  }}
                                 />
                                 <div className="flex-1">
-                                  <span className="text-sm text-gray-900">{country.name}</span>
+                                  <span className="text-sm font-medium text-gray-900">{country.name}</span>
                                   {country.languages.length > 0 && (
                                     <p className="text-xs text-gray-500 mt-0.5">
                                       {country.languages[0]}
@@ -427,7 +433,7 @@ export default function QuoraLanguageSettings() {
                                 </div>
                               </div>
                               {isSelected && (
-                                <Check className="w-5 h-5 text-blue-600" />
+                                <Check className="w-5 h-5 text-blue-600 flex-shrink-0" />
                               )}
                             </div>
                           </button>
