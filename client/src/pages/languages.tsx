@@ -398,35 +398,117 @@ export default function QuoraLanguageSettings() {
   };
 
   const handleCountryClick = (country: Country) => {
-    // Map country to language code
+    console.log('Clicked country:', country.name, 'Code:', country.code);
+    
+    // Map country to language code - comprehensive mapping
     const countryToLanguageMap: { [key: string]: string } = {
+      // English speaking countries
       'EN': 'en', 'US': 'en', 'GB': 'en', 'AU': 'en', 'CA': 'en', 'NZ': 'en', 'IE': 'en',
-      'CN': 'zh-CN', 'TW': 'zh-CN', 'HK': 'zh-CN',
-      'IN': 'hi', 'PK': 'hi', 'BD': 'bn',
+      'ZA': 'en', 'NG': 'en', 'KE': 'en', 'GH': 'en', 'UG': 'en', 'TZ': 'en',
+      'ZW': 'en', 'SL': 'en', 'LR': 'en', 'JM': 'en', 'TT': 'en', 'BS': 'en',
+      'BB': 'en', 'GU': 'en', 'VI': 'en', 'BM': 'en', 'VG': 'en', 'AI': 'en',
+      'AG': 'en', 'KN': 'en', 'LC': 'en', 'VC': 'en', 'GD': 'en', 'DM': 'en',
+      'NA': 'en', 'BW': 'en', 'GM': 'en', 'MU': 'en', 'FJ': 'en', 'PG': 'en',
+      'SB': 'en', 'WS': 'en', 'TV': 'en', 'NR': 'en', 'KI': 'en', 'FM': 'en',
+      'PW': 'en', 'MH': 'en', 'CK': 'en', 'GI': 'en', 'KY': 'en', 'TC': 'en',
+      'AS': 'en', 'GG': 'en', 'JE': 'en', 'IM': 'en', 'SS': 'en', 'SD': 'en',
+      'ZM': 'en', 'RW': 'en', 'SG': 'en', 'PH': 'en', 'PK': 'en', 'LK': 'en',
+      'HK': 'en', 'ER': 'en', 'LS': 'en', 'SZ': 'en', 'CM': 'en',
+      // Chinese
+      'CN': 'zh-CN', 'TW': 'zh-CN', 'MO': 'zh-CN',
+      // Hindi/Bengali
+      'IN': 'hi', 'BD': 'bn', 'NP': 'hi',
+      // Indonesian
       'ID': 'id',
-      'BR': 'pt', 'PT': 'pt', 'AO': 'pt', 'MZ': 'pt',
-      'MX': 'es', 'ES': 'es', 'AR': 'es', 'CO': 'es', 'CL': 'es', 'PE': 'es', 'VE': 'es',
-      'FR': 'fr', 'CD': 'fr', 'CM': 'fr', 'BE': 'fr',
-      'DE': 'de', 'AT': 'de', 'CH': 'de',
-      'IT': 'it',
+      // Portuguese
+      'BR': 'pt', 'PT': 'pt', 'AO': 'pt', 'MZ': 'pt', 'GW': 'pt', 'CV': 'pt',
+      'GQ': 'pt', 'TL': 'pt', 'ST': 'pt',
+      // Spanish
+      'MX': 'es', 'ES': 'es', 'AR': 'es', 'CO': 'es', 'CL': 'es', 'PE': 'es',
+      'VE': 'es', 'EC': 'es', 'GT': 'es', 'CU': 'es', 'BO': 'es', 'DO': 'es',
+      'HN': 'es', 'PY': 'es', 'SV': 'es', 'NI': 'es', 'CR': 'es', 'PA': 'es',
+      'UY': 'es', 'PR': 'es', 'GQ': 'es',
+      // French
+      'FR': 'fr', 'CD': 'fr', 'CM': 'fr', 'BE': 'fr', 'CI': 'fr', 'MG': 'fr',
+      'NE': 'fr', 'BF': 'fr', 'ML': 'fr', 'SN': 'fr', 'TD': 'fr', 'GN': 'fr',
+      'RW': 'fr', 'BI': 'fr', 'BJ': 'fr', 'HT': 'fr', 'TG': 'fr', 'CF': 'fr',
+      'CG': 'fr', 'GA': 'fr', 'DJ': 'fr', 'KM': 'fr', 'LU': 'fr', 'MC': 'fr',
+      'CH': 'fr', 'MQ': 'fr', 'GP': 'fr', 'GF': 'fr', 'RE': 'fr', 'NC': 'fr',
+      'PF': 'fr', 'MF': 'fr',
+      // German
+      'DE': 'de', 'AT': 'de', 'LI': 'de',
+      // Italian
+      'IT': 'it', 'SM': 'it', 'VA': 'it',
+      // Japanese
       'JP': 'ja',
-      'KR': 'ko',
-      'RU': 'ru',
+      // Korean
+      'KR': 'ko', 'KP': 'ko',
+      // Russian
+      'RU': 'ru', 'BY': 'ru', 'KZ': 'ru', 'KG': 'ru',
+      // Turkish
       'TR': 'tr',
+      // Polish
       'PL': 'pl',
+      // Vietnamese
       'VN': 'vi',
+      // Thai
       'TH': 'th',
-      'NL': 'nl',
+      // Dutch
+      'NL': 'nl', 'SR': 'nl', 'AW': 'nl', 'CW': 'nl',
+      // Danish
       'DK': 'da',
+      // Finnish
       'FI': 'fi',
+      // Norwegian
       'NO': 'no',
+      // Swedish
       'SE': 'sv',
-      'EG': 'ar', 'SA': 'ar', 'AE': 'ar', 'IQ': 'ar', 'MA': 'ar', 'DZ': 'ar'
+      // Arabic
+      'EG': 'ar', 'SA': 'ar', 'AE': 'ar', 'IQ': 'ar', 'MA': 'ar', 'DZ': 'ar',
+      'SD': 'ar', 'YE': 'ar', 'SY': 'ar', 'JO': 'ar', 'TN': 'ar', 'LY': 'ar',
+      'LB': 'ar', 'SO': 'ar', 'MR': 'ar', 'KW': 'ar', 'OM': 'ar', 'QA': 'ar',
+      'BH': 'ar', 'PS': 'ar', 'EH': 'ar',
+      // Other languages
+      'RO': 'ro', 'MD': 'ro',
+      'GR': 'el', 'CY': 'el',
+      'HU': 'hu',
+      'CZ': 'cs',
+      'SK': 'sk',
+      'BG': 'bg',
+      'HR': 'hr',
+      'SI': 'sl',
+      'LT': 'lt',
+      'LV': 'lv',
+      'EE': 'et',
+      'AL': 'sq',
+      'MK': 'mk',
+      'BA': 'bs',
+      'ME': 'me',
+      'UA': 'uk',
+      'GE': 'ka',
+      'AM': 'hy',
+      'AZ': 'az',
+      'UZ': 'uz',
+      'TM': 'tk',
+      'TJ': 'tg',
+      'AF': 'ps',
+      'IR': 'fa',
+      'MY': 'ms',
+      'BN': 'ms',
+      'KH': 'km',
+      'LA': 'lo',
+      'MM': 'my',
+      'MN': 'mn',
+      'BT': 'dz',
+      'MV': 'dv',
+      'IS': 'is'
     };
 
     const languageCode = countryToLanguageMap[country.code] || 'en';
     
-    // Remove all other languages except the new one being selected
+    console.log('Selected language code:', languageCode);
+    
+    // Set only this one language (remove all others)
     setSelectedLanguages([languageCode]);
     
     // Set as primary language
