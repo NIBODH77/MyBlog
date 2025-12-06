@@ -426,12 +426,10 @@ export default function QuoraLanguageSettings() {
 
     const languageCode = countryToLanguageMap[country.code] || 'en';
     
-    // Only add language if not already in selected languages
-    if (!selectedLanguages.includes(languageCode)) {
-      setSelectedLanguages([...selectedLanguages, languageCode]);
-    }
+    // Remove all other languages except the new one being selected
+    setSelectedLanguages([languageCode]);
     
-    // Set as primary language (this will trigger changeLanguage)
+    // Set as primary language
     setPrimaryLanguage(languageCode);
     changeLanguage(languageCode);
     
