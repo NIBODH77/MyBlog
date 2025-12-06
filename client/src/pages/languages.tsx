@@ -30,6 +30,7 @@ export default function QuoraLanguageSettings() {
   const [loading, setLoading] = useState(true);
   const [showAddLanguage, setShowAddLanguage] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [countrySearchQuery, setCountrySearchQuery] = useState('');
 
   const allLanguages: Language[] = [
     { code: 'en', name: 'English', color: 'bg-blue-500' },
@@ -63,6 +64,10 @@ export default function QuoraLanguageSettings() {
 
   const filteredAvailableLanguages = availableLanguages.filter(lang =>
     lang.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredCountries = countries.filter(country =>
+    country.name.toLowerCase().includes(countrySearchQuery.toLowerCase())
   );
 
   // Initialize Google Translate
@@ -545,6 +550,20 @@ export default function QuoraLanguageSettings() {
             <div className="mt-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">Countries & Regions</h2>
               
+              {/* Country Search Box */}
+              <div className="mb-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <input
+                    type="text"
+                    placeholder="Search countries..."
+                    value={countrySearchQuery}
+                    onChange={(e) => setCountrySearchQuery(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                  />
+                </div>
+              </div>
+              
               <div className="bg-white rounded-lg shadow-sm">
                 <div className="h-[850px] overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                   <style>{`
@@ -554,9 +573,9 @@ export default function QuoraLanguageSettings() {
                   `}</style>
                   {loading ? (
                     <div className="p-8 text-center text-gray-500">Loading countries...</div>
-                  ) : (
+                  ) : filteredCountries.length > 0 ? (
                     <div className="divide-y divide-gray-200">
-                      {countries.map((country) => (
+                      {filteredCountries.map((country) => (
                         <button
                           key={country.code}
                           onClick={() => handleCountryClick(country)}
@@ -580,6 +599,8 @@ export default function QuoraLanguageSettings() {
                         </button>
                       ))}
                     </div>
+                  ) : (
+                    <div className="p-8 text-center text-gray-500">No countries found</div>
                   )}
                 </div>
               </div>
