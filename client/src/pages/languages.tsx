@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MoreHorizontal, Search, Check, Plus, Trash2 } from 'lucide-react';
+import { Search, Check, Plus, Trash2 } from 'lucide-react';
 import { Link } from "wouter";
 import { Header } from "@/components/layout/Header";
 
@@ -212,7 +212,7 @@ export default function QuoraLanguageSettings() {
       <Header />
       <div id="google_translate_element" style={{ display: 'none' }}></div>
 
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="container mx-auto px-4 md:px-24 py-6">
         <div className="flex gap-8">
           {/* Left Sidebar */}
           <aside className="w-64 flex-shrink-0">
