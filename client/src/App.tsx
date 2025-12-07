@@ -20,6 +20,7 @@ import SettingsPage from "@/pages/settings"
 import LanguagesPage from "@/pages/languages"
 import HelpPage from "@/pages/help"
 import StatsPage from "@/pages/stats"
+import ProfilePage from "@/pages/profile"
 
 function Router() {
   return (
@@ -36,6 +37,7 @@ function Router() {
       <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/drafts" component={DraftsPage} />
       <Route path="/stats" component={StatsPage} />
+      <Route path="/profile" component={ProfilePage} />
       <Route path="/darkmode" component={ThemeSettingModal} />
       <Route path="/settings" component={SettingsPage} />
       <Route path="/languages" component={LanguagesPage} />

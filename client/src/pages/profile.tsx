@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   MessageCircle, 
@@ -181,7 +182,7 @@ const ProfileDropdown: React.FC = () => {
             transform: translateY(0);
           }
         }
-
+        
         .animate-slideDown {
           animation: slideDown 0.2s ease-out;
         }
