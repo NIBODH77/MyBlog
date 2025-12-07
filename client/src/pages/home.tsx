@@ -23,8 +23,8 @@ export default function MyBlogClone() {
     <AppShell hideRightSidebar>
       <div className="flex gap-4">
         {/* Left Sidebar */}
-        <div className="hidden md:block w-48 flex-shrink-0 ">
-          <div className="sticky top-4 bg-white dark:bg-card rounded shadow-sm">
+        <div className="hidden md:block w-48 flex-shrink-0">
+          <div className="sticky top-20 bg-white dark:bg-card rounded shadow-sm self-start">
             <button className="w-full px-4 py-3 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary/50 flex items-center gap-2 border-b dark:border-border">
               <span className="text-2xl">+</span>
               <span className="text-sm">Create Space</span>
