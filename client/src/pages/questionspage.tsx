@@ -41,7 +41,7 @@ export default function MyBlogAnswerPage() {
       <div className="flex gap-4">
         {/* Left Sidebar */}
         <div className="hidden md:block w-64 flex-shrink-0">
-          <div className="bg-white dark:bg-card rounded-lg shadow-sm border border-gray-200 dark:border-border">
+          <div className="sticky top-20 bg-white dark:bg-card rounded-lg shadow-sm border border-gray-200 dark:border-border">
             <div className="px-4 py-3 border-b border-gray-200 dark:border-border">
               <h3 className="text-gray-700 dark:text-foreground font-semibold text-base">Questions</h3>
             </div>

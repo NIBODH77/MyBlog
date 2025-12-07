@@ -134,7 +134,7 @@ export default function MyBlogSpacesPage() {
 
         {/* Right Sidebar */}
         <div className="hidden lg:block w-80 flex-shrink-0">
-          <div className="bg-white dark:bg-card rounded-lg shadow-sm p-6 border border-gray-200 dark:border-border">
+          <div className="sticky top-20 bg-white dark:bg-card rounded-lg shadow-sm p-6 border border-gray-200 dark:border-border">
             <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground mb-4">Pending Invites</h3>
 
             <div className="flex flex-col items-center justify-center py-8">
