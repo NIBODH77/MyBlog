@@ -19,6 +19,7 @@ import DraftsPage from "@/pages/draft"
 import ThemeSettingModal from "@/pages/darkmode"
 import SettingsPage from "@/pages/settings"
 import LanguagesPage from "@/pages/languages"
+import HelpPage from "@/pages/help"
 
 function Router() {
   return (
@@ -38,6 +39,7 @@ function Router() {
       <Route path="/darkmode" component={ThemeSettingModal} />
       <Route path="/settings" component={SettingsPage} />
       <Route path="/languages" component={LanguagesPage} />
+      <Route path="/help" component={HelpPage} />
       
       {/* Fallback for all other routes to Home during mockup, or 404 if preferred */}
       <Route component={NotFound} />

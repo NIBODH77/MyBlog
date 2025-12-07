@@ -47,6 +47,7 @@ const LanguageSettings: React.FC = () => {
     'Email & Notifications',
     'Languages',
     'Subscriptions & Billing',
+    'Help', // Added Help menu item
   ];
 
   useEffect(() => {
@@ -70,62 +71,18 @@ const LanguageSettings: React.FC = () => {
     }
   };
 
-  return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Flash Message */}
-      {showFlashMessage && (
-        <div className="fixed top-4 right-4 z-50 animate-fade-in">
-          <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-            </svg>
-            <span className="font-medium">{flashMessage}</span>
-          </div>
-        </div>
-      )}
-
-      {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-200">
-        <div className="p-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">Settings</h2>
-          <nav className="space-y-1">
-            {menuItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => setActiveTab(item)}
-                className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                  activeTab === item
-                    ? 'bg-red-50 text-red-600 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="max-w-3xl">
-          <div className="flex items-center justify-between mb-8">
-            <h1 className="text-2xl font-semibold text-gray-900">
-              Language Settings
-            </h1>
-            <button
-              onClick={handleSetPrimary}
-              disabled={selectedLanguage === primaryLanguage}
-              className={`px-6 py-2 rounded-md font-medium transition-all ${
-                selectedLanguage === primaryLanguage
-                  ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                  : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md'
-              }`}
-            >
-              Set as primary
-            </button>
-          </div>
-
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'Account':
+        return <div>Account Settings</div>;
+      case 'Privacy':
+        return <div>Privacy Settings</div>;
+      case 'Display':
+        return <div>Display Settings</div>;
+      case 'Email & Notifications':
+        return <div>Email & Notifications Settings</div>;
+      case 'Languages':
+        return (
           <div className="bg-white rounded-lg shadow-sm border border-gray-200">
             <div className="divide-y divide-gray-200">
               {languages.map((language) => (
@@ -168,6 +125,104 @@ const LanguageSettings: React.FC = () => {
               ))}
             </div>
           </div>
+        );
+      case 'Subscriptions & Billing':
+        return <div>Subscriptions & Billing Settings</div>;
+      case 'Help': // New case for Help page
+        return (
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Help Center</h2>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="text-lg font-medium text-gray-800 mb-4">Frequently Asked Questions</h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-gray-700">How do I change my primary language?</h4>
+                  <p className="text-gray-600">
+                    To change your primary language, navigate to the 'Languages' tab in your settings. Select your desired language from the list and click the 'Set as primary' button. Your changes will be applied immediately.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-700">Who can I contact for support?</h4>
+                  <p className="text-gray-600">
+                    If you need further assistance, please visit our <a href="#" className="text-blue-600 hover:underline">Support Page</a> or contact us via email at <a href="mailto:support@example.com" className="text-blue-600 hover:underline">support@example.com</a>.
+                  </p>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-700">Can I change my display settings?</h4>
+                  <p className="text-gray-600">
+                    Yes, you can customize your display settings by navigating to the 'Display' tab. Here you can adjust various visual preferences to suit your needs.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen bg-gray-50">
+      {/* Flash Message */}
+      {showFlashMessage && (
+        <div className="fixed top-4 right-4 z-50 animate-fade-in">
+          <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+            </svg>
+            <span className="font-medium">{flashMessage}</span>
+          </div>
+        </div>
+      )}
+
+      {/* Sidebar */}
+      <div className="w-64 bg-white border-r border-gray-200">
+        <div className="p-6">
+          <h2 className="text-lg font-semibold text-gray-800 mb-4">Settings</h2>
+          <nav className="space-y-1">
+            {menuItems.map((item) => (
+              <button
+                key={item}
+                onClick={() => setActiveTab(item)}
+                className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
+                  activeTab === item
+                    ? 'bg-red-50 text-red-600 font-medium'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1 p-8">
+        <div className="max-w-3xl">
+          {activeTab === 'Languages' && (
+            <div className="flex items-center justify-between mb-8">
+              <h1 className="text-2xl font-semibold text-gray-900">
+                Language Settings
+              </h1>
+              <button
+                onClick={handleSetPrimary}
+                disabled={selectedLanguage === primaryLanguage}
+                className={`px-6 py-2 rounded-md font-medium transition-all ${
+                  selectedLanguage === primaryLanguage
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md'
+                }`}
+              >
+                Set as primary
+              </button>
+            </div>
+          )}
+          {activeTab === 'Help' && (
+            <h1 className="text-2xl font-semibold text-gray-900 mb-8">Help</h1>
+          )}
+          {renderContent()}
         </div>
       </div>
 
