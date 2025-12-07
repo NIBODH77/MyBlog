@@ -55,7 +55,7 @@ export default function MyBlogFollowingPage() {
       <div className="flex gap-4">
         {/* Left Sidebar */}
         <div className="hidden md:block w-64 flex-shrink-0">
-          <div className="bg-white dark:bg-card rounded shadow-sm">
+          <div className="sticky top-4 bg-white dark:bg-card rounded shadow-sm">
             <button className="w-full px-4 py-3 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary/50 flex items-center gap-2 border-b dark:border-border text-sm">
               <span className="text-xl font-light">+</span>
               <span>Create Space</span>
