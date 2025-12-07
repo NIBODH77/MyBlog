@@ -64,7 +64,7 @@ export function Header() {
     { icon: MessageCircle, label: 'Messages', href: '/messages', divider: false },
     { icon: Megaphone, label: 'Create Ad', href: '/create-ad', divider: false },
     { icon: DollarSign, label: 'Monetization', href: '/monetization', divider: false },
-    { icon: BarChart3, label: 'Your content & stats', href: '#', divider: false },
+    { icon: BarChart3, label: 'Your content & stats', href: '/stats', divider: false },
     { icon: Bookmark, label: 'Bookmarks', href: '/bookmarks', divider: false },
     { icon: FileText, label: 'Drafts', href: '/drafts', divider: false },
     { icon: Plus, label: 'Try MyBlog+', href: '#', divider: true },
