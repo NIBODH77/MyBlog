@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'wouter';
-import { Home, Book, Edit, Gift, Bell, Globe, ChevronDown, X } from 'lucide-react';
+import { X, HelpCircle, PenSquare, FileText } from 'lucide-react';
 import MyBlogPlusModal from '@/components/MyBlogPlusModal';
+import { AppShell } from '@/components/layout/AppShell';
 
 export default function MyBlogClone() {
   const [isPlusModalOpen, setIsPlusModalOpen] = useState(false);
@@ -18,195 +18,118 @@ export default function MyBlogClone() {
   ]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center h-14 gap-4">
-            {/* Logo */}
-            <div className="text-[#a82400] text-3xl font-bold" style={{ fontFamily: 'Georgia, serif' }}>
-              MyBlog
-            </div>
-
-            {/* Navigation Icons */}
-            <div className="flex gap-2">
-              <Link href="/">
-                <button className="w-10 h-10 flex items-center justify-center text-[#a82400] border-b-2 border-[#a82400]">
-                  <Home size={20} />
-                </button>
-              </Link>
-              <Link href="/following">
-                <button className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded">
-                  <Book size={20} />
-                </button>
-              </Link>
-              <Link href="/answer">
-                <button className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded">
-                  <Edit size={20} />
-                </button>
-              </Link>
-              <Link href="/spaces">
-                <button className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded">
-                  <Gift size={20} />
-                </button>
-              </Link>
-              <Link href="/notifications">
-                <button className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded">
-                  <Bell size={20} />
-                </button>
-              </Link>
-            </div>
-
-            {/* Search Bar */}
-            <div className="flex-1 max-w-md">
-              <input
-                type="text"
-                placeholder="Search MyBlog"
-                className="w-full px-4 py-2 border border-gray-300 rounded bg-gray-50 text-sm focus:outline-none focus:border-blue-500"
-              />
-            </div>
-
-            {/* Right Side */}
-            <div className="flex items-center gap-3 ml-auto">
-              <button 
-                className="text-gray-600 text-sm hover:text-gray-800"
-                onClick={() => setIsPlusModalOpen(true)}
-              >
-                Try MyBlog+
-              </button>
-              <Link href="/profile">
-                <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold cursor-pointer hover:opacity-80 transition-opacity">
-                  L
-                </div>
-              </Link>
-              <button className="text-gray-600 hover:bg-gray-100 p-1 rounded">
-                <Globe size={20} />
-              </button>
-              <button className="bg-[#a82400] text-white px-4 py-2 rounded text-sm font-medium hover:bg-[#8a1e00] flex items-center gap-1">
-                Add question
-                <ChevronDown size={16} />
-              </button>
+    <AppShell hideRightSidebar>
+      <div className="flex gap-4">
+        {/* Left Sidebar */}
+        <div className="hidden md:block w-64 flex-shrink-0">
+          <div className="bg-white dark:bg-card rounded shadow-sm">
+            <button className="w-full px-4 py-3 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary/50 flex items-center gap-2 border-b dark:border-border">
+              <span className="text-2xl">+</span>
+              <span className="text-sm">Create Space</span>
+            </button>
+            <div className="p-2 text-xs text-gray-500 dark:text-muted-foreground space-y-1">
+              <a href="#" className="block py-1 hover:underline">About MyBlog</a>
+              <a href="#" className="block py-1 hover:underline">Terms</a>
+              <a href="#" className="block py-1 hover:underline">Privacy</a>
+              <a href="#" className="block py-1 hover:underline">Acceptable Use</a>
+              <a href="#" className="block py-1 hover:underline">Advertise on Your Ad Choices</a>
+              <a href="#" className="block py-1 hover:underline">Grievance Officer</a>
+              <a href="#" className="block py-1 hover:underline">Careers</a>
+              <a href="#" className="block py-1 hover:underline">Press</a>
+              <a href="#" className="block py-1 hover:underline">Your Ad Choices</a>
+              <a href="#" className="block py-1 hover:underline">© MyBlog, Inc. 2024</a>
             </div>
           </div>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex gap-4">
-          {/* Left Sidebar */}
-          <div className="w-64 flex-shrink-0">
-            <div className="bg-white rounded shadow-sm">
-              <button className="w-full px-4 py-3 text-left text-gray-600 hover:bg-gray-50 flex items-center gap-2 border-b">
-                <span className="text-2xl">+</span>
-                <span className="text-sm">Create Space</span>
-              </button>
-              <div className="p-2 text-xs text-gray-500 space-y-1">
-                <a href="#" className="block py-1 hover:underline">About MyBlog</a>
-                <a href="#" className="block py-1 hover:underline">Terms</a>
-                <a href="#" className="block py-1 hover:underline">Privacy</a>
-                <a href="#" className="block py-1 hover:underline">Acceptable Use</a>
-                <a href="#" className="block py-1 hover:underline">Advertise on Your Ad Choices</a>
-                <a href="#" className="block py-1 hover:underline">Grievance Officer</a>
-                <a href="#" className="block py-1 hover:underline">Careers</a>
-                <a href="#" className="block py-1 hover:underline">Press</a>
-                <a href="#" className="block py-1 hover:underline">Your Ad Choices</a>
-                <a href="#" className="block py-1 hover:underline">© MyBlog, Inc. 2024</a>
+        {/* Main Feed */}
+        <div className="flex-1 max-w-2xl">
+          {/* Post Composer */}
+          <div className="bg-white dark:bg-card rounded shadow-sm mb-4 p-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold">
+                L
               </div>
+              <input
+                type="text"
+                placeholder="What do you want to ask or share?"
+                className="flex-1 text-gray-500 dark:text-muted-foreground text-sm cursor-pointer hover:bg-gray-50 dark:hover:bg-secondary/50 py-2 px-3 rounded border border-gray-200 dark:border-border"
+              />
+            </div>
+
+            <div className="flex gap-2 mt-3 border-t pt-3 dark:border-border">
+              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded">
+                <HelpCircle className="w-4 h-4 text-red-600" /> Ask
+              </button>
+              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded">
+                <PenSquare className="w-4 h-4" /> Answer
+              </button>
+              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded">
+                <FileText className="w-4 h-4" /> Post
+              </button>
             </div>
           </div>
 
-          {/* Main Feed */}
-          <div className="flex-1 max-w-2xl">
-            {/* Post Composer */}
-            <div className="bg-white rounded shadow-sm mb-4 p-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold">
-                  L
-                </div>
-                <input
-                  type="text"
-                  placeholder="What do you want to ask or share?"
-                  className="flex-1 text-gray-600 focus:outline-none"
-                />
-              </div>
-              <div className="flex gap-4 mt-4 pt-4 border-t">
-                <button className="flex items-center gap-2 text-gray-600 hover:bg-gray-50 px-3 py-2 rounded">
-                  <span className="text-lg">?</span>
-                  <span className="text-sm">Ask</span>
-                </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:bg-gray-50 px-3 py-2 rounded">
-                  <Edit size={18} />
-                  <span className="text-sm">Answer</span>
-                </button>
-                <button className="flex items-center gap-2 text-gray-600 hover:bg-gray-50 px-3 py-2 rounded">
-                  <span className="text-lg">✎</span>
-                  <span className="text-sm">Post</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Posts */}
-            {posts.map(post => (
-              <div key={post.id} className="bg-white rounded shadow-sm mb-4">
-                <div className="p-4">
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex gap-3">
-                      <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">
-                        L
+          {/* Posts */}
+          {posts.map((post) => (
+            <div key={post.id} className="bg-white dark:bg-card rounded shadow-sm mb-4">
+              <div className="p-4">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">
+                      L
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="font-semibold text-gray-900 dark:text-foreground">{post.author}</span>
+                        <span className="text-blue-600 text-sm">· Follow</span>
                       </div>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="font-semibold text-gray-900">{post.author}</span>
-                          <span className="text-blue-600 text-sm">· Follow</span>
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {post.location} · {post.date}
-                        </div>
+                      <div className="text-xs text-gray-500 dark:text-muted-foreground">
+                        {post.location} · {post.date}
                       </div>
                     </div>
-                    <button className="text-gray-400 hover:bg-gray-100 p-1 rounded">
-                      <X size={20} />
-                    </button>
                   </div>
-
-                  <p className="text-gray-900 mb-3 leading-relaxed">
-                    {post.content}
-                    <span className="text-gray-500 ml-1 cursor-pointer hover:underline">(more)</span>
-                  </p>
-
-                  <img
-                    src={post.image}
-                    alt="Post"
-                    className="w-full rounded"
-                  />
+                  <button className="text-gray-400 hover:bg-gray-100 dark:hover:bg-secondary/50 p-1 rounded">
+                    <X size={20} />
+                  </button>
                 </div>
-              </div>
-            ))}
-          </div>
 
-          {/* Right Sidebar - Ads */}
-          <div className="w-80 flex-shrink-0">
-            <div className="bg-gray-900 rounded overflow-hidden mb-4">
-              <img
-                src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop"
-                alt="Advertisement"
-                className="w-full"
-              />
-              <div className="p-4 text-white">
-                <h3 className="text-xl font-bold mb-2">Save 55% on Creative Cloud Pro.</h3>
-                <p className="text-sm mb-3">Now ₹1,199/mo for the first year. Ends 7 December.*</p>
-                <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700">
-                  Learn more
-                </button>
+                <p className="text-gray-900 dark:text-foreground mb-3 leading-relaxed">
+                  {post.content}
+                  <span className="text-gray-500 dark:text-muted-foreground ml-1 cursor-pointer hover:underline">(more)</span>
+                </p>
+
+                <img
+                  src={post.image}
+                  alt="Post"
+                  className="w-full rounded"
+                />
               </div>
             </div>
-            <div className="text-xs text-center text-gray-500">Advertisement</div>
+          ))}
+        </div>
+
+        {/* Right Sidebar - Ads */}
+        <div className="hidden lg:block w-80 flex-shrink-0">
+          <div className="bg-gray-900 rounded overflow-hidden mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop"
+              alt="Advertisement"
+              className="w-full"
+            />
+            <div className="p-4 text-white">
+              <h3 className="text-xl font-bold mb-2">Save 55% on Creative Cloud Pro.</h3>
+              <p className="text-sm mb-3">Now ₹1,199/mo for the first year. Ends 7 December.*</p>
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700">
+                Learn more
+              </button>
+            </div>
           </div>
+          <div className="text-xs text-center text-gray-500 dark:text-muted-foreground">Advertisement</div>
         </div>
       </div>
 
       <MyBlogPlusModal isOpen={isPlusModalOpen} onClose={() => setIsPlusModalOpen(false)} />
-    </div>
+    </AppShell>
   );
 }
