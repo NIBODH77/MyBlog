@@ -21,7 +21,7 @@ export default function MyBlogClone() {
     <AppShell hideRightSidebar>
       <div className="flex gap-4">
         {/* Left Sidebar */}
-        <div className="hidden md:block w-48 flex-shrink-0 ">
+        <div className="hidden md:block w-48 flex-shrink-0 -ml-5">
           <div className="bg-white dark:bg-card rounded shadow-sm">
             <button className="w-full px-4 py-3 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary/50 flex items-center gap-2 border-b dark:border-border">
               <span className="text-2xl">+</span>
