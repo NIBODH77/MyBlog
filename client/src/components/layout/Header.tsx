@@ -28,12 +28,14 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { currentUser } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import MyBlogPlusModal from "@/components/MyBlogPlusModal";
+import AddQuestionModal from "@/components/AddQuestionModal";
 
 export function Header() {
   const [location, setLocation] = useLocation();
   const [isPlusModalOpen, setIsPlusModalOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -273,7 +275,11 @@ export function Header() {
               )}
             </div>
 
-            <Button size="sm" className="rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white font-medium px-4 h-8">
+            <Button 
+              size="sm" 
+              className="rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white font-medium px-4 h-8"
+              onClick={() => setIsAddQuestionOpen(true)}
+            >
               Add question
             </Button>
           </div>
@@ -281,6 +287,7 @@ export function Header() {
       </header>
 
       <MyBlogPlusModal isOpen={isPlusModalOpen} onClose={() => setIsPlusModalOpen(false)} />
+      <AddQuestionModal isOpen={isAddQuestionOpen} onClose={() => setIsAddQuestionOpen(false)} />
     </>
   );
 }
