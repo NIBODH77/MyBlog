@@ -105,7 +105,7 @@ export default function MyBlogSpacesPage() {
             <h4 className="text-sm font-medium text-gray-700 dark:text-muted-foreground mb-4">Spaces you might like</h4>
 
             {/* Spaces Grid */}
-            <div className="sticky top-4 z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4">
               {spaces.map(space => (
                 <div key={space.id} className="bg-white dark:bg-card rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer" data-testid={`card-space-${space.id}`}>
                   <div className="relative h-24">
