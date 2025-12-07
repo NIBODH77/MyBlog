@@ -56,20 +56,20 @@ export default function MyBlogFollowingPage() {
         {/* Left Sidebar */}
         <div className="hidden md:block w-64 flex-shrink-0">
           <div className="sticky top-20 bg-white dark:bg-card rounded shadow-sm self-start">
-            <button className="w-full px-4 py-3 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary/50 flex items-center gap-2 border-b dark:border-border text-sm">
+            <a href="/create-space" className="w-full px-4 py-3 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary/50 flex items-center gap-2 border-b dark:border-border text-sm">
               <span className="text-xl font-light">+</span>
               <span>Create Space</span>
-            </button>
+            </a>
             <div className="p-2 text-xs text-gray-500 dark:text-muted-foreground space-y-1">
-              <a href="#" className="block py-1 hover:underline">About MyBlog</a>
-              <a href="#" className="block py-1 hover:underline">Terms</a>
-              <a href="#" className="block py-1 hover:underline">Privacy</a>
-              <a href="#" className="block py-1 hover:underline">Acceptable Use</a>
-              <a href="#" className="block py-1 hover:underline">Advertise on Your Ad Choices</a>
-              <a href="#" className="block py-1 hover:underline">Grievance Officer</a>
-              <a href="#" className="block py-1 hover:underline">Careers</a>
-              <a href="#" className="block py-1 hover:underline">Press</a>
-              <a href="#" className="block py-1 hover:underline">Your Ad Choices</a>
+              <a href="/about" className="block py-1 hover:underline">About MyBlog</a>
+              <a href="/terms" className="block py-1 hover:underline">Terms</a>
+              <a href="/privacy" className="block py-1 hover:underline">Privacy</a>
+              <a href="/acceptable-use" className="block py-1 hover:underline">Acceptable Use</a>
+              <a href="/advertise" className="block py-1 hover:underline">Advertise</a>
+              <a href="/grievance" className="block py-1 hover:underline">Grievance Officer</a>
+              <a href="/careers" className="block py-1 hover:underline">Careers</a>
+              <a href="/press" className="block py-1 hover:underline">Press</a>
+              <a href="/ad-choices" className="block py-1 hover:underline">Your Ad Choices</a>
               <a href="#" className="block py-1 hover:underline">© MyBlog, Inc. 2024</a>
             </div>
           </div>

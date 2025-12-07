@@ -20,6 +20,16 @@ import SettingsPage from "@/pages/settings"
 import LanguagesPage from "@/pages/languages"
 import HelpPage from "@/pages/help"
 import ProfilePage from "@/pages/profile"
+import CreateSpacePage from "@/pages/create-space"
+import AboutPage from "@/pages/about"
+import TermsPage from "@/pages/terms"
+import PrivacyPage from "@/pages/privacy"
+import AcceptableUsePage from "@/pages/acceptable-use"
+import AdvertisePage from "@/pages/advertise"
+import CareersPage from "@/pages/careers"
+import PressPage from "@/pages/press"
+import AdChoicesPage from "@/pages/ad-choices"
+import GrievancePage from "@/pages/grievance"
 
 function Router() {
   return (
@@ -40,6 +50,16 @@ function Router() {
       <Route path="/settings" component={SettingsPage} />
       <Route path="/languages" component={LanguagesPage} />
       <Route path="/help" component={HelpPage} />
+      <Route path="/create-space" component={CreateSpacePage} />
+      <Route path="/about" component={AboutPage} />
+      <Route path="/terms" component={TermsPage} />
+      <Route path="/privacy" component={PrivacyPage} />
+      <Route path="/acceptable-use" component={AcceptableUsePage} />
+      <Route path="/advertise" component={AdvertisePage} />
+      <Route path="/careers" component={CareersPage} />
+      <Route path="/press" component={PressPage} />
+      <Route path="/ad-choices" component={AdChoicesPage} />
+      <Route path="/grievance" component={GrievancePage} />
       
       {/* Fallback for all other routes to Home during mockup, or 404 if preferred */}
       <Route component={NotFound} />
