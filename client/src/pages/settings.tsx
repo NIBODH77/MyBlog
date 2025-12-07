@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link } from "wouter";
+import { Header } from '@/components/layout/Header';
 
 export default function QuoraAccountSettings() {
   const [emailVerification, setEmailVerification] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Header />
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex gap-8">
           {/* Left Sidebar */}
@@ -27,9 +29,9 @@ export default function QuoraAccountSettings() {
                     Email & Notifications
                   </a>
                   <Link href="/languages">
-                    <div className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">
+                    <a className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">
                       Languages
-                    </div>
+                    </a>
                   </Link>
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Subscriptions & Billing

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Plus, MoreHorizontal, Share2, Bookmark } from 'lucide-react';
+import { Header } from '@/components/layout/Header';
 
 export default function QuoraBookmarks() {
   const [bookmarks] = useState([
@@ -34,6 +35,7 @@ export default function QuoraBookmarks() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Header />
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 py-6">
         <div className="flex gap-6">

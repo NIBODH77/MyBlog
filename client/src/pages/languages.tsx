@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
+import { Header } from '@/components/layout/Header';
 
 interface Language {
   code: string;
@@ -76,6 +77,8 @@ const LanguageSettings: React.FC = () => {
   const handleMenuItemClick = (item: string) => {
     if (item === 'Help') {
       setLocation('/help');
+    } else if (item === 'Account') {
+      setLocation('/settings');
     } else {
       setActiveTab(item);
     }
@@ -144,8 +147,10 @@ const LanguageSettings: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      {/* Flash Message */}
+    <>
+      <Header />
+      <div className="flex min-h-screen bg-gray-50">
+        {/* Flash Message */}
       {showFlashMessage && (
         <div className="fixed top-4 right-4 z-50 animate-fade-in">
           <div className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center space-x-2">
@@ -203,6 +208,7 @@ const LanguageSettings: React.FC = () => {
           {renderContent()}
         </div>
       </div>
+      </div>
 
       <style>{`
         @keyframes fade-in {
@@ -219,7 +225,7 @@ const LanguageSettings: React.FC = () => {
           animation: fade-in 0.3s ease-out;
         }
       `}</style>
-    </div>
+    </>
   );
 };
 
