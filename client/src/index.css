@@ -73,6 +73,23 @@
   --popover: 0 0% 100%;
   --popover-foreground: 240 1% 16%;
 
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.2s ease-out;
+}
+
+
   /* #a82400 -> 13 100% 33% (Quora Red) */
   --primary: 13 100% 33%;
   --primary-foreground: 0 0% 100%;

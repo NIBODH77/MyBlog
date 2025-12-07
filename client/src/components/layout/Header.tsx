@@ -1,17 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, Bell, Home, List, PenSquare, Users, Globe, Menu } from "lucide-react";
+import { 
+  Search, 
+  Bell, 
+  Home, 
+  List, 
+  PenSquare, 
+  Users, 
+  Globe, 
+  Menu,
+  MessageCircle,
+  Megaphone,
+  DollarSign,
+  BarChart3,
+  Bookmark,
+  FileText,
+  Plus,
+  Moon,
+  Settings,
+  HelpCircle,
+  LogOut
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { currentUser } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
@@ -20,6 +32,25 @@ import MyBlogPlusModal from "@/components/MyBlogPlusModal";
 export function Header() {
   const [location, setLocation] = useLocation();
   const [isPlusModalOpen, setIsPlusModalOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsProfileDropdownOpen(false);
+      }
+    };
+
+    if (isProfileDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isProfileDropdownOpen]);
 
   const navItems = [
     { icon: Home, label: "Home", href: "/" },
@@ -27,6 +58,23 @@ export function Header() {
     { icon: PenSquare, label: "Answer", href: "/answer" },
     { icon: Users, label: "Spaces", href: "/spaces" },
     { icon: Bell, label: "Notifications", href: "/notifications" },
+  ];
+
+  const menuItems = [
+    { icon: MessageCircle, label: 'Messages', href: '/messages', divider: false },
+    { icon: Megaphone, label: 'Create Ad', href: '/create-ad', divider: false },
+    { icon: DollarSign, label: 'Monetization', href: '/monetization', divider: false },
+    { icon: BarChart3, label: 'Your content & stats', href: '#', divider: false },
+    { icon: Bookmark, label: 'Bookmarks', href: '/bookmarks', divider: false },
+    { icon: FileText, label: 'Drafts', href: '/drafts', divider: false },
+    { icon: Plus, label: 'Try MyBlog+', href: '#', divider: true },
+  ];
+
+  const bottomMenuItems = [
+    { icon: Settings, label: 'Settings', href: '/settings', divider: false },
+    { icon: Globe, label: 'Languages', href: '/languages', divider: false },
+    { icon: HelpCircle, label: 'Help', href: '/help', divider: false },
+    { icon: LogOut, label: 'Logout', href: '#', divider: false },
   ];
 
   return (
@@ -99,90 +147,139 @@ export function Header() {
               <Globe className="h-5 w-5" />
             </Button>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0 overflow-hidden ring-1 ring-border hover:ring-primary/20 transition-all">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-                    <AvatarFallback>L</AvatarFallback>
-                  </Avatar>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-64" align="end" forceMount>
-                <Link href="/profile">
-                  <DropdownMenuLabel className="font-normal p-3 cursor-pointer hover:bg-gray-50">
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-12 w-12">
-                        <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-                        <AvatarFallback className="bg-green-600 text-white text-lg">L</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <p className="text-base font-semibold leading-none text-gray-900">{currentUser.name}</p>
+            <div ref={dropdownRef} className="relative">
+              <Button 
+                variant="ghost" 
+                className="relative h-8 w-8 rounded-full p-0 overflow-hidden ring-1 ring-border hover:ring-primary/20 transition-all"
+                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+              >
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                  <AvatarFallback className="bg-green-600 text-white">L</AvatarFallback>
+                </Avatar>
+              </Button>
+
+              {/* Custom Profile Dropdown */}
+              {isProfileDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden animate-slideDown z-50">
+                  {/* User Profile Section */}
+                  <Link href="/profile">
+                    <div 
+                      className="px-4 py-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors"
+                      onClick={() => setIsProfileDropdownOpen(false)}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Avatar className="h-10 w-10">
+                          <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                          <AvatarFallback className="bg-green-600 text-white font-semibold">L</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <div className="font-semibold text-gray-900">{currentUser.name}</div>
+                        </div>
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
                       </div>
                     </div>
-                  </DropdownMenuLabel>
-                </Link>
-                <DropdownMenuSeparator className="my-0" />
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/messages">
-                    <span className="text-base text-gray-900 font-normal">Messages</span>
                   </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/create-ad">
-                    <span className="text-base text-gray-900 font-normal">Create Ad</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/monetization">
-                    <span className="text-base text-gray-900 font-normal">Monetization</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <span className="text-base text-gray-900 font-normal">Your content & stats</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/bookmarks">
-                    <span className="text-base text-gray-900 font-normal">Bookmarks</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/drafts">
-                    <span className="text-base text-gray-900 font-normal">Drafts</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <span className="text-base text-gray-900 font-normal">Try MyBlog+</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator className="my-0" />
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/darkmode">
-                    <div className="flex items-center justify-between w-full">
-                      <span className="text-base text-gray-900 font-normal">Dark mode</span>
-                      <span className="text-xs text-blue-600 font-semibold">AUTO</span>
+
+                  {/* Menu Items */}
+                  <div className="py-2">
+                    {menuItems.map((item, index) => (
+                      <React.Fragment key={index}>
+                        {item.href === '#' ? (
+                          <button 
+                            className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                            onClick={() => {
+                              if (item.label === 'Try MyBlog+') {
+                                setIsPlusModalOpen(true);
+                                setIsProfileDropdownOpen(false);
+                              }
+                            }}
+                          >
+                            <item.icon className="w-5 h-5 text-gray-600" />
+                            <span className="text-gray-700 text-sm">{item.label}</span>
+                          </button>
+                        ) : (
+                          <Link href={item.href}>
+                            <button 
+                              className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                              onClick={() => setIsProfileDropdownOpen(false)}
+                            >
+                              <item.icon className="w-5 h-5 text-gray-600" />
+                              <span className="text-gray-700 text-sm">{item.label}</span>
+                            </button>
+                          </Link>
+                        )}
+                        {item.divider && <div className="border-t border-gray-200 my-2" />}
+                      </React.Fragment>
+                    ))}
+                  </div>
+
+                  {/* Dark Mode Toggle */}
+                  <div className="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer border-t border-gray-200">
+                    <div className="flex items-center space-x-3">
+                      <Moon className="w-5 h-5 text-gray-600" />
+                      <span className="text-gray-700 text-sm">Dark mode</span>
                     </div>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/settings">
-                    <span className="text-base text-gray-900 font-normal">Settings</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/languages">
-                    <span className="text-base text-gray-900 font-normal">Languages</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <Link href="/help">
-                    <span className="text-base text-gray-900 font-normal">Help</span>
-                  </Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-3 px-4 hover:bg-gray-50">
-                  <span className="text-base text-gray-900 font-normal">Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setIsDarkMode(!isDarkMode);
+                      }}
+                      className={`relative w-10 h-5 rounded-full transition-colors ${
+                        isDarkMode ? 'bg-blue-600' : 'bg-gray-300'
+                      }`}
+                    >
+                      <div
+                        className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${
+                          isDarkMode ? 'transform translate-x-5' : ''
+                        }`}
+                      />
+                    </button>
+                  </div>
+
+                  {/* Bottom Menu Items */}
+                  <div className="py-2 border-t border-gray-200">
+                    {bottomMenuItems.map((item, index) => (
+                      item.href === '#' ? (
+                        <button
+                          key={index}
+                          className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                          onClick={() => setIsProfileDropdownOpen(false)}
+                        >
+                          <item.icon className="w-5 h-5 text-gray-600" />
+                          <span className="text-gray-700 text-sm">{item.label}</span>
+                        </button>
+                      ) : (
+                        <Link key={index} href={item.href}>
+                          <button
+                            className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                            onClick={() => setIsProfileDropdownOpen(false)}
+                          >
+                            <item.icon className="w-5 h-5 text-gray-600" />
+                            <span className="text-gray-700 text-sm">{item.label}</span>
+                          </button>
+                        </Link>
+                      )
+                    ))}
+                  </div>
+
+                  {/* Footer Links */}
+                  <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
+                    <div className="text-xs text-gray-500 space-x-1 flex flex-wrap">
+                      <a href="#" className="hover:underline">About</a>
+                      <span>·</span>
+                      <a href="#" className="hover:underline">Terms</a>
+                      <span>·</span>
+                      <a href="#" className="hover:underline">Privacy</a>
+                      <span>·</span>
+                      <a href="#" className="hover:underline">Careers</a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
 
             <Button size="sm" className="rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white font-medium px-4 h-8">
               Add question
