@@ -28,7 +28,7 @@ import AcceptableUsePage from "@/pages/acceptable-use"
 import AdvertisePage from "@/pages/advertise"
 import CareersPage from "@/pages/careers"
 import PressPage from "@/pages/press"
-import AdChoicesPage from "@/pages/ad-choices"
+import CompanyPage from "@/pages/company"
 import GrievancePage from "@/pages/grievance"
 
 function Router() {
@@ -58,7 +58,7 @@ function Router() {
       <Route path="/advertise" component={AdvertisePage} />
       <Route path="/careers" component={CareersPage} />
       <Route path="/press" component={PressPage} />
-      <Route path="/ad-choices" component={AdChoicesPage} />
+      <Route path="/company" component={CompanyPage} />
       <Route path="/grievance" component={GrievancePage} />
       
       {/* Fallback for all other routes to Home during mockup, or 404 if preferred */}

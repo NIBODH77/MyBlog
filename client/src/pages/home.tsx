@@ -54,8 +54,8 @@ export default function MyBlogClone() {
               <a href="/press" className="block py-1 hover:underline">
                 Press
               </a>
-              <a href="/ad-choices" className="block py-1 hover:underline">
-                Your Ad Choices
+              <a href="/company" className="block py-1 hover:underline">
+                Company
               </a>
               <a href="#" className="block py-1 hover:underline">
                 © MyBlog, Inc. 2024
