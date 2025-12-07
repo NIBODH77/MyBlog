@@ -108,76 +108,78 @@ export function Header() {
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-52" align="end" forceMount>
-                <DropdownMenuLabel className="font-normal p-2 cursor-pointer hover:bg-gray-50">
-                  <div className="flex items-center gap-2">
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-                      <AvatarFallback className="bg-green-600 text-white">L</AvatarFallback>
-                    </Avatar>
-                    <div className="flex-1">
-                      <p className="text-sm font-semibold leading-none text-gray-900">{currentUser.name}</p>
+              <DropdownMenuContent className="w-64" align="end" forceMount>
+                <Link href="/profile">
+                  <DropdownMenuLabel className="font-normal p-3 cursor-pointer hover:bg-gray-50">
+                    <div className="flex items-center gap-3">
+                      <Avatar className="h-12 w-12">
+                        <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                        <AvatarFallback className="bg-green-600 text-white text-lg">L</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <p className="text-base font-semibold leading-none text-gray-900">{currentUser.name}</p>
+                      </div>
                     </div>
-                  </div>
-                </DropdownMenuLabel>
+                  </DropdownMenuLabel>
+                </Link>
                 <DropdownMenuSeparator className="my-0" />
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/messages">
-                    <span className="text-sm text-gray-900 font-normal">Messages</span>
+                    <span className="text-base text-gray-900 font-normal">Messages</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/create-ad">
-                    <span className="text-sm text-gray-900 font-normal">Create Ad</span>
+                    <span className="text-base text-gray-900 font-normal">Create Ad</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/monetization">
-                    <span className="text-sm text-gray-900 font-normal">Monetization</span>
+                    <span className="text-base text-gray-900 font-normal">Monetization</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-2 px-3">
-                  <span className="text-sm text-gray-900 font-normal">Your content & stats</span>
+                <DropdownMenuItem className="cursor-pointer py-3 px-4 hover:bg-gray-50">
+                  <span className="text-base text-gray-900 font-normal">Your content & stats</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/bookmarks">
-                    <span className="text-sm text-gray-900 font-normal">Bookmarks</span>
+                    <span className="text-base text-gray-900 font-normal">Bookmarks</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/drafts">
-                    <span className="text-sm text-gray-900 font-normal">Drafts</span>
+                    <span className="text-base text-gray-900 font-normal">Drafts</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-2 px-3">
-                  <span className="text-sm text-gray-900 font-normal">Try MyBlog+</span>
+                <DropdownMenuItem className="cursor-pointer py-3 px-4 hover:bg-gray-50">
+                  <span className="text-base text-gray-900 font-normal">Try MyBlog+</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator className="my-0" />
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/darkmode">
                     <div className="flex items-center justify-between w-full">
-                      <span className="text-sm text-gray-900 font-normal">Dark mode</span>
+                      <span className="text-base text-gray-900 font-normal">Dark mode</span>
                       <span className="text-xs text-blue-600 font-semibold">AUTO</span>
                     </div>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/settings">
-                    <span className="text-sm text-gray-900 font-normal">Settings</span>
+                    <span className="text-base text-gray-900 font-normal">Settings</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/languages">
-                    <span className="text-sm text-gray-900 font-normal">Languages</span>
+                    <span className="text-base text-gray-900 font-normal">Languages</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer py-2 px-3">
+                <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/help">
-                    <span className="text-sm text-gray-900 font-normal">Help</span>
+                    <span className="text-base text-gray-900 font-normal">Help</span>
                   </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="cursor-pointer py-2 px-3">
-                  <span className="text-sm text-gray-900 font-normal">Logout</span>
+                <DropdownMenuItem className="cursor-pointer py-3 px-4 hover:bg-gray-50">
+                  <span className="text-base text-gray-900 font-normal">Logout</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
