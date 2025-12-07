@@ -109,19 +109,17 @@ export function Header() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-64" align="end" forceMount>
-                <Link href="/profile">
-                  <DropdownMenuLabel className="font-normal p-3 cursor-pointer hover:bg-gray-50">
-                    <div className="flex items-center gap-3">
-                      <Avatar className="h-12 w-12">
-                        <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-                        <AvatarFallback className="bg-green-600 text-white text-lg">L</AvatarFallback>
-                      </Avatar>
-                      <div className="flex-1">
-                        <p className="text-base font-semibold leading-none text-gray-900">{currentUser.name}</p>
-                      </div>
+                <DropdownMenuLabel className="font-normal p-3">
+                  <div className="flex items-center gap-3">
+                    <Avatar className="h-12 w-12">
+                      <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                      <AvatarFallback className="bg-green-600 text-white text-lg">L</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="text-base font-semibold leading-none text-gray-900">{currentUser.name}</p>
                     </div>
-                  </DropdownMenuLabel>
-                </Link>
+                  </div>
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator className="my-0" />
                 <DropdownMenuItem asChild className="cursor-pointer py-3 px-4 hover:bg-gray-50">
                   <Link href="/messages">
