@@ -1,194 +1,174 @@
+import { Header } from '@/components/layout/Header';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { currentUser } from '@/lib/mock-data';
+import { MapPin, Calendar, Users, Eye, PenSquare, Award } from 'lucide-react';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { 
-  MessageCircle, 
-  Megaphone, 
-  DollarSign, 
-  BarChart3, 
-  Bookmark, 
-  FileText, 
-  Plus, 
-  Moon, 
-  Settings, 
-  Globe, 
-  HelpCircle, 
-  LogOut 
-} from 'lucide-react';
-
-const ProfileDropdown: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [isOpen]);
-
-  const menuItems = [
-    { icon: MessageCircle, label: 'Messages', divider: false },
-    { icon: Megaphone, label: 'Create Ad', divider: false },
-    { icon: DollarSign, label: 'Monetization', divider: false },
-    { icon: BarChart3, label: 'Your content & stats', divider: false },
-    { icon: Bookmark, label: 'Bookmarks', divider: false },
-    { icon: FileText, label: 'Drafts', divider: false },
-    { icon: Plus, label: 'Try Quora+', divider: true },
-  ];
-
-  const bottomMenuItems = [
-    { icon: Settings, label: 'Settings', divider: false },
-    { icon: Globe, label: 'Languages', divider: false },
-    { icon: HelpCircle, label: 'Help', divider: false },
-    { icon: LogOut, label: 'Logout', divider: false },
-  ];
-
+export default function ProfilePage() {
   return (
-    <div className="relative min-h-screen bg-gray-50">
-      {/* Header with Profile Icon Only */}
-      <div className="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-end z-40">
-        <div ref={dropdownRef} className="relative">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="w-9 h-9 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold hover:bg-green-700 transition-colors"
-          >
-            L
-          </button>
-
-          {/* Dropdown Menu */}
-          {isOpen && (
-            <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden animate-slideDown z-50">
-              {/* User Profile Section */}
-              <div className="px-4 py-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-semibold">
-                    L
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <Card className="mb-6">
+          <CardContent className="pt-6">
+            <div className="flex flex-col md:flex-row gap-6 items-start">
+              <Avatar className="h-24 w-24 ring-4 ring-background">
+                <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                <AvatarFallback className="bg-green-600 text-white text-2xl">
+                  {currentUser.name.charAt(0)}
+                </AvatarFallback>
+              </Avatar>
+              
+              <div className="flex-1">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                  <div>
+                    <h1 className="text-2xl font-bold">{currentUser.name}</h1>
+                    <p className="text-muted-foreground">{currentUser.bio}</p>
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-gray-900">Lolu</div>
+                  <Button variant="outline" size="sm" data-testid="button-edit-profile">
+                    <PenSquare className="h-4 w-4 mr-2" />
+                    Edit Profile
+                  </Button>
+                </div>
+                
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-4">
+                  <div className="flex items-center gap-1">
+                    <MapPin className="h-4 w-4" />
+                    <span>San Francisco, CA</span>
                   </div>
-                  <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-4 w-4" />
+                    <span>Joined December 2023</span>
+                  </div>
                 </div>
-              </div>
-
-              {/* Menu Items */}
-              <div className="py-2">
-                {menuItems.map((item, index) => (
-                  <React.Fragment key={index}>
-                    <button className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left">
-                      <item.icon className="w-5 h-5 text-gray-600" />
-                      <span className="text-gray-700 text-sm">{item.label}</span>
-                    </button>
-                    {item.divider && <div className="border-t border-gray-200 my-2" />}
-                  </React.Fragment>
-                ))}
-              </div>
-
-              {/* Dark Mode Toggle */}
-              <div className="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer border-t border-gray-200">
-                <div className="flex items-center space-x-3">
-                  <Moon className="w-5 h-5 text-gray-600" />
-                  <span className="text-gray-700 text-sm">Dark mode</span>
-                </div>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsDarkMode(!isDarkMode);
-                  }}
-                  className={`relative w-10 h-5 rounded-full transition-colors ${
-                    isDarkMode ? 'bg-blue-600' : 'bg-gray-300'
-                  }`}
-                >
-                  <div
-                    className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform ${
-                      isDarkMode ? 'transform translate-x-5' : ''
-                    }`}
-                  />
-                </button>
-              </div>
-
-              {/* Bottom Menu Items */}
-              <div className="py-2 border-t border-gray-200">
-                {bottomMenuItems.map((item, index) => (
-                  <button
-                    key={index}
-                    className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
-                  >
-                    <item.icon className="w-5 h-5 text-gray-600" />
-                    <span className="text-gray-700 text-sm">{item.label}</span>
-                  </button>
-                ))}
-              </div>
-
-              {/* Footer Links */}
-              <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
-                <div className="text-xs text-gray-500 space-x-1 flex flex-wrap">
-                  <a href="#" className="hover:underline">About Quora</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Terms</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Privacy</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Acceptable Use</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Advertise</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Your Ad Choices</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Grievance Officer</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Careers</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Press</a>
-                  <span>·</span>
-                  <a href="#" className="hover:underline">Company</a>
+                
+                <div className="flex gap-6">
+                  <div className="flex items-center gap-1">
+                    <Users className="h-4 w-4 text-muted-foreground" />
+                    <span className="font-semibold">{currentUser.stats.followers}</span>
+                    <span className="text-muted-foreground">Followers</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="font-semibold">{currentUser.stats.following}</span>
+                    <span className="text-muted-foreground">Following</span>
+                  </div>
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      </div>
+          </CardContent>
+        </Card>
 
-      {/* Demo Content */}
-      <div className="max-w-2xl mx-auto mt-24 px-4">
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-2">Profile Dropdown Demo</h2>
-          <p className="text-gray-600">
-            Click on the profile icon (green circle with "L") in the top right corner to open the dropdown menu.
-          </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-blue-100 rounded-lg dark:bg-blue-900">
+                  <PenSquare className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{currentUser.stats.answers}</p>
+                  <p className="text-sm text-muted-foreground">Answers</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-green-100 rounded-lg dark:bg-green-900">
+                  <Eye className="h-5 w-5 text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{currentUser.stats.questions}</p>
+                  <p className="text-sm text-muted-foreground">Questions</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+          
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-purple-100 rounded-lg dark:bg-purple-900">
+                  <Award className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+                </div>
+                <div>
+                  <p className="text-2xl font-bold">{currentUser.stats.followers + currentUser.stats.following}</p>
+                  <p className="text-sm text-muted-foreground">Connections</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
-      </div>
 
-      <style>{`
-        @keyframes slideDown {
-          from {
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-slideDown {
-          animation: slideDown 0.2s ease-out;
-        }
-      `}</style>
+        <Tabs defaultValue="answers" className="w-full">
+          <TabsList className="w-full justify-start">
+            <TabsTrigger value="answers" data-testid="tab-answers">Answers</TabsTrigger>
+            <TabsTrigger value="questions" data-testid="tab-questions">Questions</TabsTrigger>
+            <TabsTrigger value="posts" data-testid="tab-posts">Posts</TabsTrigger>
+            <TabsTrigger value="spaces" data-testid="tab-spaces">Spaces</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="answers" className="mt-6">
+            <Card>
+              <CardContent className="pt-6">
+                <div className="space-y-4">
+                  {[1, 2, 3].map((item) => (
+                    <div key={item} className="border-b last:border-0 pb-4 last:pb-0">
+                      <h3 className="font-medium mb-2">
+                        What are the best practices for learning programming?
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2">
+                        The best approach to learning programming is to start with fundamentals, 
+                        practice consistently, and build real projects...
+                      </p>
+                      <div className="flex gap-4 mt-2 text-xs text-muted-foreground">
+                        <span>1.2K views</span>
+                        <span>45 upvotes</span>
+                        <span>12 comments</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="questions" className="mt-6">
+            <Card>
+              <CardContent className="pt-6 text-center text-muted-foreground">
+                No questions yet
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="posts" className="mt-6">
+            <Card>
+              <CardContent className="pt-6 text-center text-muted-foreground">
+                No posts yet
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="spaces" className="mt-6">
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary">Technology</Badge>
+                  <Badge variant="secondary">Programming</Badge>
+                  <Badge variant="secondary">Startups</Badge>
+                  <Badge variant="secondary">AI & Machine Learning</Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
     </div>
   );
-};
-
-export default ProfileDropdown;
+}
