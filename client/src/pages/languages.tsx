@@ -167,7 +167,7 @@ const LanguageSettings: React.FC = () => {
                 key={item}
                 onClick={() => handleMenuItemClick(item)}
                 className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
-                  activeTab === item
+                  activeTab === item && item !== 'Help'
                     ? 'bg-red-50 text-red-600 font-medium'
                     : 'text-gray-700 hover:bg-gray-50'
                 }`}
