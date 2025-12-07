@@ -8,7 +8,7 @@ export default function QuoraDrafts() {
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex gap-6">
           {/* Left Sidebar */}
-          <aside className="w-64 flex-shrink-0">
+          <aside className="sticky top-20 h-fit w-64 flex-shrink-0">
             <div className="bg-white rounded-lg shadow-sm">
               <div className="p-3">
                 <h2 className="text-sm font-semibold text-gray-700 mb-2">Questions</h2>
@@ -63,7 +63,7 @@ export default function QuoraDrafts() {
           </main>
 
           {/* Right Sidebar */}
-          <aside className="w-80 flex-shrink-0">
+          <aside className="sticky top-20 h-fit w-80 flex-shrink-0">
             <div className="bg-white rounded-lg shadow-sm p-5">
               <h3 className="text-base font-semibold text-gray-800 mb-2">
                 Add topics you know about

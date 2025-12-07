@@ -11,7 +11,7 @@ export default function QuoraAccountSettings() {
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex gap-8">
           {/* Left Sidebar */}
-          <aside className="w-64 flex-shrink-0">
+          <aside className="sticky top-20 h-fit w-64 flex-shrink-0">
             <div className="bg-white rounded-lg shadow-sm">
               <div className="p-3">
                 <h2 className="text-sm font-semibold text-gray-700 mb-3 px-3">Settings</h2>

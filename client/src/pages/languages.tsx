@@ -163,7 +163,7 @@ const LanguageSettings: React.FC = () => {
       )}
 
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-200">
+      <div className="sticky top-20 h-fit w-64 bg-white border-r border-gray-200">
         <div className="p-6">
           <h2 className="text-lg font-semibold text-gray-800 mb-4">Settings</h2>
           <nav className="space-y-1">
@@ -184,30 +184,34 @@ const LanguageSettings: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 p-8">
-        <div className="max-w-3xl">
-          {activeTab === 'Languages' && (
-            <div className="flex items-center justify-between mb-8">
-              <h1 className="text-2xl font-semibold text-gray-900">
-                Language Settings
-              </h1>
-              <button
-                onClick={handleSetPrimary}
-                disabled={selectedLanguage === primaryLanguage}
-                className={`px-6 py-2 rounded-md font-medium transition-all ${
-                  selectedLanguage === primaryLanguage
-                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                    : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md'
-                }`}
-              >
-                Set as primary
-              </button>
+        {/* Main Content */}
+        <div className="flex-1 p-8">
+          <div className="max-w-3xl flex flex-col" style={{ height: 'calc(100vh - 8rem)' }}>
+            {activeTab === 'Languages' && (
+              <div className="flex-shrink-0 flex items-center justify-between mb-8">
+                <h1 className="text-2xl font-semibold text-gray-900">
+                  Language Settings
+                </h1>
+                <button
+                  onClick={handleSetPrimary}
+                  disabled={selectedLanguage === primaryLanguage}
+                  className={`px-6 py-2 rounded-md font-medium transition-all ${
+                    selectedLanguage === primaryLanguage
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md'
+                  }`}
+                >
+                  Set as primary
+                </button>
+              </div>
+            )}
+
+            {/* Scrollable content */}
+            <div className="flex-1 overflow-y-auto">
+              {renderContent()}
             </div>
-          )}
-          {renderContent()}
+          </div>
         </div>
-      </div>
       </div>
 
       <style>{`
