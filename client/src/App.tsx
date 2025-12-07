@@ -9,7 +9,6 @@ import Following from "@/pages/following";
 import QuestionsPage from "@/pages/questionspage";
 import QuoraSpacesPage from "@/pages/quoraspaces";
 import NotificationsPage from "@/pages/notificationspage";
-import ProfileMenuDropdown from "@/pages/profile";
 import MessagesPage from "@/pages/messages";
 import CreateAdPage from "@/pages/createadd";
 import MonetizationPage from "@/pages/monetization";
@@ -29,7 +28,6 @@ function Router() {
       <Route path="/answer" component={QuestionsPage} />
       <Route path="/spaces" component={QuoraSpacesPage} />
       <Route path="/notifications" component={NotificationsPage} />
-      <Route path="/profile" component={ProfileMenuDropdown} />
       <Route path="/messages" component={MessagesPage} />
       <Route path="/create-ad" component={CreateAdPage} />
       <Route path="/monetization" component={MonetizationPage} />

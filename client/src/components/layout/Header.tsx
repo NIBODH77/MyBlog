@@ -163,25 +163,20 @@ export function Header() {
               {isProfileDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden animate-slideDown z-50">
                   {/* User Profile Section */}
-                  <Link href="/profile">
-                    <div 
-                      className="px-4 py-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors"
-                      onClick={() => setIsProfileDropdownOpen(false)}
-                    >
-                      <div className="flex items-center space-x-3">
-                        <Avatar className="h-10 w-10">
-                          <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
-                          <AvatarFallback className="bg-green-600 text-white font-semibold">L</AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1">
-                          <div className="font-semibold text-gray-900">{currentUser.name}</div>
-                        </div>
-                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
+                  <div className="px-4 py-4 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition-colors">
+                    <div className="flex items-center space-x-3">
+                      <Avatar className="h-10 w-10">
+                        <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                        <AvatarFallback className="bg-green-600 text-white font-semibold">L</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1">
+                        <div className="font-semibold text-gray-900">{currentUser.name}</div>
                       </div>
+                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </div>
-                  </Link>
+                  </div>
 
                   {/* Menu Items */}
                   <div className="py-2">
