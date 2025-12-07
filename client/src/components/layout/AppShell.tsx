@@ -17,7 +17,7 @@ export function AppShell({ children, hideRightSidebar = false }: AppShellProps) 
       
       <div className="container mx-auto px-0 md:px-24 flex justify-center gap-6 py-6">
         {/* Main Content */}
-        <main className="flex-1 min-w-0 max-w-[800px]">
+        <main className="flex-1 min-w-0 max-w-[1000px]">
           {children}
         </main>
 

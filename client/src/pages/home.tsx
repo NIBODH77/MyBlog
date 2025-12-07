@@ -43,7 +43,7 @@ export default function MyBlogClone() {
         </div>
 
         {/* Main Feed */}
-        <div className="flex-1 max-w-3xl">
+        <div className="flex-1 max-w-5xl">
           {/* Post Composer */}
           <div className="bg-white dark:bg-card rounded shadow-sm mb-4 p-4">
             <div className="flex items-center gap-3">
