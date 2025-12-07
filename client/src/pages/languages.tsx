@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Check, Plus, Trash2 } from 'lucide-react';
+import { Search, Check, Plus, Trash2, Star } from 'lucide-react';
 import { Link } from "wouter";
 import { Header } from "@/components/layout/Header";
 
@@ -404,6 +404,7 @@ export default function QuoraLanguageSettings() {
                       {filteredCountries.map((country) => {
                         const languageCode = countryToLanguageMap[country.code] || 'en';
                         const isSelected = primaryLanguage === languageCode;
+                        const isEnglishCountry = languageCode === 'en';
 
                         return (
                           <button
@@ -432,8 +433,12 @@ export default function QuoraLanguageSettings() {
                                   )}
                                 </div>
                               </div>
-                              {isSelected && (
-                                <Check className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                              {isEnglishCountry ? (
+                                <Star className="w-5 h-5 text-yellow-500 fill-yellow-500 flex-shrink-0" />
+                              ) : (
+                                isSelected && (
+                                  <Check className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                                )
                               )}
                             </div>
                           </button>
