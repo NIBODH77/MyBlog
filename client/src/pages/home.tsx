@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { X, HelpCircle, PenSquare, FileText } from 'lucide-react';
-import MyBlogPlusModal from '@/components/MyBlogPlusModal';
-import { AppShell } from '@/components/layout/AppShell';
+import React, { useState } from "react";
+import { X, HelpCircle, PenSquare, FileText } from "lucide-react";
+import MyBlogPlusModal from "@/components/MyBlogPlusModal";
+import { AppShell } from "@/components/layout/AppShell";
 
 export default function MyBlogClone() {
   const [isPlusModalOpen, setIsPlusModalOpen] = useState(false);
@@ -12,9 +12,11 @@ export default function MyBlogClone() {
       verified: true,
       location: "Lived in Shimla, Himachal Pradesh, India",
       date: "Jul 24",
-      content: "क्या आपने कभी ऐसी विधायक के बारे में सुना है? दुनिया के पहले MLA जिनके लिये में लोग अपनी मेडिकल पत्नी थमाकर कहते हैं दवाई लिख दो सर। कई बार हद तब हो जाती है जब MLA साहब कोट पट टाई और टर पर साफा पहने किसी शादी समारोह में पहुंचते हैं तो कई बीमार वहां रहे हो लोग अपने घर से अपनी मेडि...",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop"
-    }
+      content:
+        "क्या आपने कभी ऐसी विधायक के बारे में सुना है? दुनिया के पहले MLA जिनके लिये में लोग अपनी मेडिकल पत्नी थमाकर कहते हैं दवाई लिख दो सर। कई बार हद तब हो जाती है जब MLA साहब कोट पट टाई और टर पर साफा पहने किसी शादी समारोह में पहुंचते हैं तो कई बीमार वहां रहे हो लोग अपने घर से अपनी मेडि...",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop",
+    },
   ]);
 
   return (
@@ -28,16 +30,36 @@ export default function MyBlogClone() {
               <span className="text-sm">Create Space</span>
             </button>
             <div className="p-2 text-xs text-gray-500 dark:text-muted-foreground space-y-1">
-              <a href="#" className="block py-1 hover:underline">About MyBlog</a>
-              <a href="#" className="block py-1 hover:underline">Terms</a>
-              <a href="#" className="block py-1 hover:underline">Privacy</a>
-              <a href="#" className="block py-1 hover:underline">Acceptable Use</a>
-              <a href="#" className="block py-1 hover:underline">Advertise on Your Ad Choices</a>
-              <a href="#" className="block py-1 hover:underline">Grievance Officer</a>
-              <a href="#" className="block py-1 hover:underline">Careers</a>
-              <a href="#" className="block py-1 hover:underline">Press</a>
-              <a href="#" className="block py-1 hover:underline">Your Ad Choices</a>
-              <a href="#" className="block py-1 hover:underline">© MyBlog, Inc. 2024</a>
+              <a href="#" className="block py-1 hover:underline">
+                About MyBlog
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Terms
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Privacy
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Acceptable Use
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Advertise on Your Ad Choices
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Grievance Officer
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Careers
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Press
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                Your Ad Choices
+              </a>
+              <a href="#" className="block py-1 hover:underline">
+                © MyBlog, Inc. 2024
+              </a>
             </div>
           </div>
         </div>
@@ -72,7 +94,10 @@ export default function MyBlogClone() {
 
           {/* Posts */}
           {posts.map((post) => (
-            <div key={post.id} className="bg-white dark:bg-card rounded shadow-sm mb-4">
+            <div
+              key={post.id}
+              className="bg-white dark:bg-card rounded shadow-sm mb-4"
+            >
               <div className="p-4">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
@@ -81,7 +106,9 @@ export default function MyBlogClone() {
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-semibold text-gray-900 dark:text-foreground">{post.author}</span>
+                        <span className="font-semibold text-gray-900 dark:text-foreground">
+                          {post.author}
+                        </span>
                         <span className="text-blue-600 text-sm">· Follow</span>
                       </div>
                       <div className="text-xs text-gray-500 dark:text-muted-foreground">
@@ -96,14 +123,12 @@ export default function MyBlogClone() {
 
                 <p className="text-gray-900 dark:text-foreground mb-3 leading-relaxed">
                   {post.content}
-                  <span className="text-gray-500 dark:text-muted-foreground ml-1 cursor-pointer hover:underline">(more)</span>
+                  <span className="text-gray-500 dark:text-muted-foreground ml-1 cursor-pointer hover:underline">
+                    (more)
+                  </span>
                 </p>
 
-                <img
-                  src={post.image}
-                  alt="Post"
-                  className="w-full rounded"
-                />
+                <img src={post.image} alt="Post" className="w-full rounded" />
               </div>
             </div>
           ))}
@@ -118,18 +143,27 @@ export default function MyBlogClone() {
               className="w-full"
             />
             <div className="p-4 text-white">
-              <h3 className="text-xl font-bold mb-2">Save 55% on Creative Cloud Pro.</h3>
-              <p className="text-sm mb-3">Now ₹1,199/mo for the first year. Ends 7 December.*</p>
+              <h3 className="text-xl font-bold mb-2">
+                Save 55% on Creative Cloud Pro.
+              </h3>
+              <p className="text-sm mb-3">
+                Now ₹1,199/mo for the first year. Ends 7 December.*
+              </p>
               <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700">
                 Learn more
               </button>
             </div>
           </div>
-          <div className="text-xs text-center text-gray-500 dark:text-muted-foreground">Advertisement</div>
+          <div className="text-xs text-center text-gray-500 dark:text-muted-foreground">
+            Advertisement
+          </div>
         </div>
       </div>
 
-      <MyBlogPlusModal isOpen={isPlusModalOpen} onClose={() => setIsPlusModalOpen(false)} />
+      <MyBlogPlusModal
+        isOpen={isPlusModalOpen}
+        onClose={() => setIsPlusModalOpen(false)}
+      />
     </AppShell>
   );
 }

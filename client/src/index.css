@@ -190,3 +190,7 @@
     scrollbar-width: none;
   }
 }
+
+  .min-h-screen-minus-header {
+    min-height: calc(100vh - 4rem);
+  }
