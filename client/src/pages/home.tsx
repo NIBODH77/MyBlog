@@ -96,9 +96,9 @@ export default function MyBlogClone() {
           {posts.map((post) => (
             <div
               key={post.id}
-              className="bg-white dark:bg-card rounded shadow-sm mb-4"
+              className=" bg-white dark:bg-card rounded shadow-sm mb-4"
             >
-              <div className="p-4">
+              <div className="p-4 ">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center text-white font-semibold">
@@ -135,8 +135,8 @@ export default function MyBlogClone() {
         </div>
 
         {/* Right Sidebar - Ads */}
-        <div className="hidden lg:block w-80 flex-shrink-0">
-          <div className="bg-gray-900 rounded overflow-hidden mb-4">
+        <div className=" hidden lg:block w-80 flex-shrink-0">
+          <div className="sticky top-20 h-fit bg-gray-900 rounded overflow-hidden mb-4">
             <img
               src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop"
               alt="Advertisement"
