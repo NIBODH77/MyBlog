@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'wouter';
 
 interface Language {
   code: string;
@@ -34,6 +35,7 @@ const languages: Language[] = [
 ];
 
 const LanguageSettings: React.FC = () => {
+  const [, setLocation] = useLocation();
   const [primaryLanguage, setPrimaryLanguage] = useState('EN');
   const [activeTab, setActiveTab] = useState('Languages');
   const [selectedLanguage, setSelectedLanguage] = useState('EN');
@@ -47,7 +49,7 @@ const LanguageSettings: React.FC = () => {
     'Email & Notifications',
     'Languages',
     'Subscriptions & Billing',
-    'Help', // Added Help menu item
+    'Help',
   ];
 
   useEffect(() => {
@@ -68,6 +70,14 @@ const LanguageSettings: React.FC = () => {
 
       // Change entire project language (you can add your logic here)
       document.documentElement.lang = selectedLanguage.toLowerCase();
+    }
+  };
+
+  const handleMenuItemClick = (item: string) => {
+    if (item === 'Help') {
+      setLocation('/help');
+    } else {
+      setActiveTab(item);
     }
   };
 
@@ -128,35 +138,6 @@ const LanguageSettings: React.FC = () => {
         );
       case 'Subscriptions & Billing':
         return <div>Subscriptions & Billing Settings</div>;
-      case 'Help': // New case for Help page
-        return (
-          <div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Help Center</h2>
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-medium text-gray-800 mb-4">Frequently Asked Questions</h3>
-              <div className="space-y-4">
-                <div>
-                  <h4 className="font-semibold text-gray-700">How do I change my primary language?</h4>
-                  <p className="text-gray-600">
-                    To change your primary language, navigate to the 'Languages' tab in your settings. Select your desired language from the list and click the 'Set as primary' button. Your changes will be applied immediately.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-700">Who can I contact for support?</h4>
-                  <p className="text-gray-600">
-                    If you need further assistance, please visit our <a href="#" className="text-blue-600 hover:underline">Support Page</a> or contact us via email at <a href="mailto:support@example.com" className="text-blue-600 hover:underline">support@example.com</a>.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-700">Can I change my display settings?</h4>
-                  <p className="text-gray-600">
-                    Yes, you can customize your display settings by navigating to the 'Display' tab. Here you can adjust various visual preferences to suit your needs.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
       default:
         return null;
     }
@@ -184,7 +165,7 @@ const LanguageSettings: React.FC = () => {
             {menuItems.map((item) => (
               <button
                 key={item}
-                onClick={() => setActiveTab(item)}
+                onClick={() => handleMenuItemClick(item)}
                 className={`w-full text-left px-3 py-2 rounded-md text-sm transition-colors ${
                   activeTab === item
                     ? 'bg-red-50 text-red-600 font-medium'
@@ -218,9 +199,6 @@ const LanguageSettings: React.FC = () => {
                 Set as primary
               </button>
             </div>
-          )}
-          {activeTab === 'Help' && (
-            <h1 className="text-2xl font-semibold text-gray-900 mb-8">Help</h1>
           )}
           {renderContent()}
         </div>
