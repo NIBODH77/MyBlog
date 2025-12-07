@@ -103,9 +103,11 @@ export default function ProfileMenuDropdown() {
             </button>
           </Link>
 
-          <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors">
-            <span className="text-gray-900 font-normal text-base">Help</span>
-          </button>
+          <Link href="/help">
+            <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors">
+              <span className="text-gray-900 font-normal text-base">Help</span>
+            </button>
+          </Link>
 
           <button className="w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors">
             <span className="text-gray-900 font-normal text-base">Logout</span>
