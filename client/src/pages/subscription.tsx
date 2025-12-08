@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Check, X } from "lucide-react";
+import { Link } from "wouter";
 
 export default function QuoraPlusSubscription() {
   const [planType, setPlanType] = useState("yearly");
@@ -193,9 +194,11 @@ export default function QuoraPlusSubscription() {
 
             {/* Payment Buttons - Compact */}
             <div className="space-y-1.5">
-              <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold py-1.5 md:py-2 rounded-lg transition-colors text-xs md:text-sm">
-                <span className="text-sm md:text-base">Pay Now With UPI</span>
-              </button>
+              <Link href="/upi-payment">
+                <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold py-1.5 md:py-2 rounded-lg transition-colors text-xs md:text-sm">
+                  <span className="text-sm md:text-base">Pay Now With UPI</span>
+                </button>
+              </Link>
             </div>
 
             <div className="text-center text-gray-400 font-semibold text-[10px] md:text-xs">
@@ -204,15 +207,19 @@ export default function QuoraPlusSubscription() {
 
             {/* Card Input - Compact */}
             <div className="space-y-1.5">
-              <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-1.5 md:py-3 rounded-lg transition-colors text-xs md:text-sm mb-5">
-                Pay with Card
-              </button>
+              <Link href="/card-payment">
+                <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-1.5 md:py-3 rounded-lg transition-colors text-xs md:text-sm mb-5">
+                  Pay with Card
+                </button>
+              </Link>
             </div>
 
             {/* Submit Button */}
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm md:text-base py-3 md:py-3 rounded-xl transition-colors shadow-lg">
-              Try 30 Days Free
-            </button>
+            <Link href="/trial-confirmation">
+              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm md:text-base py-3 md:py-3 rounded-xl transition-colors shadow-lg">
+                Try 30 Days Free
+              </button>
+            </Link>
           </div>
         </div>
       </div>
