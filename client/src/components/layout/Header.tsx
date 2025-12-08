@@ -144,9 +144,9 @@ export function Header() {
               <span className="text-xs font-medium">Try MyBlog+</span>
             </Button>
 
-            {/* <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground rounded-full">
+            <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground rounded-full">
               <Globe className="h-5 w-5" />
-            </Button> */}
+            </Button>
 
             <div ref={dropdownRef} className="relative">
               <Button 
