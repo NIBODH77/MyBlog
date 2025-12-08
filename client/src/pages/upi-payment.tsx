@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Header } from "@/components/layout/Header";
 import { Link } from "wouter";
-import { ArrowLeft, Check, Copy } from "lucide-react";
+import { ArrowLeft, Check, Copy, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -34,37 +34,27 @@ export default function UPIPayment() {
         </Link>
 
         <div className="bg-white rounded-xl shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 text-center">
-            Pay with UPI
-          </h1>
-          <p className="text-gray-600 text-center mb-8">
-            Complete your MyBlog+ subscription payment
-          </p>
-
-          {/* QR Code Section */}
-          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-8 mb-6">
-            <div className="bg-white p-4 rounded-lg w-64 h-64 mx-auto flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-48 h-48 bg-gray-200 rounded-lg mb-2 flex items-center justify-center">
-                  <span className="text-gray-400 text-sm">QR Code</span>
-                </div>
-                <p className="text-xs text-gray-500">Scan with any UPI app</p>
-              </div>
-            </div>
+          <div className="flex items-center justify-center mb-6">
+            <Smartphone className="h-8 w-8 text-blue-600 mr-3" />
+            <h1 className="text-3xl font-bold text-gray-900">Pay with UPI</h1>
           </div>
+          
+          <p className="text-gray-600 text-center mb-8">
+            Complete your MyBlog+ subscription payment using UPI
+          </p>
 
           {/* UPI ID Section */}
           <div className="mb-8">
-            <p className="text-sm text-gray-600 text-center mb-2">Or pay using UPI ID</p>
-            <div className="flex items-center gap-2 bg-gray-50 p-4 rounded-lg">
-              <code className="flex-1 text-center font-mono text-lg">{upiId}</code>
+            <p className="text-sm text-gray-600 text-center mb-4 font-medium">Pay using UPI ID</p>
+            <div className="flex items-center gap-3 bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-lg border-2 border-blue-100">
+              <code className="flex-1 text-center font-mono text-xl font-semibold text-gray-800">{upiId}</code>
               <Button
-                size="sm"
-                variant="outline"
+                size="lg"
+                variant="default"
                 onClick={handleCopy}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700"
               >
-                {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                {copied ? <Check className="h-5 w-5" /> : <Copy className="h-5 w-5" />}
                 {copied ? "Copied" : "Copy"}
               </Button>
             </div>
@@ -72,29 +62,36 @@ export default function UPIPayment() {
 
           {/* Payment Instructions */}
           <div className="space-y-4 mb-8">
-            <h3 className="font-semibold text-gray-900">How to pay:</h3>
-            <ol className="space-y-3 text-sm text-gray-600">
-              <li className="flex items-start gap-2">
-                <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-xs font-semibold">1</span>
-                <span>Open your UPI app (Google Pay, PhonePe, Paytm, etc.)</span>
+            <h3 className="font-semibold text-gray-900 text-lg">How to pay:</h3>
+            <ol className="space-y-4 text-sm text-gray-600">
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm font-bold">1</span>
+                <span className="pt-1">Open your UPI app (Google Pay, PhonePe, Paytm, etc.)</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-xs font-semibold">2</span>
-                <span>Scan the QR code or enter the UPI ID</span>
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm font-bold">2</span>
+                <span className="pt-1">Copy the UPI ID by clicking the "Copy" button above</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-xs font-semibold">3</span>
-                <span>Enter the amount and complete the payment</span>
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm font-bold">3</span>
+                <span className="pt-1">Paste the UPI ID in your payment app and enter the amount</span>
               </li>
-              <li className="flex items-start gap-2">
-                <span className="bg-blue-100 text-blue-700 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-xs font-semibold">4</span>
-                <span>Your subscription will be activated instantly</span>
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm font-bold">4</span>
+                <span className="pt-1">Complete the payment and your subscription will be activated instantly</span>
               </li>
             </ol>
           </div>
 
+          {/* Amount Info */}
+          <div className="bg-amber-50 rounded-lg p-5 mb-6 border border-amber-100">
+            <h4 className="font-semibold text-gray-900 mb-2">Subscription Amount</h4>
+            <p className="text-2xl font-bold text-blue-600">₹299 <span className="text-sm font-normal text-gray-600">/month</span></p>
+            <p className="text-xs text-gray-500 mt-1">Or ₹2,999/year (Save 17%)</p>
+          </div>
+
           {/* Support */}
-          <div className="bg-blue-50 rounded-lg p-4 text-center">
+          <div className="bg-blue-50 rounded-lg p-4 text-center border border-blue-100">
             <p className="text-sm text-gray-600">
               Having trouble? <Link href="/help" className="text-blue-600 hover:underline font-medium">Contact Support</Link>
             </p>
