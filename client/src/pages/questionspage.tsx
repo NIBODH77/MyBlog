@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Book, Plus } from 'lucide-react';
 import { AppShell } from '@/components/layout/AppShell';
+import { Link } from 'wouter';
 
 export default function MyBlogAnswerPage() {
   const [topics] = useState([
@@ -52,9 +53,9 @@ export default function MyBlogAnswerPage() {
               <button className="w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-answer-requests">
                 Answer requests
               </button>
-              <button className="w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-drafts">
+              <Link href="/drafts" className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-drafts">
                 Drafts
-              </button>
+              </Link>
               <button className="w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-ai-interviewer">
                 AI Interviewer
               </button>
