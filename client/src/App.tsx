@@ -31,6 +31,10 @@ import CareersPage from "@/pages/careers"
 import PressPage from "@/pages/press"
 import CompanyPage from "@/pages/company"
 import GrievancePage from "@/pages/grievance"
+import TopicsPage from "@/pages/topics"
+import TopicsCategoryPage from "@/pages/topics-category"
+import TopicsCreatePage from "@/pages/topics-create"
+import TopicsFollowingPage from "@/pages/topics-following"
 
 function Router() {
   return (
@@ -62,6 +66,10 @@ function Router() {
       <Route path="/press" component={PressPage} />
       <Route path="/company" component={CompanyPage} />
       <Route path="/grievance" component={GrievancePage} />
+      <Route path="/topics" component={TopicsPage} />
+      <Route path="/topics/category/:category" component={TopicsCategoryPage} />
+      <Route path="/topics/create" component={TopicsCreatePage} />
+      <Route path="/topics/following" component={TopicsFollowingPage} />
       
       {/* Fallback for all other routes to Home during mockup, or 404 if preferred */}
       <Route component={NotFound} />

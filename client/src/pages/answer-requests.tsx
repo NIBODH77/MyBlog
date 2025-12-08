@@ -66,9 +66,9 @@ export default function AnswerRequestsPage() {
               <p className="text-sm text-gray-600 dark:text-muted-foreground mb-4 leading-relaxed">
                 Adding topics helps us find questions for you to answer
               </p>
-              <button className="px-5 py-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/30 text-sm font-medium rounded-full transition-colors" data-testid="button-add-topics">
+              <Link href="/topics" className="px-5 py-2 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-950/30 text-sm font-medium rounded-full transition-colors inline-block" data-testid="button-add-topics">
                 Add topics
-              </button>
+              </Link>
             </div>
           </aside>
         </div>
