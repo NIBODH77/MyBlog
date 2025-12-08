@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { X, HelpCircle, PenSquare, FileText } from "lucide-react";
-import MyBlogPlusModal from "@/components/MyBlogPlusModal";
 import { AppShell } from "@/components/layout/AppShell";
 import { TranslatedText } from "@/hooks/useTranslation";
 
 export default function MyBlogClone() {
-  const [isPlusModalOpen, setIsPlusModalOpen] = useState(false);
   const [posts] = useState([
     {
       id: 1,

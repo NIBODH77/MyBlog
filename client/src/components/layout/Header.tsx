@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { 
-  Search, 
-  Bell, 
-  Home, 
-  List, 
-  PenSquare, 
-  Users, 
-  Globe, 
+import {
+  Search,
+  Bell,
+  Home,
+  List,
+  PenSquare,
+  Users,
+  Globe,
   Menu,
   MessageCircle,
   Megaphone,
@@ -27,15 +27,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { currentUser } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
-import MyBlogPlusModal from "@/components/MyBlogPlusModal";
 import AddQuestionModal from "@/components/AddQuestionModal";
 import { TranslatedText } from "@/hooks/useTranslation";
 
 export function Header() {
   const [location, setLocation] = useLocation();
-  const [isPlusModalOpen, setIsPlusModalOpen] = useState(false);
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -78,6 +74,9 @@ export function Header() {
     { icon: HelpCircle, label: 'Help', href: '/help', divider: false },
     { icon: LogOut, label: 'Logout', href: '#', divider: false },
   ];
+
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <>
@@ -137,11 +136,10 @@ export function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3 shrink-0 ml-auto">
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               className="hidden lg:flex rounded-full text-muted-foreground gap-1 border border-transparent hover:bg-secondary/50"
-              onClick={() => setIsPlusModalOpen(true)}
               data-testid="button-try-plus"
             >
               <TranslatedText as="span" className="text-xs font-medium">Try MyBlog+</TranslatedText>
@@ -152,8 +150,8 @@ export function Header() {
             </Button> */}
 
             <div ref={dropdownRef} className="relative">
-              <Button 
-                variant="ghost" 
+              <Button
+                variant="ghost"
                 className="relative h-8 w-8 rounded-full p-0 overflow-hidden ring-1 ring-border hover:ring-primary/20 transition-all"
                 onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
               >
@@ -184,7 +182,7 @@ export function Header() {
                     {menuItems.map((item, index) => (
                       <React.Fragment key={index}>
                         {item.href === '#' ? (
-                          <button 
+                          <button
                             className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
                             onClick={() => {
                               if (item.label === 'Try MyBlog+') {
@@ -198,7 +196,7 @@ export function Header() {
                           </button>
                         ) : (
                           <Link href={item.href}>
-                            <button 
+                            <button
                               className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
                               onClick={() => setIsProfileDropdownOpen(false)}
                             >
@@ -277,8 +275,8 @@ export function Header() {
               )}
             </div>
 
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               className="rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white font-medium px-4 h-8"
               onClick={() => setIsAddQuestionOpen(true)}
               data-testid="button-add-question"
@@ -289,7 +287,6 @@ export function Header() {
         </div>
       </header>
 
-      <MyBlogPlusModal isOpen={isPlusModalOpen} onClose={() => setIsPlusModalOpen(false)} />
       <AddQuestionModal isOpen={isAddQuestionOpen} onClose={() => setIsAddQuestionOpen(false)} />
     </>
   );
