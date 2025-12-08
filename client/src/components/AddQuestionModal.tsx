@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Image, Video, Link as LinkIcon, AlignLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface AddQuestionModalProps {
@@ -11,22 +11,30 @@ interface AddQuestionModalProps {
 export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalProps) {
   const [activeTab, setActiveTab] = useState<'question' | 'post'>('question');
   const [questionText, setQuestionText] = useState('');
+  const [postTitle, setPostTitle] = useState('');
+  const [postContent, setPostContent] = useState('');
   const [visibility, setVisibility] = useState('Public');
 
   if (!isOpen) return null;
 
   const handleAddQuestion = () => {
     console.log('Question added:', questionText);
-    // Here you can add API call to save the question
     onClose();
     setQuestionText('');
   };
 
+  const handleCreatePost = () => {
+    console.log('Post created:', { title: postTitle, content: postContent });
+    onClose();
+    setPostTitle('');
+    setPostContent('');
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl mx-4 animate-slideDown">
+      <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl mx-4 animate-slideDown max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-gray-200 p-4">
+        <div className="flex items-center justify-between border-b border-gray-200 p-4 sticky top-0 bg-white z-10">
           <div className="flex gap-8">
             <button
               className={`pb-2 text-sm font-medium transition-colors ${
@@ -59,76 +67,155 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
 
         {/* Content */}
         <div className="p-6">
-          {/* Tips Section */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-            <h3 className="text-blue-900 font-semibold text-sm mb-2">
-              Tips on getting good answers quickly
-            </h3>
-            <ul className="space-y-1 text-blue-700 text-sm">
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Make sure your question has not been asked already</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Keep your question short and to the point</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Double-check grammar and spelling</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Input Section */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                L
+          {activeTab === 'question' ? (
+            <>
+              {/* Tips Section */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="text-blue-900 font-semibold text-sm mb-2">
+                  Tips on getting good answers quickly
+                </h3>
+                <ul className="space-y-1 text-blue-700 text-sm">
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Make sure your question has not been asked already</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Keep your question short and to the point</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2">•</span>
+                    <span>Double-check grammar and spelling</span>
+                  </li>
+                </ul>
               </div>
-              <button className="text-sm text-gray-600 hover:text-gray-900">
-                ▸
-              </button>
-              <select
-                value={visibility}
-                onChange={(e) => setVisibility(e.target.value)}
-                className="text-sm text-gray-700 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
-              >
-                <option>Public</option>
-                <option>Private</option>
-                <option>Anonymous</option>
-              </select>
-            </div>
 
-            <textarea
-              value={questionText}
-              onChange={(e) => setQuestionText(e.target.value)}
-              placeholder='Start your question with "What", "How", "Why", etc.'
-              className="w-full min-h-[150px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none text-gray-900"
-            />
-          </div>
+              {/* Input Section */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                    L
+                  </div>
+                  <button className="text-sm text-gray-600 hover:text-gray-900">
+                    ▸
+                  </button>
+                  <select
+                    value={visibility}
+                    onChange={(e) => setVisibility(e.target.value)}
+                    className="text-sm text-gray-700 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
+                  >
+                    <option>Public</option>
+                    <option>Private</option>
+                    <option>Anonymous</option>
+                  </select>
+                </div>
 
-          {/* Footer */}
-          <div className="flex items-center justify-end gap-3">
-            <Button
-              variant="ghost"
-              onClick={onClose}
-              className="text-gray-600 hover:text-gray-900"
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={handleAddQuestion}
-              disabled={!questionText.trim()}
-              className={`rounded-full px-6 ${
-                questionText.trim()
-                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
-              }`}
-            >
-              Add question
-            </Button>
-          </div>
+                <textarea
+                  value={questionText}
+                  onChange={(e) => setQuestionText(e.target.value)}
+                  placeholder='Start your question with "What", "How", "Why", etc.'
+                  className="w-full min-h-[150px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none text-gray-900"
+                />
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-end gap-3">
+                <Button
+                  variant="ghost"
+                  onClick={onClose}
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleAddQuestion}
+                  disabled={!questionText.trim()}
+                  className={`rounded-full px-6 ${
+                    questionText.trim()
+                      ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  Add question
+                </Button>
+              </div>
+            </>
+          ) : (
+            <>
+              {/* Create Post Section */}
+              <div className="mb-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                    L
+                  </div>
+                  <select
+                    value={visibility}
+                    onChange={(e) => setVisibility(e.target.value)}
+                    className="text-sm text-gray-700 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
+                  >
+                    <option>Public</option>
+                    <option>Private</option>
+                    <option>Anonymous</option>
+                  </select>
+                </div>
+
+                {/* Post Title */}
+                <input
+                  type="text"
+                  value={postTitle}
+                  onChange={(e) => setPostTitle(e.target.value)}
+                  placeholder="Add a title (optional)"
+                  className="w-full p-3 border-b border-gray-300 focus:outline-none focus:border-blue-500 text-gray-900 font-semibold mb-4"
+                />
+
+                {/* Post Content */}
+                <textarea
+                  value={postContent}
+                  onChange={(e) => setPostContent(e.target.value)}
+                  placeholder="Say something..."
+                  className="w-full min-h-[200px] p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none text-gray-900"
+                />
+
+                {/* Toolbar */}
+                <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-200">
+                  <button className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded hover:bg-gray-100">
+                    <Image className="w-5 h-5" />
+                  </button>
+                  <button className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded hover:bg-gray-100">
+                    <Video className="w-5 h-5" />
+                  </button>
+                  <button className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded hover:bg-gray-100">
+                    <LinkIcon className="w-5 h-5" />
+                  </button>
+                  <button className="text-gray-600 hover:text-blue-600 transition-colors p-2 rounded hover:bg-gray-100">
+                    <AlignLeft className="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-end gap-3">
+                <Button
+                  variant="ghost"
+                  onClick={onClose}
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleCreatePost}
+                  disabled={!postContent.trim()}
+                  className={`rounded-full px-6 ${
+                    postContent.trim()
+                      ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                  }`}
+                >
+                  Post
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
