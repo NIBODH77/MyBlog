@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Book, Plus } from 'lucide-react';
 import { AppShell } from '@/components/layout/AppShell';
 import { Link } from 'wouter';
+import { TranslatedText } from '@/hooks/useTranslation';
 
 export default function MyBlogAnswerPage() {
   const [topics] = useState([
@@ -44,20 +45,20 @@ export default function MyBlogAnswerPage() {
         <div className="hidden md:block w-64 flex-shrink-0">
           <div className="sticky top-20 bg-white dark:bg-card rounded-lg shadow-sm border border-gray-200 dark:border-border">
             <div className="px-4 py-3 border-b border-gray-200 dark:border-border">
-              <h3 className="text-gray-700 dark:text-foreground font-semibold text-base">Questions</h3>
+              <h3 className="text-gray-700 dark:text-foreground font-semibold text-base"><TranslatedText>Questions</TranslatedText></h3>
             </div>
             <div className="py-2">
               <button className="w-full text-left px-4 py-2.5 text-sm bg-red-50 dark:bg-primary/10 text-gray-900 dark:text-foreground hover:bg-red-100 dark:hover:bg-primary/20" data-testid="button-questions-for-you">
-                Questions for you
+                <TranslatedText>Questions for you</TranslatedText>
               </button>
               <Link href="/answer-requests" className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-answer-requests">
-                Answer requests
+                <TranslatedText>Answer requests</TranslatedText>
               </Link>
               <Link href="/drafts" className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-drafts">
-                Drafts
+                <TranslatedText>Drafts</TranslatedText>
               </Link>
               <button className="w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-ai-interviewer">
-                AI Interviewer
+                <TranslatedText>AI Interviewer</TranslatedText>
               </button>
             </div>
           </div>
@@ -67,8 +68,8 @@ export default function MyBlogAnswerPage() {
         <div className="flex-1">
           {/* Follow Topics Section */}
           <div className="bg-white dark:bg-card rounded-lg shadow-sm p-6 mb-6">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-foreground mb-2">Follow more topics</h2>
-            <p className="text-sm text-gray-500 dark:text-muted-foreground mb-6">Personalize your feed with more relevant content.</p>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-foreground mb-2"><TranslatedText>Follow more topics</TranslatedText></h2>
+            <p className="text-sm text-gray-500 dark:text-muted-foreground mb-6"><TranslatedText>Personalize your feed with more relevant content.</TranslatedText></p>
 
             <div className="space-y-4">
               {topics.map(topic => (
@@ -86,13 +87,13 @@ export default function MyBlogAnswerPage() {
                       </div>
                     )}
                     <div>
-                      <div className="font-medium text-gray-900 dark:text-foreground text-sm">{topic.name}</div>
-                      <div className="text-xs text-gray-500 dark:text-muted-foreground">{topic.followers}</div>
+                      <div className="font-medium text-gray-900 dark:text-foreground text-sm"><TranslatedText>{topic.name}</TranslatedText></div>
+                      <div className="text-xs text-gray-500 dark:text-muted-foreground"><TranslatedText>{topic.followers}</TranslatedText></div>
                     </div>
                   </div>
                   <button className="px-4 py-1.5 border border-blue-500 text-blue-500 rounded-full text-sm font-medium hover:bg-blue-50 dark:hover:bg-blue-950/30 flex items-center gap-1" data-testid={`button-follow-topic-${topic.id}`}>
                     <Plus size={16} />
-                    Follow
+                    <TranslatedText>Follow</TranslatedText>
                   </button>
                 </div>
               ))}
@@ -107,9 +108,9 @@ export default function MyBlogAnswerPage() {
               <circle cx="50" cy="57" r="3" fill="currentColor"/>
               <line x1="45" y1="65" x2="55" y2="65" stroke="currentColor" strokeWidth="2"/>
             </svg>
-            <h3 className="text-gray-700 dark:text-foreground font-medium mb-2">You've reached the end of your feed</h3>
+            <h3 className="text-gray-700 dark:text-foreground font-medium mb-2"><TranslatedText>You've reached the end of your feed</TranslatedText></h3>
             <button className="mt-4 px-6 py-2 bg-blue-500 text-white rounded-full text-sm font-medium hover:bg-blue-600" data-testid="button-refresh">
-              Refresh Page
+              <TranslatedText>Refresh Page</TranslatedText>
             </button>
           </div>
         </div>
@@ -118,7 +119,7 @@ export default function MyBlogAnswerPage() {
         <div className="hidden lg:block w-80 flex-shrink-0">
           <div className="bg-gray-50 dark:bg-secondary/30 rounded-lg p-6 border border-gray-200 dark:border-border">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground">Topics you know about</h3>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-foreground"><TranslatedText>Topics you know about</TranslatedText></h3>
             </div>
 
             <div className="flex flex-col items-center justify-center py-8">
@@ -127,13 +128,13 @@ export default function MyBlogAnswerPage() {
                 <path d="M35 35 L35 28 C35 26 37 25 40 25 L60 25 C63 25 65 26 65 28 L65 35" stroke="currentColor" strokeWidth="2"/>
                 <circle cx="50" cy="55" r="4" fill="currentColor"/>
               </svg>
-              <h4 className="text-sm font-medium text-gray-700 dark:text-foreground mb-2">No topics yet</h4>
+              <h4 className="text-sm font-medium text-gray-700 dark:text-foreground mb-2"><TranslatedText>No topics yet</TranslatedText></h4>
               <p className="text-xs text-gray-500 dark:text-muted-foreground text-center mb-4 max-w-xs">
-                You'll get better questions if you add more specific topics.
+                <TranslatedText>You'll get better questions if you add more specific topics.</TranslatedText>
               </p>
               <Link href="/topics">
                 <button className="px-5 py-2 border-2 border-blue-500 text-blue-500 rounded-full text-sm font-medium hover:bg-blue-50 dark:hover:bg-blue-950/30" data-testid="button-add-topics">
-                  Add topics
+                  <TranslatedText>Add topics</TranslatedText>
                 </button>
               </Link>
             </div>

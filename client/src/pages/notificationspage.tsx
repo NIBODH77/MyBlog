@@ -10,6 +10,7 @@ import {
   Zap,
   User,
 } from "lucide-react";
+import { TranslatedText } from '@/hooks/useTranslation';
 
 type Notification = {
   id: string;
@@ -282,7 +283,7 @@ export default function MyBlogNotificationsPage() {
         <div className="hidden md:block w-64 flex-shrink-0">
           <div className="sticky top-22 bg-white dark:bg-card rounded-lg shadow-sm p-2">
             <h3 className="text-sm font-semibold text-gray-700 dark:text-foreground px-3 py-2">
-              Filters
+              <TranslatedText>Filters</TranslatedText>
             </h3>
             <div className="space-y-1">
               {filters.map((filter) => (
@@ -296,7 +297,7 @@ export default function MyBlogNotificationsPage() {
                       : "text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50"
                   }`}
                 >
-                  {filter.label}
+                  <TranslatedText>{filter.label}</TranslatedText>
                 </button>
               ))}
             </div>
@@ -344,17 +345,17 @@ export default function MyBlogNotificationsPage() {
                                   : "text-gray-700 dark:text-muted-foreground"
                               }`}
                             >
-                              {notification.title}
+                              <TranslatedText>{notification.title}</TranslatedText>
                             </h4>
                             {!notification.read && (
                               <span className="ml-2 w-2 h-2 bg-blue-600 rounded-full flex-shrink-0"></span>
                             )}
                           </div>
                           <p className="text-sm text-gray-600 dark:text-muted-foreground mt-1">
-                            {notification.message}
+                            <TranslatedText>{notification.message}</TranslatedText>
                           </p>
                           <p className="text-xs text-gray-500 dark:text-muted-foreground mt-2">
-                            {notification.time}
+                            <TranslatedText>{notification.time}</TranslatedText>
                           </p>
                         </div>
                       </div>
@@ -409,11 +410,10 @@ export default function MyBlogNotificationsPage() {
                   />
                 </svg>
                 <h3 className="text-xl font-semibold text-gray-700 dark:text-foreground mb-2">
-                  No New Notifications
+                  <TranslatedText>No New Notifications</TranslatedText>
                 </h3>
                 <p className="text-sm text-gray-500 dark:text-muted-foreground text-center">
-                  Notifications you received in the last 30 days will show up
-                  here.
+                  <TranslatedText>Notifications you received in the last 30 days will show up here.</TranslatedText>
                 </p>
               </div>
             )}

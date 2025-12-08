@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Smile, Frown, Meh } from 'lucide-react';
 import { AppShell } from '@/components/layout/AppShell';
+import { TranslatedText } from '@/hooks/useTranslation';
 
 export default function MyBlogFollowingPage() {
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
@@ -57,16 +58,16 @@ export default function MyBlogFollowingPage() {
         <div className="hidden md:block w-64 flex-shrink-0">
           <div className="sticky top-20 bg-white dark:bg-card rounded shadow-sm self-start">
             <div className="p-2 text-xs text-gray-500 dark:text-muted-foreground space-y-1">
-              <a href="/about" className="block py-1 hover:underline">About MyBlog</a>
-              <a href="/terms" className="block py-1 hover:underline">Terms</a>
-              <a href="/privacy" className="block py-1 hover:underline">Privacy</a>
-              <a href="/acceptable-use" className="block py-1 hover:underline">Acceptable Use</a>
-              <a href="/advertise" className="block py-1 hover:underline">Advertise</a>
-              <a href="/grievance" className="block py-1 hover:underline">Grievance Officer</a>
-              <a href="/careers" className="block py-1 hover:underline">Careers</a>
-              <a href="/press" className="block py-1 hover:underline">Press</a>
-              <a href="/company" className="block py-1 hover:underline">Company</a>
-              <a href="#" className="block py-1 hover:underline">© MyBlog, Inc. 2024</a>
+              <a href="/about" className="block py-1 hover:underline"><TranslatedText>About MyBlog</TranslatedText></a>
+              <a href="/terms" className="block py-1 hover:underline"><TranslatedText>Terms</TranslatedText></a>
+              <a href="/privacy" className="block py-1 hover:underline"><TranslatedText>Privacy</TranslatedText></a>
+              <a href="/acceptable-use" className="block py-1 hover:underline"><TranslatedText>Acceptable Use</TranslatedText></a>
+              <a href="/advertise" className="block py-1 hover:underline"><TranslatedText>Advertise</TranslatedText></a>
+              <a href="/grievance" className="block py-1 hover:underline"><TranslatedText>Grievance Officer</TranslatedText></a>
+              <a href="/careers" className="block py-1 hover:underline"><TranslatedText>Careers</TranslatedText></a>
+              <a href="/press" className="block py-1 hover:underline"><TranslatedText>Press</TranslatedText></a>
+              <a href="/company" className="block py-1 hover:underline"><TranslatedText>Company</TranslatedText></a>
+              <a href="#" className="block py-1 hover:underline"><TranslatedText>© MyBlog, Inc. 2024</TranslatedText></a>
             </div>
           </div>
         </div>
@@ -78,12 +79,12 @@ export default function MyBlogFollowingPage() {
             <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-300 dark:border-blue-800 rounded-lg p-4 mb-4">
               <div className="mb-3">
                 <h3 className="text-blue-700 dark:text-blue-300 font-medium text-sm mb-1">
-                  How satisfied are you with your home feed experience today?
+                  <TranslatedText>How satisfied are you with your home feed experience today?</TranslatedText>
                 </h3>
-                <p className="text-blue-600 dark:text-blue-400 text-xs">This helps us improve our product.</p>
+                <p className="text-blue-600 dark:text-blue-400 text-xs"><TranslatedText>This helps us improve our product.</TranslatedText></p>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-xs text-blue-600 dark:text-blue-400 mr-2">Not satisfied</span>
+                <span className="text-xs text-blue-600 dark:text-blue-400 mr-2"><TranslatedText>Not satisfied</TranslatedText></span>
                 {[1, 2, 3, 4, 5].map((rating) => (
                   <button
                     key={rating}
@@ -109,7 +110,7 @@ export default function MyBlogFollowingPage() {
                     )}
                   </button>
                 ))}
-                <span className="text-xs text-blue-600 dark:text-blue-400 ml-2">Very satisfied</span>
+                <span className="text-xs text-blue-600 dark:text-blue-400 ml-2"><TranslatedText>Very satisfied</TranslatedText></span>
               </div>
             </div>
           ) : (
@@ -121,8 +122,8 @@ export default function MyBlogFollowingPage() {
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-green-700 dark:text-green-300 font-medium text-sm">Thank you for your feedback!</h3>
-                  <p className="text-green-600 dark:text-green-400 text-xs">Your response helps us improve your experience.</p>
+                  <h3 className="text-green-700 dark:text-green-300 font-medium text-sm"><TranslatedText>Thank you for your feedback!</TranslatedText></h3>
+                  <p className="text-green-600 dark:text-green-400 text-xs"><TranslatedText>Your response helps us improve your experience.</TranslatedText></p>
                 </div>
               </div>
             </div>
@@ -139,19 +140,19 @@ export default function MyBlogFollowingPage() {
               </svg>
             </div>
             <h2 className="text-lg font-semibold text-gray-700 dark:text-foreground mb-2">
-              You've reached the end of your feed
+              <TranslatedText>You've reached the end of your feed</TranslatedText>
             </h2>
             <p className="text-gray-500 dark:text-muted-foreground text-sm">
-              Follow more Spaces to discover new stories in your feed.
+              <TranslatedText>Follow more Spaces to discover new stories in your feed.</TranslatedText>
             </p>
           </div>
 
           {/* Discover Spaces */}
           <div className="bg-white dark:bg-card rounded-lg shadow-sm p-6">
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-foreground mb-6">Discover Spaces</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-foreground mb-6"><TranslatedText>Discover Spaces</TranslatedText></h3>
 
             <div className="mb-4">
-              <h4 className="text-sm font-medium text-gray-700 dark:text-muted-foreground mb-4">Spaces you might like</h4>
+              <h4 className="text-sm font-medium text-gray-700 dark:text-muted-foreground mb-4"><TranslatedText>Spaces you might like</TranslatedText></h4>
 
               <div className="space-y-4">
                 {spaces.map(space => (
@@ -163,11 +164,11 @@ export default function MyBlogFollowingPage() {
                     />
                     <div className="flex-1 min-w-0">
                       <h5 className="font-semibold text-gray-900 dark:text-foreground text-sm mb-0.5">
-                        {space.name}
+                        <TranslatedText>{space.name}</TranslatedText>
                       </h5>
-                      <p className="text-xs text-gray-500 dark:text-muted-foreground mb-1">{space.followers}</p>
+                      <p className="text-xs text-gray-500 dark:text-muted-foreground mb-1"><TranslatedText>{space.followers}</TranslatedText></p>
                       <p className="text-xs text-gray-600 dark:text-muted-foreground line-clamp-2">
-                        {space.description}
+                        <TranslatedText>{space.description}</TranslatedText>
                       </p>
                     </div>
                   </div>
