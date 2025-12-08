@@ -131,9 +131,11 @@ export default function MyBlogAnswerPage() {
               <p className="text-xs text-gray-500 dark:text-muted-foreground text-center mb-4 max-w-xs">
                 You'll get better questions if you add more specific topics.
               </p>
-              <button className="px-5 py-2 border-2 border-blue-500 text-blue-500 rounded-full text-sm font-medium hover:bg-blue-50 dark:hover:bg-blue-950/30" data-testid="button-add-topics">
-                Add topics
-              </button>
+              <Link href="/topics">
+                <button className="px-5 py-2 border-2 border-blue-500 text-blue-500 rounded-full text-sm font-medium hover:bg-blue-50 dark:hover:bg-blue-950/30" data-testid="button-add-topics">
+                  Add topics
+                </button>
+              </Link>
             </div>
           </div>
         </div>
