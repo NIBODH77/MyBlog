@@ -50,9 +50,9 @@ export default function MyBlogAnswerPage() {
               <button className="w-full text-left px-4 py-2.5 text-sm bg-red-50 dark:bg-primary/10 text-gray-900 dark:text-foreground hover:bg-red-100 dark:hover:bg-primary/20" data-testid="button-questions-for-you">
                 Questions for you
               </button>
-              <button className="w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-answer-requests">
+              <Link href="/answer-requests" className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-answer-requests">
                 Answer requests
-              </button>
+              </Link>
               <Link href="/drafts" className="block w-full text-left px-4 py-2.5 text-sm text-gray-600 dark:text-muted-foreground hover:bg-gray-50 dark:hover:bg-secondary/50" data-testid="button-drafts">
                 Drafts
               </Link>

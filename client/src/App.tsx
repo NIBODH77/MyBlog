@@ -15,6 +15,7 @@ import MonetizationPage from "@/pages/monetization";
 import MyBlogPlusPage from "@/pages/plusmodel";
 import BookmarksPage from "@/pages/bookmarks";
 import DraftsPage from "@/pages/draft"
+import AnswerRequestsPage from "@/pages/answer-requests"
 import ThemeSettingModal from "@/pages/darkmode"
 import SettingsPage from "@/pages/settings"
 import LanguagesPage from "@/pages/languages"
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/plus" component={MyBlogPlusPage} />
       <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/drafts" component={DraftsPage} />
+      <Route path="/answer-requests" component={AnswerRequestsPage} />
       <Route path="/profile" component={ProfilePage} />
       <Route path="/darkmode" component={ThemeSettingModal} />
       <Route path="/settings" component={SettingsPage} />

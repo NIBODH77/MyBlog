@@ -17,9 +17,9 @@ export default function QuoraDrafts() {
                   <Link href="/answer" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded" data-testid="link-questions-for-you">
                     Questions for you
                   </Link>
-                  <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
+                  <Link href="/answer-requests" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded" data-testid="link-answer-requests">
                     Answer requests
-                  </a>
+                  </Link>
                   <a href="#" className="block px-3 py-2 text-sm text-red-600 bg-red-50 rounded font-medium">
                     Drafts
                   </a>
