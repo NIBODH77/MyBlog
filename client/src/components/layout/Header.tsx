@@ -135,14 +135,16 @@ export function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3 shrink-0 ml-auto">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hidden lg:flex rounded-full text-muted-foreground gap-1 border border-transparent hover:bg-secondary/50"
-              data-testid="button-try-plus"
-            >
-              <TranslatedText as="span" className="text-xs font-medium">Try MyBlog+</TranslatedText>
-            </Button>
+            <Link href="/subscription">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="hidden lg:flex rounded-full text-muted-foreground gap-1 border border-transparent hover:bg-secondary/50"
+                data-testid="button-try-plus"
+              >
+                <TranslatedText as="span" className="text-xs font-medium">Try MyBlog+</TranslatedText>
+              </Button>
+            </Link>
 
             {/* <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground rounded-full">
               <Globe className="h-5 w-5" />
@@ -181,13 +183,15 @@ export function Header() {
                     {menuItems.map((item, index) => (
                       <React.Fragment key={index}>
                         {item.href === '#' ? (
-                          <button
-                            className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
-                            onClick={() => setIsProfileDropdownOpen(false)}
-                          >
-                            <item.icon className="w-5 h-5 text-gray-600" />
-                            <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
-                          </button>
+                          <Link href="/subscription">
+                            <button
+                              className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                              onClick={() => setIsProfileDropdownOpen(false)}
+                            >
+                              <item.icon className="w-5 h-5 text-gray-600" />
+                              <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
+                            </button>
+                          </Link>
                         ) : (
                           <Link href={item.href}>
                             <button
