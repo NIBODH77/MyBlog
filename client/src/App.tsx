@@ -33,7 +33,6 @@ import TopicsPage from "@/pages/topics"
 import TopicsCategoryPage from "@/pages/topics-category"
 import TopicsCreatePage from "@/pages/topics-create"
 import TopicsFollowingPage from "@/pages/topics-following"
-import CreatePostPage from "@/pages/create-post";
 
 function Router() {
   return (
@@ -67,8 +66,7 @@ function Router() {
       <Route path="/topics/category/:category" component={TopicsCategoryPage} />
       <Route path="/topics/create" component={TopicsCreatePage} />
       <Route path="/topics/following" component={TopicsFollowingPage} />
-      <Route path="/create-post" component={CreatePostPage} />
-
+      
       {/* Fallback for all other routes to Home during mockup, or 404 if preferred */}
       <Route component={NotFound} />
     </Switch>
