@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { X, Image, Video, Link as LinkIcon, AlignLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { TranslatedText } from '@/hooks/useTranslation';
 
 interface AddQuestionModalProps {
   isOpen: boolean;
@@ -44,7 +44,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
               }`}
               onClick={() => setActiveTab('question')}
             >
-              Add Question
+              <TranslatedText>Add Question</TranslatedText>
             </button>
             <button
               className={`pb-2 text-sm font-medium transition-colors ${
@@ -54,7 +54,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
               }`}
               onClick={() => setActiveTab('post')}
             >
-              Create Post
+              <TranslatedText>Create Post</TranslatedText>
             </button>
           </div>
           <button
@@ -72,20 +72,20 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
               {/* Tips Section */}
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                 <h3 className="text-blue-900 font-semibold text-sm mb-2">
-                  Tips on getting good answers quickly
+                  <TranslatedText>Tips on getting good answers quickly</TranslatedText>
                 </h3>
                 <ul className="space-y-1 text-blue-700 text-sm">
                   <li className="flex items-start">
                     <span className="mr-2">•</span>
-                    <span>Make sure your question has not been asked already</span>
+                    <span><TranslatedText>Make sure your question has not been asked already</TranslatedText></span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">•</span>
-                    <span>Keep your question short and to the point</span>
+                    <span><TranslatedText>Keep your question short and to the point</TranslatedText></span>
                   </li>
                   <li className="flex items-start">
                     <span className="mr-2">•</span>
-                    <span>Double-check grammar and spelling</span>
+                    <span><TranslatedText>Double-check grammar and spelling</TranslatedText></span>
                   </li>
                 </ul>
               </div>
@@ -104,9 +104,9 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                     onChange={(e) => setVisibility(e.target.value)}
                     className="text-sm text-gray-700 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
                   >
-                    <option>Public</option>
-                    <option>Private</option>
-                    <option>Anonymous</option>
+                    <option><TranslatedText>Public</TranslatedText></option>
+                    <option><TranslatedText>Private</TranslatedText></option>
+                    <option><TranslatedText>Anonymous</TranslatedText></option>
                   </select>
                 </div>
 
@@ -125,7 +125,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                   onClick={onClose}
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  Cancel
+                  <TranslatedText>Cancel</TranslatedText>
                 </Button>
                 <Button
                   onClick={handleAddQuestion}
@@ -136,7 +136,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }`}
                 >
-                  Add question
+                  <TranslatedText>Add question</TranslatedText>
                 </Button>
               </div>
             </>
@@ -153,9 +153,9 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                     onChange={(e) => setVisibility(e.target.value)}
                     className="text-sm text-gray-700 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
                   >
-                    <option>Public</option>
-                    <option>Private</option>
-                    <option>Anonymous</option>
+                    <option><TranslatedText>Public</TranslatedText></option>
+                    <option><TranslatedText>Private</TranslatedText></option>
+                    <option><TranslatedText>Anonymous</TranslatedText></option>
                   </select>
                 </div>
 
@@ -200,7 +200,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                   onClick={onClose}
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  Cancel
+                  <TranslatedText>Cancel</TranslatedText>
                 </Button>
                 <Button
                   onClick={handleCreatePost}
@@ -211,7 +211,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                       : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   }`}
                 >
-                  Post
+                  <TranslatedText>Post</TranslatedText>
                 </Button>
               </div>
             </>

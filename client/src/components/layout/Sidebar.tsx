@@ -12,6 +12,8 @@ import {
   Menu
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TranslatedText } from '@/hooks/useTranslation';
+
 
 const navItems = [
   { icon: Home, label: "Home", href: "/" },
@@ -46,7 +48,7 @@ export function Sidebar({ className }: { className?: string }) {
                     isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
                   )}
                 />
-                {item.label}
+                <TranslatedText>{item.label}</TranslatedText>
               </div>
             </Link>
           );

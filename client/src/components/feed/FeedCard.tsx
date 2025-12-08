@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { MessageSquare, ArrowUp, Share2, MoreHorizontal, Bookmark } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Link } from "wouter";
+import { TranslatedText } from '@/hooks/useTranslation';
 
 interface FeedCardProps {
   question: Question;
@@ -53,7 +54,7 @@ export function FeedCard({ question, index = 0 }: FeedCardProps) {
             <p className="text-xs text-muted-foreground line-clamp-1">{question.author.bio}</p>
           </div>
         </div>
-        
+
         <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:bg-secondary/80 rounded-full">
           <MoreHorizontal className="h-4 w-4" />
         </Button>
@@ -62,12 +63,12 @@ export function FeedCard({ question, index = 0 }: FeedCardProps) {
       <div className="mb-4">
         <Link href={`/question/${question.id}`}>
           <h2 className="text-xl font-display font-bold text-foreground mb-2 leading-tight cursor-pointer hover:text-primary transition-colors">
-            {question.title}
+            <TranslatedText>{question.title}</TranslatedText>
           </h2>
         </Link>
         <Link href={`/question/${question.id}`}>
           <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 cursor-pointer">
-            {question.content}
+            <TranslatedText>{question.content}</TranslatedText>
           </p>
         </Link>
       </div>
@@ -75,8 +76,8 @@ export function FeedCard({ question, index = 0 }: FeedCardProps) {
       <div className="flex flex-wrap gap-2 mb-4">
         {question.topics.map((topic) => (
           <Link key={topic.id} href={`/topic/${topic.id}`}>
-            <Badge 
-              variant="secondary" 
+            <Badge
+              variant="secondary"
               className="bg-secondary/50 hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer font-normal px-3 py-1"
             >
               {topic.icon} {topic.name}
@@ -87,18 +88,18 @@ export function FeedCard({ question, index = 0 }: FeedCardProps) {
 
       <div className="flex items-center justify-between pt-2 border-t border-border/40">
         <div className="flex items-center gap-1">
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             className="rounded-full gap-2 px-3 hover:bg-primary/10 hover:text-primary group-hover:bg-secondary/50 transition-all"
           >
             <ArrowUp className="h-4 w-4" />
-            <span className="font-medium">{question.upvotes}</span>
+            <span className="font-medium"><TranslatedText>Upvote</TranslatedText></span> · {question.upvotes}
           </Button>
           <Link href={`/question/${question.id}`}>
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               className="rounded-full gap-2 px-3 hover:bg-primary/10 hover:text-primary group-hover:bg-secondary/50 transition-all"
             >
               <MessageSquare className="h-4 w-4" />
@@ -108,16 +109,17 @@ export function FeedCard({ question, index = 0 }: FeedCardProps) {
         </div>
 
         <div className="flex items-center gap-1">
-           <Button 
-            variant="ghost" 
-            size="icon" 
+           <Button
+            variant="ghost"
+            size="icon"
             className="rounded-full h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/10"
           >
             <Share2 className="h-4 w-4" />
+            <TranslatedText>Share</TranslatedText>
           </Button>
-          <Button 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            variant="ghost"
+            size="icon"
             className="rounded-full h-8 w-8 text-muted-foreground hover:text-primary hover:bg-primary/10"
           >
             <Bookmark className="h-4 w-4" />
