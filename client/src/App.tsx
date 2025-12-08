@@ -12,7 +12,6 @@ import NotificationsPage from "@/pages/notificationspage";
 import MessagesPage from "@/pages/messages";
 import CreateAdPage from "@/pages/createadd";
 import MonetizationPage from "@/pages/monetization";
-import MyBlogPlusPage from "@/pages/plusmodel";
 import BookmarksPage from "@/pages/bookmarks";
 import DraftsPage from "@/pages/draft"
 import AnswerRequestsPage from "@/pages/answer-requests"
@@ -45,7 +44,6 @@ function Router() {
       <Route path="/messages" component={MessagesPage} />
       <Route path="/create-ad" component={CreateAdPage} />
       <Route path="/monetization" component={MonetizationPage} />
-      <Route path="/plus" component={MyBlogPlusPage} />
       <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/drafts" component={DraftsPage} />
       <Route path="/answer-requests" component={AnswerRequestsPage} />
@@ -67,7 +65,7 @@ function Router() {
       <Route path="/topics/category/:category" component={TopicsCategoryPage} />
       <Route path="/topics/create" component={TopicsCreatePage} />
       <Route path="/topics/following" component={TopicsFollowingPage} />
-      
+
       {/* Fallback for all other routes to Home during mockup, or 404 if preferred */}
       <Route component={NotFound} />
     </Switch>
