@@ -10,6 +10,7 @@ Nexus is a premium, community-driven Questions & Answers platform inspired by Qu
 - Mobile-first responsive design
 - Dark mode support
 - Comprehensive component library using shadcn/ui
+- Multi-language translation system with 27+ languages
 
 ## User Preferences
 
@@ -41,7 +42,15 @@ Preferred communication style: Simple, everyday language.
 **State Management:**
 - Mock data stored in `client/src/lib/mock-data.ts`
 - Client-side state management using React hooks
-- No persistent storage (in-memory only)
+- Translation cache persists in localStorage
+
+**Translation System:**
+- Google Translate API integration via backend proxy
+- `TranslatedText` component wraps text for automatic translation
+- 27+ supported languages (Hindi, Japanese, Spanish, French, German, etc.)
+- Request deduplication prevents duplicate API calls
+- Translation cache persists across sessions
+- Language settings available at `/languages` page
 
 **Page Structure:**
 The application includes comprehensive page coverage:
