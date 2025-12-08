@@ -33,6 +33,8 @@ import { TranslatedText } from "@/hooks/useTranslation";
 export function Header() {
   const [location, setLocation] = useLocation();
   const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false);
+  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -74,9 +76,6 @@ export function Header() {
     { icon: HelpCircle, label: 'Help', href: '/help', divider: false },
     { icon: LogOut, label: 'Logout', href: '#', divider: false },
   ];
-
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <>
