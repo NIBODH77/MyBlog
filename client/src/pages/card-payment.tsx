@@ -1,27 +1,137 @@
 
 import React, { useState } from "react";
 import { Header } from "@/components/layout/Header";
-import { Link } from "wouter";
-import { ArrowLeft, CreditCard, Lock } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { ArrowLeft, CreditCard, Lock, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 
-export default function CardPayment() {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    cardNumber: "",
-    cardName: "",
-    expiryDate: "",
-    cvv: "",
-  });
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast({
-      title: "Payment Processing",
-      description: "Your payment is being processed...",
+export default function CardPayment() {
+  const [loading, setLoading] = useState(false);
+  const [, setLocation] = useLocation();
+  const { toast } = useToast();
+
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => resolve(true);
+      script.onerror = () => resolve(false);
+      document.body.appendChild(script);
     });
+  };
+
+  const handleCardPayment = async () => {
+    setLoading(true);
+
+    try {
+      // Load Razorpay script
+      const scriptLoaded = await loadRazorpayScript();
+      if (!scriptLoaded) {
+        toast({
+          title: "Error",
+          description: "Failed to load payment gateway",
+          variant: "destructive",
+        });
+        setLoading(false);
+        return;
+      }
+
+      // Create order on backend
+      const orderResponse = await fetch("/api/payment/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: 299, currency: "INR" }),
+      });
+
+      const orderData = await orderResponse.json();
+
+      if (!orderData.success) {
+        throw new Error("Failed to create order");
+      }
+
+      // Razorpay Card options
+      const options = {
+        key: orderData.key,
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: "MyBlog+",
+        description: "Monthly Subscription",
+        order_id: orderData.orderId,
+        handler: async function (response: any) {
+          try {
+            // Verify payment on backend
+            const verifyResponse = await fetch("/api/payment/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                orderId: response.razorpay_order_id,
+                paymentId: response.razorpay_payment_id,
+                signature: response.razorpay_signature,
+              }),
+            });
+
+            const verifyData = await verifyResponse.json();
+
+            if (verifyData.success) {
+              toast({
+                title: "Payment Successful!",
+                description: "Your subscription has been activated.",
+              });
+              setTimeout(() => {
+                setLocation("/trial-confirmation");
+              }, 1500);
+            } else {
+              throw new Error("Payment verification failed");
+            }
+          } catch (error) {
+            toast({
+              title: "Verification Failed",
+              description: "Payment verification failed. Please contact support.",
+              variant: "destructive",
+            });
+          } finally {
+            setLoading(false);
+          }
+        },
+        prefill: {
+          name: "",
+          email: "",
+          contact: "",
+        },
+        method: {
+          card: true,
+        },
+        theme: {
+          color: "#2563eb",
+        },
+        modal: {
+          ondismiss: function () {
+            setLoading(false);
+            toast({
+              title: "Payment Cancelled",
+              description: "You cancelled the payment",
+            });
+          },
+        },
+      };
+
+      const razorpay = new window.Razorpay(options);
+      razorpay.open();
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Payment failed",
+        variant: "destructive",
+      });
+      setLoading(false);
+    }
   };
 
   return (
@@ -43,97 +153,84 @@ export default function CardPayment() {
           </div>
 
           <p className="text-gray-600 text-center mb-8">
-            Enter your card details to complete the payment
+            Enter your card details to complete the payment securely
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Card Number */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Card Number
-              </label>
-              <Input
-                type="text"
-                placeholder="1234 5678 9012 3456"
-                value={formData.cardNumber}
-                onChange={(e) => setFormData({ ...formData, cardNumber: e.target.value })}
-                maxLength={19}
-                className="text-lg"
-                required
-              />
-            </div>
+          {/* Secure Payment Badge */}
+          <div className="flex items-center justify-center gap-2 mb-8 text-green-700">
+            <Lock className="h-5 w-5" />
+            <span className="text-sm font-medium">256-bit SSL Encrypted Payment</span>
+          </div>
 
-            {/* Card Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Cardholder Name
-              </label>
-              <Input
-                type="text"
-                placeholder="JOHN DOE"
-                value={formData.cardName}
-                onChange={(e) => setFormData({ ...formData, cardName: e.target.value.toUpperCase() })}
-                required
-              />
-            </div>
-
-            {/* Expiry and CVV */}
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Expiry Date
-                </label>
-                <Input
-                  type="text"
-                  placeholder="MM/YY"
-                  value={formData.expiryDate}
-                  onChange={(e) => setFormData({ ...formData, expiryDate: e.target.value })}
-                  maxLength={5}
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  CVV
-                </label>
-                <Input
-                  type="password"
-                  placeholder="123"
-                  value={formData.cvv}
-                  onChange={(e) => setFormData({ ...formData, cvv: e.target.value })}
-                  maxLength={3}
-                  required
-                />
-              </div>
-            </div>
-
-            {/* Security Notice */}
-            <div className="bg-green-50 border border-green-200 rounded-lg p-4 flex items-start gap-3">
-              <Lock className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <div className="text-sm text-green-800">
-                <p className="font-medium mb-1">Secure Payment</p>
-                <p>Your card information is encrypted and secure. We never store your card details.</p>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 text-lg"
-            >
-              Pay Now
-            </Button>
-          </form>
+          {/* Pay Button */}
+          <Button
+            onClick={handleCardPayment}
+            disabled={loading}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-6 text-lg mb-8"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                Processing Payment...
+              </>
+            ) : (
+              <>
+                <CreditCard className="mr-2 h-5 w-5" />
+                Pay ₹299 with Card
+              </>
+            )}
+          </Button>
 
           {/* Accepted Cards */}
-          <div className="mt-6 text-center">
-            <p className="text-xs text-gray-500 mb-2">We accept</p>
-            <div className="flex justify-center gap-3">
-              <div className="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Visa</div>
-              <div className="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Mastercard</div>
-              <div className="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Amex</div>
-              <div className="bg-gray-100 px-3 py-1 rounded text-xs font-medium">Rupay</div>
+          <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg p-5 mb-6 border border-blue-100">
+            <h4 className="font-semibold text-gray-900 mb-3 text-center">Accepted Cards</h4>
+            <div className="flex items-center justify-center gap-4">
+              <div className="bg-white rounded px-3 py-2 shadow-sm">
+                <span className="text-blue-600 font-bold">VISA</span>
+              </div>
+              <div className="bg-white rounded px-3 py-2 shadow-sm">
+                <span className="text-orange-600 font-bold">MasterCard</span>
+              </div>
+              <div className="bg-white rounded px-3 py-2 shadow-sm">
+                <span className="text-blue-800 font-bold">RuPay</span>
+              </div>
+              <div className="bg-white rounded px-3 py-2 shadow-sm">
+                <span className="text-blue-600 font-bold">Amex</span>
+              </div>
             </div>
+          </div>
+
+          {/* Payment Instructions */}
+          <div className="space-y-4 mb-8">
+            <h3 className="font-semibold text-gray-900 text-lg">How to pay:</h3>
+            <ol className="space-y-4 text-sm text-gray-600">
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm font-bold">1</span>
+                <span className="pt-1">Click on "Pay ₹299 with Card" button</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm font-bold">2</span>
+                <span className="pt-1">Enter your card details in the secure Razorpay payment form</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="bg-blue-100 text-blue-700 rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0 text-sm font-bold">3</span>
+                <span className="pt-1">Complete the payment and your subscription will be activated instantly</span>
+              </li>
+            </ol>
+          </div>
+
+          {/* Amount Info */}
+          <div className="bg-amber-50 rounded-lg p-5 mb-6 border border-amber-100">
+            <h4 className="font-semibold text-gray-900 mb-2">Subscription Amount</h4>
+            <p className="text-2xl font-bold text-blue-600">₹299 <span className="text-sm font-normal text-gray-600">/month</span></p>
+            <p className="text-xs text-gray-500 mt-1">Or ₹2,999/year (Save 17%)</p>
+          </div>
+
+          {/* Support */}
+          <div className="bg-blue-50 rounded-lg p-4 text-center border border-blue-100">
+            <p className="text-sm text-gray-600">
+              Having trouble? <Link href="/help" className="text-blue-600 hover:underline font-medium">Contact Support</Link>
+            </p>
           </div>
         </div>
       </div>
