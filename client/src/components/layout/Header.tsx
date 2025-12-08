@@ -184,12 +184,7 @@ export function Header() {
                         {item.href === '#' ? (
                           <button
                             className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
-                            onClick={() => {
-                              if (item.label === 'Try MyBlog+') {
-                                setIsPlusModalOpen(true);
-                                setIsProfileDropdownOpen(false);
-                              }
-                            }}
+                            onClick={() => setIsProfileDropdownOpen(false)}
                           >
                             <item.icon className="w-5 h-5 text-gray-600" />
                             <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>

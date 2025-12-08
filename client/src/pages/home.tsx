@@ -156,10 +156,6 @@ export default function MyBlogClone() {
         </div>
       </div>
 
-      <MyBlogPlusModal
-        isOpen={isPlusModalOpen}
-        onClose={() => setIsPlusModalOpen(false)}
-      />
-    </AppShell>
+      </AppShell>
   );
 }

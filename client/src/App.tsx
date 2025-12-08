@@ -12,7 +12,7 @@ import NotificationsPage from "@/pages/notificationspage";
 import MessagesPage from "@/pages/messages";
 import CreateAdPage from "@/pages/createadd";
 import MonetizationPage from "@/pages/monetization";
-import MyBlogPlusPage from "@/pages/plusmodel";
+import SubscriptionPage from "@/pages/subscription";
 import BookmarksPage from "@/pages/bookmarks";
 import DraftsPage from "@/pages/draft"
 import AnswerRequestsPage from "@/pages/answer-requests"
@@ -45,7 +45,7 @@ function Router() {
       <Route path="/messages" component={MessagesPage} />
       <Route path="/create-ad" component={CreateAdPage} />
       <Route path="/monetization" component={MonetizationPage} />
-      <Route path="/plus" component={MyBlogPlusPage} />
+      <Route path="/subscription" component={SubscriptionPage} />
       <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/drafts" component={DraftsPage} />
       <Route path="/answer-requests" component={AnswerRequestsPage} />
