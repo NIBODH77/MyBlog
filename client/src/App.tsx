@@ -7,7 +7,6 @@ import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import Following from "@/pages/following";
 import QuestionsPage from "@/pages/questionspage";
-import QuoraSpacesPage from "@/pages/quoraspaces";
 import NotificationsPage from "@/pages/notificationspage";
 import MessagesPage from "@/pages/messages";
 import CreateAdPage from "@/pages/createadd";
@@ -21,7 +20,6 @@ import SettingsPage from "@/pages/settings"
 import LanguagesPage from "@/pages/languages"
 import HelpPage from "@/pages/help"
 import ProfilePage from "@/pages/profile"
-import CreateSpacePage from "@/pages/create-space"
 import AboutPage from "@/pages/about"
 import TermsPage from "@/pages/terms"
 import PrivacyPage from "@/pages/privacy"
@@ -42,7 +40,6 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/following" component={Following} />
       <Route path="/answer" component={QuestionsPage} />
-      <Route path="/spaces" component={QuoraSpacesPage} />
       <Route path="/notifications" component={NotificationsPage} />
       <Route path="/messages" component={MessagesPage} />
       <Route path="/create-ad" component={CreateAdPage} />
@@ -56,7 +53,6 @@ function Router() {
       <Route path="/settings" component={SettingsPage} />
       <Route path="/languages" component={LanguagesPage} />
       <Route path="/help" component={HelpPage} />
-      <Route path="/create-space" component={CreateSpacePage} />
       <Route path="/about" component={AboutPage} />
       <Route path="/terms" component={TermsPage} />
       <Route path="/privacy" component={PrivacyPage} />

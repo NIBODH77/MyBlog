@@ -25,10 +25,6 @@ export default function MyBlogClone() {
         {/* Left Sidebar */}
         <div className="hidden md:block w-48 flex-shrink-0">
           <div className="sticky top-20 bg-white dark:bg-card rounded shadow-sm self-start">
-            <a href="/create-space" className="w-full px-4 py-3 text-left text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-secondary/50 flex items-center gap-2 border-b dark:border-border">
-              <span className="text-2xl">+</span>
-              <span className="text-sm">Create Space</span>
-            </a>
             <div className="p-2 text-xs text-gray-500 dark:text-muted-foreground space-y-1">
               <a href="/about" className="block py-1 hover:underline">
                 About MyBlog

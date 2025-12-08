@@ -58,7 +58,6 @@ export function Header() {
     { icon: Home, label: "Home", href: "/" },
     { icon: List, label: "Following", href: "/following" },
     { icon: PenSquare, label: "Answer", href: "/answer" },
-    { icon: Users, label: "Spaces", href: "/spaces" },
     { icon: Bell, label: "Notifications", href: "/notifications" },
   ];
 
