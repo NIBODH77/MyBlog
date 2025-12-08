@@ -1,5 +1,6 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
+import { Link } from 'wouter';
 
 export default function QuoraDrafts() {
   return (
@@ -56,9 +57,9 @@ export default function QuoraDrafts() {
               </p>
 
               {/* CTA Button */}
-              <button className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-full transition-colors">
+              <Link href="/answer" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-full transition-colors" data-testid="button-see-questions">
                 See questions for you
-              </button>
+              </Link>
             </div>
           </main>
 
