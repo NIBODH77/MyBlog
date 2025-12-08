@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import { Check, X } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
+import { RazorpayPayment } from "@/components/RazorpayPayment";
 
 export default function QuoraPlusSubscription() {
   const [planType, setPlanType] = useState("yearly");
+  const [, setLocation] = useLocation();
+
+  const planAmount = planType === "yearly" ? 2999 : 299;
+  const planDescription = planType === "yearly" ? "Yearly Plan" : "Monthly Plan";
+
+  const handlePaymentSuccess = (paymentId: string) => {
+    console.log("Payment successful:", paymentId);
+    setLocation("/trial-confirmation");
+  };
+
+  const handlePaymentFailure = (error: string) => {
+    console.error("Payment failed:", error);
+  };
 
   return (
     <div className="h-screen bg-gradient-to-b from-amber-50 to-white flex flex-col overflow-hidden">
@@ -192,34 +206,40 @@ export default function QuoraPlusSubscription() {
               Auto-renews yearly. Cancel anytime in settings.
             </p>
 
-            {/* Payment Buttons - Compact */}
-            <div className="space-y-1.5">
-              <Link href="/upi-payment">
-                <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-bold py-1.5 md:py-2 rounded-lg transition-colors text-xs md:text-sm">
-                  <span className="text-sm md:text-base">Pay Now With UPI</span>
+            {/* Razorpay Payment Button */}
+            <div className="space-y-3">
+              <RazorpayPayment
+                amount={planAmount}
+                planName={planDescription}
+                onSuccess={handlePaymentSuccess}
+                onFailure={handlePaymentFailure}
+              />
+
+              <div className="text-center text-gray-400 font-semibold text-xs">
+                OR
+              </div>
+
+              {/* Alternative Payment Options */}
+              <div className="grid grid-cols-2 gap-2">
+                <Link href="/upi-payment">
+                  <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-semibold py-2 rounded-lg transition-colors text-xs">
+                    UPI
+                  </button>
+                </Link>
+                <Link href="/card-payment">
+                  <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 rounded-lg transition-colors text-xs">
+                    Card
+                  </button>
+                </Link>
+              </div>
+
+              {/* Trial Button */}
+              <Link href="/trial-confirmation">
+                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2">
+                  Try 30 Days Free
                 </button>
               </Link>
             </div>
-
-            <div className="text-center text-gray-400 font-semibold text-[10px] md:text-xs">
-              OR
-            </div>
-
-            {/* Card Input - Compact */}
-            <div className="space-y-1.5">
-              <Link href="/card-payment">
-                <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-1.5 md:py-3 rounded-lg transition-colors text-xs md:text-sm mb-5">
-                  Pay with Card
-                </button>
-              </Link>
-            </div>
-
-            {/* Submit Button */}
-            <Link href="/trial-confirmation">
-              <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm md:text-base py-3 md:py-3 rounded-xl transition-colors shadow-lg">
-                Try 30 Days Free
-              </button>
-            </Link>
           </div>
         </div>
       </div>
