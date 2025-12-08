@@ -29,6 +29,7 @@ import { currentUser } from "@/lib/mock-data";
 import { cn } from "@/lib/utils";
 import MyBlogPlusModal from "@/components/MyBlogPlusModal";
 import AddQuestionModal from "@/components/AddQuestionModal";
+import { TranslatedText } from "@/hooks/useTranslation";
 
 export function Header() {
   const [location, setLocation] = useLocation();
@@ -130,6 +131,7 @@ export function Header() {
             <Input
               placeholder="Search MyBlog"
               className="pl-9 h-9 bg-secondary/30 border-border/50 hover:border-primary/30 focus:bg-background focus:border-primary/50 transition-all rounded-sm"
+              data-testid="input-search"
             />
           </div>
 
@@ -140,8 +142,9 @@ export function Header() {
               size="sm" 
               className="hidden lg:flex rounded-full text-muted-foreground gap-1 border border-transparent hover:bg-secondary/50"
               onClick={() => setIsPlusModalOpen(true)}
+              data-testid="button-try-plus"
             >
-              <span className="text-xs font-medium">Try MyBlog+</span>
+              <TranslatedText as="span" className="text-xs font-medium">Try MyBlog+</TranslatedText>
             </Button>
 
             {/* <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground rounded-full">
@@ -191,7 +194,7 @@ export function Header() {
                             }}
                           >
                             <item.icon className="w-5 h-5 text-gray-600" />
-                            <span className="text-gray-700 text-sm">{item.label}</span>
+                            <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
                           </button>
                         ) : (
                           <Link href={item.href}>
@@ -200,7 +203,7 @@ export function Header() {
                               onClick={() => setIsProfileDropdownOpen(false)}
                             >
                               <item.icon className="w-5 h-5 text-gray-600" />
-                              <span className="text-gray-700 text-sm">{item.label}</span>
+                              <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
                             </button>
                           </Link>
                         )}
@@ -213,7 +216,7 @@ export function Header() {
                   <div className="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer border-t border-gray-200">
                     <div className="flex items-center space-x-3">
                       <Moon className="w-5 h-5 text-gray-600" />
-                      <span className="text-gray-700 text-sm">Dark mode</span>
+                      <TranslatedText as="span" className="text-gray-700 text-sm">Dark mode</TranslatedText>
                     </div>
                     <button
                       onClick={(e) => {
@@ -242,7 +245,7 @@ export function Header() {
                           onClick={() => setIsProfileDropdownOpen(false)}
                         >
                           <item.icon className="w-5 h-5 text-gray-600" />
-                          <span className="text-gray-700 text-sm">{item.label}</span>
+                          <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
                         </button>
                       ) : (
                         <Link key={index} href={item.href}>
@@ -251,7 +254,7 @@ export function Header() {
                             onClick={() => setIsProfileDropdownOpen(false)}
                           >
                             <item.icon className="w-5 h-5 text-gray-600" />
-                            <span className="text-gray-700 text-sm">{item.label}</span>
+                            <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
                           </button>
                         </Link>
                       )
@@ -261,13 +264,13 @@ export function Header() {
                   {/* Footer Links */}
                   <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
                     <div className="text-xs text-gray-500 space-x-1 flex flex-wrap">
-                      <a href="#" className="hover:underline">About</a>
+                      <a href="/about" className="hover:underline"><TranslatedText>About</TranslatedText></a>
                       <span>·</span>
-                      <a href="#" className="hover:underline">Terms</a>
+                      <a href="/terms" className="hover:underline"><TranslatedText>Terms</TranslatedText></a>
                       <span>·</span>
-                      <a href="#" className="hover:underline">Privacy</a>
+                      <a href="/privacy" className="hover:underline"><TranslatedText>Privacy</TranslatedText></a>
                       <span>·</span>
-                      <a href="#" className="hover:underline">Careers</a>
+                      <a href="/careers" className="hover:underline"><TranslatedText>Careers</TranslatedText></a>
                     </div>
                   </div>
                 </div>
@@ -278,8 +281,9 @@ export function Header() {
               size="sm" 
               className="rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white font-medium px-4 h-8"
               onClick={() => setIsAddQuestionOpen(true)}
+              data-testid="button-add-question"
             >
-              Add question
+              <TranslatedText>Add question</TranslatedText>
             </Button>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'wouter';
 import { Header } from '@/components/layout/Header';
 import { useLanguage, languages, Language } from '@/contexts/LanguageContext';
+import { TranslatedText } from '@/hooks/useTranslation';
 
 const LanguageSettings: React.FC = () => {
   const [, setLocation] = useLocation();
@@ -47,10 +48,10 @@ const LanguageSettings: React.FC = () => {
             {/* Current Language Info */}
             <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
               <h3 className="text-blue-800 dark:text-blue-300 font-medium mb-2">
-                Current Language: {currentLanguage.name}
+                <TranslatedText>Current Language</TranslatedText>: {currentLanguage.name}
               </h3>
               <p className="text-blue-600 dark:text-blue-400 text-sm">
-                This language is applied globally across all pages
+                <TranslatedText>This language is applied globally across all pages</TranslatedText>
               </p>
             </div>
 
@@ -88,7 +89,7 @@ const LanguageSettings: React.FC = () => {
                     <div className="flex items-center space-x-3">
                       {currentLanguage.code === language.code && (
                         <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-sm font-medium rounded-full">
-                          Primary
+                          <TranslatedText>Primary</TranslatedText>
                         </span>
                       )}
                       {selectedLanguage === language.code && (
@@ -108,14 +109,14 @@ const LanguageSettings: React.FC = () => {
             {/* Translation Instructions */}
             <div className="bg-yellow-50 dark:bg-yellow-950/30 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
               <h4 className="text-yellow-800 dark:text-yellow-300 font-medium mb-2">
-                How Language Translation Works
+                <TranslatedText>How Language Translation Works</TranslatedText>
               </h4>
               <ul className="text-yellow-700 dark:text-yellow-400 text-sm space-y-1">
-                <li>• Select a language and click "Set as primary"</li>
-                <li>• The entire application will be translated to selected language</li>
-                <li>• Translation persists across all pages and sessions</li>
-                <li>• Google Translate API is used for automatic translation</li>
-                <li>• English is the default language</li>
+                <li><TranslatedText>Select a language and click "Set as primary"</TranslatedText></li>
+                <li><TranslatedText>The entire application will be translated to selected language</TranslatedText></li>
+                <li><TranslatedText>Translation persists across all pages and sessions</TranslatedText></li>
+                <li><TranslatedText>Google Translate API is used for automatic translation</TranslatedText></li>
+                <li><TranslatedText>English is the default language</TranslatedText></li>
               </ul>
             </div>
           </div>
@@ -136,7 +137,7 @@ const LanguageSettings: React.FC = () => {
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="font-medium">Language updated to {currentLanguage.name}!</span>
+              <TranslatedText as="span" className="font-medium">Language updated successfully!</TranslatedText>
             </div>
           </div>
         )}
@@ -144,7 +145,7 @@ const LanguageSettings: React.FC = () => {
         {/* Sidebar */}
         <div className="sticky top-20 h-fit w-64 bg-white dark:bg-card border-r border-gray-200 dark:border-border">
           <div className="p-6">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-foreground mb-4">Settings</h2>
+            <h2 className="text-lg font-semibold text-gray-800 dark:text-foreground mb-4"><TranslatedText>Settings</TranslatedText></h2>
             <nav className="space-y-1">
               {menuItems.map((item) => (
                 <button
@@ -169,7 +170,7 @@ const LanguageSettings: React.FC = () => {
             {activeTab === 'Languages' && (
               <div className="flex-shrink-0 flex items-center justify-between mb-8">
                 <h1 className="text-2xl font-semibold text-gray-900 dark:text-foreground">
-                  Language Settings
+                  <TranslatedText>Language Settings</TranslatedText>
                 </h1>
                 <button
                   onClick={handleSetPrimary}
@@ -179,8 +180,9 @@ const LanguageSettings: React.FC = () => {
                       ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
                       : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md'
                   }`}
+                  data-testid="button-set-primary"
                 >
-                  Set as primary
+                  <TranslatedText>Set as primary</TranslatedText>
                 </button>
               </div>
             )}

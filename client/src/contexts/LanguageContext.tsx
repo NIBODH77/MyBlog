@@ -1,7 +1,6 @@
+import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-
-interface Language {
+export interface Language {
   code: string;
   name: string;
   color: string;
@@ -11,10 +10,10 @@ interface Language {
 interface LanguageContextType {
   currentLanguage: Language;
   setLanguage: (language: Language) => void;
-  translatePage: (targetLang: string) => void;
+  isTranslating: boolean;
 }
 
-const languages: Language[] = [
+export const languages: Language[] = [
   { code: 'EN', name: 'English', color: 'bg-blue-500', googleTranslateCode: 'en' },
   { code: 'NL', name: 'Nederlands', color: 'bg-red-600', googleTranslateCode: 'nl' },
   { code: 'ES', name: 'Español', color: 'bg-orange-500', googleTranslateCode: 'es' },
@@ -39,185 +38,45 @@ const languages: Language[] = [
   { code: 'ML', name: 'മലയാളം', color: 'bg-red-600', googleTranslateCode: 'ml' },
   { code: 'TE', name: 'తెలుగు', color: 'bg-blue-600', googleTranslateCode: 'te' },
   { code: 'PL', name: 'Polski', color: 'bg-red-600', googleTranslateCode: 'pl' },
+  { code: 'ZH', name: '中文', color: 'bg-red-700', googleTranslateCode: 'zh' },
+  { code: 'KO', name: '한국어', color: 'bg-blue-700', googleTranslateCode: 'ko' },
+  { code: 'RU', name: 'Русский', color: 'bg-blue-800', googleTranslateCode: 'ru' },
+  { code: 'TH', name: 'ไทย', color: 'bg-purple-600', googleTranslateCode: 'th' },
+  { code: 'VI', name: 'Tiếng Việt', color: 'bg-red-600', googleTranslateCode: 'vi' },
+  { code: 'TR', name: 'Türkçe', color: 'bg-red-500', googleTranslateCode: 'tr' },
 ];
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-declare global {
-  interface Window {
-    google: any;
-    googleTranslateElementInit: () => void;
-  }
-}
-
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [currentLanguage, setCurrentLanguage] = useState<Language>(() => {
     const savedLang = localStorage.getItem('selectedLanguage');
     return languages.find(lang => lang.code === savedLang) || languages[0];
   });
-  const [isTranslateReady, setIsTranslateReady] = useState(false);
+  const [isTranslating, setIsTranslating] = useState(false);
 
-  const getCookie = (name: string) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop()?.split(';').shift();
-    return null;
-  };
-
-  const setCookie = (name: string, value: string, days: number = 365) => {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
-  };
-
-  const deleteCookie = (name: string) => {
-    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-  };
-
-  const translatePage = (targetLang: string) => {
-    const googleTranslateCode = languages.find(l => l.code === targetLang)?.googleTranslateCode;
-    
-    if (!googleTranslateCode) {
-      console.error('Invalid language code:', targetLang);
-      return;
-    }
-
-    console.log('Translating to:', googleTranslateCode);
-
-    if (googleTranslateCode === 'en') {
-      // Reset to English
-      deleteCookie('googtrans');
-      deleteCookie('googtrans', '/auto/en');
-      setCookie('googtrans', '/en/en');
-      window.location.reload();
-      return;
-    }
-
-    // Set the Google Translate cookie
-    setCookie('googtrans', `/en/${googleTranslateCode}`);
-    
-    // Force reload to apply translation
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
-  };
-
-  const setLanguage = (language: Language) => {
-    console.log('Setting language to:', language.name, language.googleTranslateCode);
+  const setLanguage = useCallback((language: Language) => {
+    setIsTranslating(true);
     setCurrentLanguage(language);
     localStorage.setItem('selectedLanguage', language.code);
     
-    // Apply translation
-    if (language.googleTranslateCode) {
-      translatePage(language.code);
-    }
-  };
+    setTimeout(() => {
+      setIsTranslating(false);
+    }, 500);
+  }, []);
 
   useEffect(() => {
-    // Load Google Translate script
-    const loadGoogleTranslate = () => {
-      // Check if already loaded
-      if (window.google?.translate) {
-        initializeGoogleTranslate();
-        return;
+    const savedLang = localStorage.getItem('selectedLanguage');
+    if (savedLang) {
+      const lang = languages.find(l => l.code === savedLang);
+      if (lang && lang.code !== currentLanguage.code) {
+        setCurrentLanguage(lang);
       }
-
-      // Remove existing script if any
-      const existingScript = document.getElementById('google-translate-script');
-      if (existingScript) {
-        existingScript.remove();
-      }
-
-      // Load the script
-      const script = document.createElement('script');
-      script.id = 'google-translate-script';
-      script.type = 'text/javascript';
-      script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-      script.async = true;
-      script.onerror = () => {
-        console.error('Failed to load Google Translate script');
-      };
-      document.head.appendChild(script);
-    };
-
-    const initializeGoogleTranslate = () => {
-      window.googleTranslateElementInit = () => {
-        try {
-          new window.google.translate.TranslateElement(
-            {
-              pageLanguage: 'en',
-              includedLanguages: languages
-                .map(l => l.googleTranslateCode)
-                .filter(Boolean)
-                .join(','),
-              layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-              autoDisplay: false,
-              multilanguagePage: true,
-            },
-            'google_translate_element'
-          );
-          
-          setIsTranslateReady(true);
-          console.log('Google Translate initialized successfully');
-
-          // Apply saved language if not English
-          const savedCookie = getCookie('googtrans');
-          console.log('Saved cookie:', savedCookie);
-          
-        } catch (error) {
-          console.error('Error initializing Google Translate:', error);
-        }
-      };
-
-      // Initialize if google object is available
-      if (window.google?.translate) {
-        window.googleTranslateElementInit();
-      }
-    };
-
-    loadGoogleTranslate();
-
-    // Add styles to hide Google Translate UI
-    const style = document.createElement('style');
-    style.innerHTML = `
-      body {
-        top: 0 !important;
-        position: static !important;
-      }
-      .goog-te-banner-frame {
-        display: none !important;
-      }
-      .goog-te-balloon-frame {
-        display: none !important;
-      }
-      #google_translate_element {
-        display: none !important;
-      }
-      .skiptranslate {
-        display: none !important;
-      }
-      .goog-te-gadget {
-        display: none !important;
-      }
-      .goog-te-combo {
-        display: none !important;
-      }
-      iframe.skiptranslate {
-        display: none !important;
-      }
-      body > .skiptranslate {
-        display: none !important;
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      style.remove();
-    };
+    }
   }, []);
 
   return (
-    <LanguageContext.Provider value={{ currentLanguage, setLanguage, translatePage }}>
-      <div id="google_translate_element" style={{ display: 'none' }}></div>
+    <LanguageContext.Provider value={{ currentLanguage, setLanguage, isTranslating }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -230,6 +89,3 @@ export const useLanguage = () => {
   }
   return context;
 };
-
-export { languages };
-export type { Language };

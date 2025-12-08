@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X, HelpCircle, PenSquare, FileText } from "lucide-react";
 import MyBlogPlusModal from "@/components/MyBlogPlusModal";
 import { AppShell } from "@/components/layout/AppShell";
+import { TranslatedText } from "@/hooks/useTranslation";
 
 export default function MyBlogClone() {
   const [isPlusModalOpen, setIsPlusModalOpen] = useState(false);
@@ -27,31 +28,31 @@ export default function MyBlogClone() {
           <div className="sticky top-20 bg-white dark:bg-card rounded shadow-sm self-start">
             <div className="p-2 text-xs text-gray-500 dark:text-muted-foreground space-y-1">
               <a href="/about" className="block py-1 hover:underline">
-                About MyBlog
+                <TranslatedText>About MyBlog</TranslatedText>
               </a>
               <a href="/terms" className="block py-1 hover:underline">
-                Terms
+                <TranslatedText>Terms</TranslatedText>
               </a>
               <a href="/privacy" className="block py-1 hover:underline">
-                Privacy
+                <TranslatedText>Privacy</TranslatedText>
               </a>
               <a href="/acceptable-use" className="block py-1 hover:underline">
-                Acceptable Use
+                <TranslatedText>Acceptable Use</TranslatedText>
               </a>
               <a href="/advertise" className="block py-1 hover:underline">
-                Advertise
+                <TranslatedText>Advertise</TranslatedText>
               </a>
               <a href="/grievance" className="block py-1 hover:underline">
-                Grievance Officer
+                <TranslatedText>Grievance Officer</TranslatedText>
               </a>
               <a href="/careers" className="block py-1 hover:underline">
-                Careers
+                <TranslatedText>Careers</TranslatedText>
               </a>
               <a href="/press" className="block py-1 hover:underline">
-                Press
+                <TranslatedText>Press</TranslatedText>
               </a>
               <a href="/company" className="block py-1 hover:underline">
-                Company
+                <TranslatedText>Company</TranslatedText>
               </a>
               <a href="#" className="block py-1 hover:underline">
                 © MyBlog, Inc. 2024
@@ -72,18 +73,19 @@ export default function MyBlogClone() {
                 type="text"
                 placeholder="What do you want to ask or share?"
                 className="flex-1 text-gray-500 dark:text-muted-foreground text-sm cursor-pointer hover:bg-gray-50 dark:hover:bg-secondary/50 py-2 px-3 rounded border border-gray-200 dark:border-border"
+                data-testid="input-ask-share"
               />
             </div>
 
             <div className="flex gap-2 mt-3 border-t pt-3 dark:border-border">
-              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded">
-                <HelpCircle className="w-4 h-4 text-red-600" /> Ask
+              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" data-testid="button-ask">
+                <HelpCircle className="w-4 h-4 text-red-600" /> <TranslatedText>Ask</TranslatedText>
               </button>
-              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded">
-                <PenSquare className="w-4 h-4" /> Answer
+              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" data-testid="button-answer">
+                <PenSquare className="w-4 h-4" /> <TranslatedText>Answer</TranslatedText>
               </button>
-              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded">
-                <FileText className="w-4 h-4" /> Post
+              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" data-testid="button-post">
+                <FileText className="w-4 h-4" /> <TranslatedText>Post</TranslatedText>
               </button>
             </div>
           </div>
@@ -105,7 +107,7 @@ export default function MyBlogClone() {
                         <span className="font-semibold text-gray-900 dark:text-foreground">
                           {post.author}
                         </span>
-                        <span className="text-blue-600 text-sm">· Follow</span>
+                        <span className="text-blue-600 text-sm">· <TranslatedText>Follow</TranslatedText></span>
                       </div>
                       <div className="text-xs text-gray-500 dark:text-muted-foreground">
                         {post.location} · {post.date}
@@ -120,7 +122,7 @@ export default function MyBlogClone() {
                 <p className="text-gray-900 dark:text-foreground mb-3 leading-relaxed">
                   {post.content}
                   <span className="text-gray-500 dark:text-muted-foreground ml-1 cursor-pointer hover:underline">
-                    (more)
+                    <TranslatedText>(more)</TranslatedText>
                   </span>
                 </p>
 
@@ -145,13 +147,13 @@ export default function MyBlogClone() {
               <p className="text-sm mb-3">
                 Now ₹1,199/mo for the first year. Ends 7 December.*
               </p>
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700">
-                Learn more
+              <button className="bg-blue-600 text-white px-6 py-2 rounded-full font-medium hover:bg-blue-700" data-testid="button-learn-more">
+                <TranslatedText>Learn more</TranslatedText>
               </button>
             </div>
           </div>
           <div className="text-xs text-center text-gray-500 dark:text-muted-foreground">
-            Advertisement
+            <TranslatedText>Advertisement</TranslatedText>
           </div>
         </div>
       </div>
