@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { X, HelpCircle, PenSquare, FileText } from "lucide-react";
 import { AppShell } from "@/components/layout/AppShell";
 import { TranslatedText } from "@/hooks/useTranslation";
+import AddQuestionModal from "@/components/AddQuestionModal";
 
 export default function MyBlogClone() {
+  const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false);
   const [posts] = useState([
     {
       id: 1,
@@ -71,18 +73,32 @@ export default function MyBlogClone() {
                 type="text"
                 placeholder="What do you want to ask or share?"
                 className="flex-1 text-gray-500 dark:text-muted-foreground text-sm cursor-pointer hover:bg-gray-50 dark:hover:bg-secondary/50 py-2 px-3 rounded border border-gray-200 dark:border-border"
+                onClick={() => setIsAddQuestionOpen(true)}
+                readOnly
                 data-testid="input-ask-share"
               />
             </div>
 
             <div className="flex gap-2 mt-3 border-t pt-3 dark:border-border">
-              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" data-testid="button-ask">
+              <button 
+                onClick={() => setIsAddQuestionOpen(true)}
+                className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" 
+                data-testid="button-ask"
+              >
                 <HelpCircle className="w-4 h-4 text-red-600" /> <TranslatedText>Ask</TranslatedText>
               </button>
-              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" data-testid="button-answer">
+              <button 
+                onClick={() => setIsAddQuestionOpen(true)}
+                className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" 
+                data-testid="button-answer"
+              >
                 <PenSquare className="w-4 h-4" /> <TranslatedText>Answer</TranslatedText>
               </button>
-              <button className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" data-testid="button-post">
+              <button 
+                onClick={() => setIsAddQuestionOpen(true)}
+                className="flex items-center gap-1 text-gray-600 dark:text-gray-300 text-sm hover:bg-gray-100 dark:hover:bg-secondary/50 px-3 py-1.5 rounded" 
+                data-testid="button-post"
+              >
                 <FileText className="w-4 h-4" /> <TranslatedText>Post</TranslatedText>
               </button>
             </div>
@@ -156,6 +172,7 @@ export default function MyBlogClone() {
         </div>
       </div>
 
+      <AddQuestionModal isOpen={isAddQuestionOpen} onClose={() => setIsAddQuestionOpen(false)} />
       </AppShell>
   );
 }
