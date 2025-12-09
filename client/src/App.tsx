@@ -14,7 +14,6 @@ import CreateAdPage from "@/pages/createadd";
 import MonetizationPage from "@/pages/monetization";
 import SubscriptionPage from "@/pages/subscription";
 import UPIPaymentPage from "@/pages/upi-payment";
-import CardPaymentPage from "@/pages/card-payment";
 import TrialConfirmationPage from "@/pages/trial-confirmation";
 import BookmarksPage from "@/pages/bookmarks";
 import DraftsPage from "@/pages/draft"
@@ -50,7 +49,6 @@ function Router() {
       <Route path="/monetization" component={MonetizationPage} />
       <Route path="/subscription" component={SubscriptionPage} />
       <Route path="/upi-payment" component={UPIPaymentPage} />
-      <Route path="/card-payment" component={CardPaymentPage} />
       <Route path="/trial-confirmation" component={TrialConfirmationPage} />
       <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/drafts" component={DraftsPage} />

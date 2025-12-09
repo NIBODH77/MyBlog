@@ -140,14 +140,7 @@ export default function QuoraPlusSubscription() {
               Auto-renews yearly. Cancel anytime in settings.
             </p>
 
-            {/* Buttons */}
-            <button
-              onClick={() => setLocation("/card-payment")}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2"
-            >
-              Pay Now
-            </button>
-            
+            {/* Button */}
             <button
               onClick={handleStartTrial}
               className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2"
