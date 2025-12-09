@@ -234,16 +234,16 @@ export function Header() {
 
               {/* Custom Profile Dropdown */}
               {isProfileDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden animate-slideDown z-50">
+                <div className="fixed md:absolute right-2 md:right-0 mt-2 w-[calc(100vw-1rem)] md:w-64 max-w-sm bg-white dark:bg-card rounded-lg shadow-2xl border border-gray-200 dark:border-border overflow-hidden animate-slideDown z-50">
                   {/* User Profile Section */}
-                  <div className="px-4 py-4 border-b border-gray-200">
+                  <div className="px-4 py-4 border-b border-gray-200 dark:border-border">
                     <div className="flex items-center space-x-3">
                       <Avatar className="h-10 w-10">
                         <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
                         <AvatarFallback className="bg-green-600 text-white font-semibold">L</AvatarFallback>
                       </Avatar>
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900">{currentUser.name}</div>
+                        <div className="font-semibold text-gray-900 dark:text-foreground">{currentUser.name}</div>
                       </div>
                     </div>
                   </div>
@@ -255,21 +255,21 @@ export function Header() {
                         {item.href === '#' ? (
                           <Link href="/subscription">
                             <button
-                              className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                              className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 dark:hover:bg-muted/50 transition-colors text-left"
                               onClick={() => setIsProfileDropdownOpen(false)}
                             >
-                              <item.icon className="w-5 h-5 text-gray-600" />
-                              <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
+                              <item.icon className="w-5 h-5 text-gray-600 dark:text-muted-foreground" />
+                              <TranslatedText as="span" className="text-gray-700 dark:text-foreground text-sm">{item.label}</TranslatedText>
                             </button>
                           </Link>
                         ) : (
                           <Link href={item.href}>
                             <button
-                              className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                              className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 dark:hover:bg-muted/50 transition-colors text-left"
                               onClick={() => setIsProfileDropdownOpen(false)}
                             >
-                              <item.icon className="w-5 h-5 text-gray-600" />
-                              <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
+                              <item.icon className="w-5 h-5 text-gray-600 dark:text-muted-foreground" />
+                              <TranslatedText as="span" className="text-gray-700 dark:text-foreground text-sm">{item.label}</TranslatedText>
                             </button>
                           </Link>
                         )}
@@ -279,10 +279,10 @@ export function Header() {
                   </div>
 
                   {/* Dark Mode Toggle */}
-                  <div className="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer border-t border-gray-200">
+                  <div className="px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-muted/50 transition-colors cursor-pointer border-t border-gray-200 dark:border-border">
                     <div className="flex items-center space-x-3">
-                      <Moon className="w-5 h-5 text-gray-600" />
-                      <TranslatedText as="span" className="text-gray-700 text-sm">Dark mode</TranslatedText>
+                      <Moon className="w-5 h-5 text-gray-600 dark:text-muted-foreground" />
+                      <TranslatedText as="span" className="text-gray-700 dark:text-foreground text-sm">Dark mode</TranslatedText>
                     </div>
                     <button
                       onClick={(e) => {
@@ -302,25 +302,25 @@ export function Header() {
                   </div>
 
                   {/* Bottom Menu Items */}
-                  <div className="py-2 border-t border-gray-200">
+                  <div className="py-2 border-t border-gray-200 dark:border-border">
                     {bottomMenuItems.map((item, index) => (
                       item.href === '#' ? (
                         <button
                           key={index}
-                          className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                          className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 dark:hover:bg-muted/50 transition-colors text-left"
                           onClick={() => setIsProfileDropdownOpen(false)}
                         >
-                          <item.icon className="w-5 h-5 text-gray-600" />
-                          <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
+                          <item.icon className="w-5 h-5 text-gray-600 dark:text-muted-foreground" />
+                          <TranslatedText as="span" className="text-gray-700 dark:text-foreground text-sm">{item.label}</TranslatedText>
                         </button>
                       ) : (
                         <Link key={index} href={item.href}>
                           <button
-                            className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 transition-colors text-left"
+                            className="w-full px-4 py-2.5 flex items-center space-x-3 hover:bg-gray-50 dark:hover:bg-muted/50 transition-colors text-left"
                             onClick={() => setIsProfileDropdownOpen(false)}
                           >
-                            <item.icon className="w-5 h-5 text-gray-600" />
-                            <TranslatedText as="span" className="text-gray-700 text-sm">{item.label}</TranslatedText>
+                            <item.icon className="w-5 h-5 text-gray-600 dark:text-muted-foreground" />
+                            <TranslatedText as="span" className="text-gray-700 dark:text-foreground text-sm">{item.label}</TranslatedText>
                           </button>
                         </Link>
                       )
@@ -328,8 +328,8 @@ export function Header() {
                   </div>
 
                   {/* Footer Links */}
-                  <div className="px-4 py-3 border-t border-gray-200 bg-gray-50">
-                    <div className="text-xs text-gray-500 space-x-1 flex flex-wrap">
+                  <div className="px-4 py-3 border-t border-gray-200 dark:border-border bg-gray-50 dark:bg-muted/30">
+                    <div className="text-xs text-gray-500 dark:text-muted-foreground space-x-1 flex flex-wrap">
                       <a href="/about" className="hover:underline"><TranslatedText>About</TranslatedText></a>
                       <span>·</span>
                       <a href="/terms" className="hover:underline"><TranslatedText>Terms</TranslatedText></a>
