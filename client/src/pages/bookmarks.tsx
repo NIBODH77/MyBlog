@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Plus, MoreHorizontal, Share2, Bookmark } from 'lucide-react';
+import { MoreHorizontal, Share2, Bookmark } from 'lucide-react';
 import { Header } from '@/components/layout/Header';
 
 export default function QuoraBookmarks() {
@@ -44,7 +44,7 @@ export default function QuoraBookmarks() {
             {/* Create Space Card */}
             <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
               <button className="w-full flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors">
-                <Plus className="w-4 h-4 text-gray-500" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-gray-500 lucide lucide-plus"><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
                 <span className="text-sm font-medium">Create Space</span>
               </button>
             </div>
