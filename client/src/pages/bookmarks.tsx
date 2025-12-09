@@ -34,13 +34,13 @@ export default function QuoraBookmarks() {
   ]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-20 md:pb-6">
       <Header />
       {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        <div className="flex gap-6">
-          {/* Sidebar */}
-          <aside className="w-64 flex-shrink-0 sticky top-20 h-fit">
+      <div className="max-w-4xl mx-auto px-3 md:px-4 py-4 md:py-6">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+          {/* Sidebar - Hidden on mobile */}
+          <aside className="hidden md:block w-64 flex-shrink-0 sticky top-20 h-fit">
             {/* Create Space Card */}
             <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
               <button className="w-full flex items-center space-x-2 px-3 py-2 text-gray-700 hover:bg-gray-50 rounded transition-colors">
@@ -50,8 +50,8 @@ export default function QuoraBookmarks() {
             </div>
 
             {/* Footer Links Card */}
-            <div className="bg-white rounded-lg shadow-sm p-4">
-              <div className="text-xs text-gray-500 leading-relaxed">
+            <div className="bg-white dark:bg-card rounded-lg shadow-sm p-4">
+              <div className="text-xs text-gray-500 dark:text-muted-foreground leading-relaxed">
                 <a href="#" className="hover:underline">About Quora</a>
                 <span className="mx-1">·</span>
                 <a href="#" className="hover:underline">Terms</a>
@@ -78,52 +78,52 @@ export default function QuoraBookmarks() {
           {/* Main Content Area */}
           <main className="flex-1">
             {/* Bookmarks Header */}
-            <div className="mb-4">
-              <h1 className="text-2xl font-semibold text-gray-800">Bookmarks</h1>
+            <div className="mb-3 md:mb-4">
+              <h1 className="text-xl md:text-2xl font-semibold text-gray-800 dark:text-foreground">Bookmarks</h1>
             </div>
 
             {/* Bookmarks List */}
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               {bookmarks.map((bookmark) => (
-                <div key={bookmark.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                <div key={bookmark.id} className="bg-white dark:bg-card rounded-lg shadow-sm p-4 md:p-6 hover:shadow-md transition-shadow">
                   {/* Question */}
-                  <h2 className="text-lg font-semibold text-gray-900 mb-3 hover:underline cursor-pointer">
+                  <h2 className="text-base md:text-lg font-semibold text-gray-900 dark:text-foreground mb-2 md:mb-3 hover:underline cursor-pointer">
                     {bookmark.question}
                   </h2>
 
                   {/* Author Info */}
-                  <div className="flex items-center mb-3">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-sm mr-2">
+                  <div className="flex items-center mb-2 md:mb-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold text-sm mr-2 flex-shrink-0">
                       {bookmark.author[0]}
                     </div>
-                    <div>
-                      <div className="text-sm font-medium text-gray-900">{bookmark.author}</div>
-                      <div className="text-xs text-gray-500">{bookmark.authorTitle}</div>
+                    <div className="min-w-0">
+                      <div className="text-sm font-medium text-gray-900 dark:text-foreground truncate">{bookmark.author}</div>
+                      <div className="text-xs text-gray-500 dark:text-muted-foreground truncate">{bookmark.authorTitle}</div>
                     </div>
                   </div>
 
                   {/* Answer Preview */}
-                  <p className="text-gray-700 text-sm leading-relaxed mb-4">
+                  <p className="text-gray-700 dark:text-muted-foreground text-sm leading-relaxed mb-3 md:mb-4 line-clamp-3 md:line-clamp-none">
                     {bookmark.answer}
                   </p>
 
                   {/* Actions */}
-                  <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                    <div className="flex items-center space-x-4">
-                      <button className="flex items-center space-x-1 text-gray-500 hover:text-gray-700 text-sm">
+                  <div className="flex items-center justify-between pt-2 md:pt-3 border-t border-gray-100 dark:border-border">
+                    <div className="flex items-center space-x-3 md:space-x-4">
+                      <button className="flex items-center space-x-1 text-gray-500 dark:text-muted-foreground hover:text-gray-700 dark:hover:text-foreground text-sm">
                         <span className="text-xs">↑</span>
-                        <span>{bookmark.upvotes}</span>
+                        <span className="text-xs md:text-sm">{bookmark.upvotes}</span>
                       </button>
-                      <button className="text-gray-500 hover:text-gray-700 text-sm">
-                        <Share2 className="w-4 h-4 inline" />
+                      <button className="text-gray-500 dark:text-muted-foreground hover:text-gray-700 dark:hover:text-foreground text-sm">
+                        <Share2 className="w-4 h-4" />
                       </button>
                       <button className="text-blue-600 hover:text-blue-700 text-sm">
-                        <Bookmark className="w-4 h-4 inline fill-current" />
+                        <Bookmark className="w-4 h-4 fill-current" />
                       </button>
                     </div>
-                    <div className="flex items-center space-x-3">
-                      <span className="text-xs text-gray-500">{bookmark.date}</span>
-                      <button className="text-gray-400 hover:text-gray-600">
+                    <div className="flex items-center space-x-2 md:space-x-3">
+                      <span className="text-xs text-gray-500 dark:text-muted-foreground">{bookmark.date}</span>
+                      <button className="text-gray-400 dark:text-muted-foreground hover:text-gray-600 dark:hover:text-foreground">
                         <MoreHorizontal className="w-5 h-5" />
                       </button>
                     </div>
