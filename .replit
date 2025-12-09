@@ -10,14 +10,11 @@ packages = ["openssh"]
 deploymentTarget = "static"
 build = ["npm", "run", "build"]
 publicDir = "dist/public"
+run = ["sh", "-c", "npm run dev -- --host 0.0.0.0 --port 5000"]
 
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 38331
-externalPort = 3000
 
 [env]
 PORT = "5000"
