@@ -46,33 +46,18 @@
 
   --animate-fade-in: fade-in 0.3s ease-out;
   --animate-slide-up: slide-up 0.4s ease-out;
-  
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes slide-up {
-    from { transform: translateY(10px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-  }
 }
 
-/* LIGHT MODE (Primary) */
-:root {
-  /* #F1F2F2 -> 180 2% 95% (Quora Background) */
-  --background: 180 2% 95%;
-  /* #282829 -> 240 1% 16% */
-  --foreground: 240 1% 16%;
+/* Keyframes */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
-  /* #FFFFFF -> 0 0% 100% */
-  --card: 0 0% 100%;
-  --card-foreground: 240 1% 16%;
-
-  /* #FFFFFF */
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 1% 16%;
-
+@keyframes slide-up {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
 
 @keyframes slideDown {
   from {
@@ -89,6 +74,20 @@
   animation: slideDown 0.2s ease-out;
 }
 
+/* LIGHT MODE (Primary) */
+:root {
+  /* #F1F2F2 -> 180 2% 95% (Quora Background) */
+  --background: 180 2% 95%;
+  /* #282829 -> 240 1% 16% */
+  --foreground: 240 1% 16%;
+
+  /* #FFFFFF -> 0 0% 100% */
+  --card: 0 0% 100%;
+  --card-foreground: 240 1% 16%;
+
+  /* #FFFFFF */
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 1% 16%;
 
   /* #a82400 -> 13 100% 33% (Quora Red) */
   --primary: 13 100% 33%;
@@ -189,8 +188,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-}
-
   .min-h-screen-minus-header {
     min-height: calc(100vh - 4rem);
   }
+}
