@@ -13,7 +13,6 @@ import MessagesPage from "@/pages/messages";
 import CreateAdPage from "@/pages/createadd";
 import MonetizationPage from "@/pages/monetization";
 import SubscriptionPage from "@/pages/subscription";
-import UPIPaymentPage from "@/pages/upi-payment";
 import BookmarksPage from "@/pages/bookmarks";
 import DraftsPage from "@/pages/draft"
 import AnswerRequestsPage from "@/pages/answer-requests"
@@ -47,7 +46,6 @@ function Router() {
       <Route path="/create-ad" component={CreateAdPage} />
       <Route path="/monetization" component={MonetizationPage} />
       <Route path="/subscription" component={SubscriptionPage} />
-      <Route path="/upi-payment" component={UPIPaymentPage} />
       <Route path="/bookmarks" component={BookmarksPage} />
       <Route path="/drafts" component={DraftsPage} />
       <Route path="/answer-requests" component={AnswerRequestsPage} />
