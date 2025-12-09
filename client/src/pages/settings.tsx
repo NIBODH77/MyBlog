@@ -28,10 +28,8 @@ export default function QuoraAccountSettings() {
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Email & Notifications
                   </a>
-                  <Link href="/languages">
-                    <a className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">
-                      Languages
-                    </a>
+                  <Link href="/languages" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer">
+                    Languages
                   </Link>
                   <a href="#" className="block px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded">
                     Subscriptions & Billing

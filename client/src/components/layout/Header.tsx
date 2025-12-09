@@ -19,7 +19,9 @@ import {
   Moon,
   Settings,
   HelpCircle,
-  LogOut
+  LogOut,
+  X,
+  ChevronLeft
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,24 +36,41 @@ export function Header() {
   const [location, setLocation] = useLocation();
   const [isAddQuestionOpen, setIsAddQuestionOpen] = useState(false);
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsProfileDropdownOpen(false);
       }
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
     };
 
-    if (isProfileDropdownOpen) {
+    if (isProfileDropdownOpen || isMobileMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isProfileDropdownOpen]);
+  }, [isProfileDropdownOpen, isMobileMenuOpen]);
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
 
   const navItems = [
     { icon: Home, label: "Home", href: "/" },
@@ -77,20 +96,71 @@ export function Header() {
     { icon: LogOut, label: 'Logout', href: '#', divider: false },
   ];
 
+  const mobileMenuItems = [
+    { icon: Home, label: 'Home', href: '/' },
+    { icon: Users, label: 'Following', href: '/following' },
+    { icon: PenSquare, label: 'Answer', href: '/answer' },
+    { icon: Bell, label: 'Notifications', href: '/notifications' },
+    { icon: MessageCircle, label: 'Messages', href: '/messages' },
+    { icon: Megaphone, label: 'Create Ad', href: '/create-ad' },
+    { icon: DollarSign, label: 'Monetization', href: '/monetization' },
+    { icon: Bookmark, label: 'Bookmarks', href: '/bookmarks' },
+    { icon: FileText, label: 'Drafts', href: '/drafts' },
+    { icon: Settings, label: 'Settings', href: '/settings' },
+    { icon: Globe, label: 'Languages', href: '/languages' },
+    { icon: HelpCircle, label: 'Help', href: '/help' },
+  ];
+
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b bg-background shadow-sm">
-        <div className="container mx-auto flex h-14 items-center px-4 md:px-24 gap-4">
-          {/* Logo */}
-          <Link href="/">
-            <div className="flex items-center gap-2 cursor-pointer mr-4 shrink-0">
-              <span className="text-2xl font-serif font-bold text-destructive tracking-tight text-[#b92b27]">
-                MyBlog
-              </span>
+        <div className="container mx-auto flex h-14 items-center px-3 md:px-24 gap-2 md:gap-4">
+          {/* Mobile Search Toggle */}
+          {isMobileSearchOpen ? (
+            <div className="flex md:hidden items-center flex-1 gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileSearchOpen(false)}
+                data-testid="button-close-mobile-search"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search MyBlog"
+                  className="pl-9 h-9 bg-secondary/30 border-border/50 w-full"
+                  autoFocus
+                  data-testid="input-mobile-search"
+                />
+              </div>
             </div>
-          </Link>
+          ) : (
+            <>
+              {/* Logo */}
+              <Link href="/">
+                <div className="flex items-center gap-2 cursor-pointer mr-2 md:mr-4 shrink-0">
+                  <span className="text-xl md:text-2xl font-serif font-bold text-destructive tracking-tight text-[#b92b27]">
+                    MyBlog
+                  </span>
+                </div>
+              </Link>
 
-          {/* Navigation Icons (Center-Left) */}
+              {/* Mobile Search Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden text-muted-foreground"
+                onClick={() => setIsMobileSearchOpen(true)}
+                data-testid="button-mobile-search"
+              >
+                <Search className="h-5 w-5" />
+              </Button>
+            </>
+          )}
+
+          {/* Navigation Icons (Center-Left) - Desktop Only */}
           <nav className="hidden md:flex items-center gap-1 flex-1 max-w-md">
             {navItems.map((item) => {
               const isActive = location === item.href || (item.href !== "/" && location.startsWith(item.href));
@@ -275,15 +345,88 @@ export function Header() {
 
             <Button
               size="sm"
-              className="rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white font-medium px-4 h-8"
+              className="hidden sm:flex rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white font-medium px-4 h-8"
               onClick={() => setIsAddQuestionOpen(true)}
               data-testid="button-add-question"
             >
               <TranslatedText>Add question</TranslatedText>
             </Button>
+            
+            {/* Mobile Add Question Button */}
+            <Button
+              size="icon"
+              className="sm:hidden rounded-full bg-[#b92b27] hover:bg-[#a32420] text-white"
+              onClick={() => setIsAddQuestionOpen(true)}
+              data-testid="button-add-question-mobile"
+            >
+              <Plus className="h-5 w-5" />
+            </Button>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-black/50" onClick={() => setIsMobileMenuOpen(false)}>
+          <div 
+            ref={mobileMenuRef}
+            className="absolute right-0 top-0 h-full w-72 bg-background shadow-xl overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-4 border-b">
+              <div className="flex items-center gap-3">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src={currentUser.avatar} alt={currentUser.name} />
+                  <AvatarFallback className="bg-green-600 text-white">L</AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-semibold text-foreground">{currentUser.name}</div>
+                </div>
+              </div>
+              <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            
+            <div className="py-2">
+              {mobileMenuItems.map((item, index) => (
+                <Link key={index} href={item.href}>
+                  <button
+                    className="w-full px-4 py-3 flex items-center gap-3 hover:bg-secondary/50 transition-colors text-left"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    data-testid={`mobile-menu-${item.label.toLowerCase()}`}
+                  >
+                    <item.icon className="w-5 h-5 text-muted-foreground" />
+                    <TranslatedText as="span" className="text-foreground">{item.label}</TranslatedText>
+                  </button>
+                </Link>
+              ))}
+            </div>
+            
+            <div className="border-t p-4">
+              <Link href="/subscription">
+                <Button 
+                  className="w-full bg-[#b92b27] hover:bg-[#a32420] text-white"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <TranslatedText>Try MyBlog+</TranslatedText>
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="border-t px-4 py-3">
+              <div className="text-xs text-muted-foreground space-y-1">
+                <div className="flex flex-wrap gap-x-2 gap-y-1">
+                  <Link href="/about"><span className="hover:underline cursor-pointer">About</span></Link>
+                  <Link href="/terms"><span className="hover:underline cursor-pointer">Terms</span></Link>
+                  <Link href="/privacy"><span className="hover:underline cursor-pointer">Privacy</span></Link>
+                  <Link href="/careers"><span className="hover:underline cursor-pointer">Careers</span></Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <AddQuestionModal isOpen={isAddQuestionOpen} onClose={() => setIsAddQuestionOpen(false)} />
     </>
