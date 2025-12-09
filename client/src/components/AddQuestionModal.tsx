@@ -1,12 +1,9 @@
+
 import React, { useState } from 'react';
 import { X, Image, Video, Link as LinkIcon, AlignLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TranslatedText } from '@/hooks/useTranslation';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Plus } from "lucide-react";
-
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 interface AddQuestionModalProps {
   isOpen: boolean;
@@ -19,8 +16,6 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
   const [postTitle, setPostTitle] = useState('');
   const [postContent, setPostContent] = useState('');
   const [visibility, setVisibility] = useState('Public');
-
-  // Removed the early return for isOpen, as Dialog component handles its own open state.
 
   const handleAddQuestion = () => {
     console.log('Question added:', questionText);
@@ -37,7 +32,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden rounded-lg shadow-2xl max-h-[90vh] relative">
+      <DialogContent className="max-w-2xl p-0 overflow-hidden rounded-lg shadow-2xl max-h-[90vh]">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-200 p-4 sticky top-0 bg-white z-10">
           <div className="flex gap-8">
@@ -62,14 +57,17 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
               <TranslatedText>Create Post</TranslatedText>
             </button>
           </div>
-          <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+          <button
+            onClick={onClose}
+            className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+          >
             <X size={24} />
             <span className="sr-only">Close</span>
-          </DialogClose>
+          </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 overflow-y-auto max-h-[calc(90vh-80px)]"> {/* Adjust max-height to account for header and footer */}
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
           {activeTab === 'question' ? (
             <>
               {/* Tips Section */}
@@ -107,9 +105,9 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                     onChange={(e) => setVisibility(e.target.value)}
                     className="text-sm text-gray-700 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
                   >
-                    <option><TranslatedText>Public</TranslatedText></option>
-                    <option><TranslatedText>Private</TranslatedText></option>
-                    <option><TranslatedText>Anonymous</TranslatedText></option>
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                    <option value="Anonymous">Anonymous</option>
                   </select>
                 </div>
 
@@ -156,9 +154,9 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
                     onChange={(e) => setVisibility(e.target.value)}
                     className="text-sm text-gray-700 border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
                   >
-                    <option><TranslatedText>Public</TranslatedText></option>
-                    <option><TranslatedText>Private</TranslatedText></option>
-                    <option><TranslatedText>Anonymous</TranslatedText></option>
+                    <option value="Public">Public</option>
+                    <option value="Private">Private</option>
+                    <option value="Anonymous">Anonymous</option>
                   </select>
                 </div>
 
