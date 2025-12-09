@@ -20,7 +20,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
   const [postContent, setPostContent] = useState('');
   const [visibility, setVisibility] = useState('Public');
 
-  if (!isOpen) return null;
+  // Removed the early return for isOpen, as Dialog component handles its own open state.
 
   const handleAddQuestion = () => {
     console.log('Question added:', questionText);
@@ -36,8 +36,8 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-      <div className="bg-white rounded-lg shadow-2xl w-full max-w-2xl mx-4 animate-slideDown max-h-[90vh] overflow-y-auto">
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-2xl p-0 overflow-hidden rounded-lg shadow-2xl max-h-[90vh] relative">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-200 p-4 sticky top-0 bg-white z-10">
           <div className="flex gap-8">
@@ -69,7 +69,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto max-h-[calc(90vh-80px)]"> {/* Adjust max-height to account for header and footer */}
           {activeTab === 'question' ? (
             <>
               {/* Tips Section */}
@@ -122,7 +122,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-end gap-3">
+              <div className="flex items-center justify-end gap-3 sticky bottom-0 bg-white z-10 pt-4 border-t border-gray-200">
                 <Button
                   variant="ghost"
                   onClick={onClose}
@@ -197,7 +197,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
               </div>
 
               {/* Footer */}
-              <div className="flex items-center justify-end gap-3">
+              <div className="flex items-center justify-end gap-3 sticky bottom-0 bg-white z-10 pt-4 border-t border-gray-200">
                 <Button
                   variant="ghost"
                   onClick={onClose}
@@ -220,7 +220,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
             </>
           )}
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
