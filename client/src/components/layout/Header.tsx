@@ -351,7 +351,7 @@ export function Header() {
             >
               <TranslatedText>Add question</TranslatedText>
             </Button>
-
+            
             {/* Mobile Add Question Button */}
             <Button
               size="icon"
@@ -367,8 +367,8 @@ export function Header() {
 
       {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/50" onClick={() => setIsMobileMenuOpen(false)}>
-          <div
+        <div className="md:hidden fixed inset-0 z-50 bg-black/50" onClick={() => setIsMobileMenuOpen(false)}>
+          <div 
             ref={mobileMenuRef}
             className="absolute right-0 top-0 h-full w-72 bg-background shadow-xl overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
@@ -387,7 +387,7 @@ export function Header() {
                 <X className="h-5 w-5" />
               </Button>
             </div>
-
+            
             <div className="py-2">
               {mobileMenuItems.map((item, index) => (
                 <Link key={index} href={item.href}>
@@ -402,10 +402,10 @@ export function Header() {
                 </Link>
               ))}
             </div>
-
+            
             <div className="border-t p-4">
               <Link href="/subscription">
-                <Button
+                <Button 
                   className="w-full bg-[#b92b27] hover:bg-[#a32420] text-white"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -413,7 +413,7 @@ export function Header() {
                 </Button>
               </Link>
             </div>
-
+            
             <div className="border-t px-4 py-3">
               <div className="text-xs text-muted-foreground space-y-1">
                 <div className="flex flex-wrap gap-x-2 gap-y-1">
