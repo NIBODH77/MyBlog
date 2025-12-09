@@ -33,7 +33,7 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden rounded-lg shadow-2xl max-h-[90vh] [&>button]:hidden">
+      <DialogContent className="max-w-2xl p-0 overflow-hidden rounded-lg shadow-2xl max-h-[90vh]">
         <VisuallyHidden>
           <DialogTitle>
             {activeTab === 'question' ? 'Add Question' : 'Create Post'}
