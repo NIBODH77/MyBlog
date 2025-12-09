@@ -150,6 +150,14 @@ export default function QuoraPlusSubscription() {
             >
               Pay Now
             </button>
+
+            {/* Try 30 Days Free Button */}
+            <button
+              onClick={handleStartTrial}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2"
+            >
+              Try 30 Days Free
+            </button>
           </div>
         </div>
       </div>
