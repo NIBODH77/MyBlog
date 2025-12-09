@@ -140,12 +140,15 @@ export default function QuoraPlusSubscription() {
               Auto-renews yearly. Cancel anytime in settings.
             </p>
 
-            {/* Button */}
+            {/* Pay Now Button */}
             <button
-              onClick={handleStartTrial}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2"
+              onClick={() => {
+                // Button is clickable but no action yet
+                console.log('Pay Now clicked');
+              }}
+              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2"
             >
-              Try 30 Days Free
+              Pay Now
             </button>
           </div>
         </div>
