@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { X, Image, Video, Link as LinkIcon, AlignLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TranslatedText } from '@/hooks/useTranslation';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Plus } from "lucide-react";
+
 
 interface AddQuestionModalProps {
   isOpen: boolean;
@@ -57,12 +62,10 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
               <TranslatedText>Create Post</TranslatedText>
             </button>
           </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
-          >
+          <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X size={24} />
-          </button>
+            <span className="sr-only">Close</span>
+          </DialogClose>
         </div>
 
         {/* Content */}

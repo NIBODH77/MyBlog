@@ -383,7 +383,12 @@ export function Header() {
                   <div className="font-semibold text-foreground">{currentUser.name}</div>
                 </div>
               </div>
-              <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="hover:bg-secondary/50"
+              >
                 <X className="h-5 w-5" />
               </Button>
             </div>
