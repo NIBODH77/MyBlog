@@ -1,22 +1,12 @@
 import React, { useState } from "react";
-import { Check, X } from "lucide-react";
-import { Link, useLocation } from "wouter";
-import { RazorpayPayment } from "@/components/RazorpayPayment";
+import { X } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function QuoraPlusSubscription() {
-  const [planType, setPlanType] = useState("yearly");
   const [, setLocation] = useLocation();
 
-  const planAmount = planType === "yearly" ? 2999 : 299;
-  const planDescription = planType === "yearly" ? "Yearly Plan" : "Monthly Plan";
-
-  const handlePaymentSuccess = (paymentId: string) => {
-    console.log("Payment successful:", paymentId);
+  const handleStartTrial = () => {
     setLocation("/trial-confirmation");
-  };
-
-  const handlePaymentFailure = (error: string) => {
-    console.error("Payment failed:", error);
   };
 
   return (
@@ -56,7 +46,7 @@ export default function QuoraPlusSubscription() {
               Join MyBlog+
             </h2>
 
-            {/* Features Grid - Compact */}
+            {/* Features Grid */}
             <div className="grid grid-cols-3 gap-1.5 md:gap-2">
               <div className="bg-amber-50 rounded-lg p-1.5 md:p-2 border border-amber-100">
                 <div className="w-6 h-6 md:w-8 md:h-8 bg-red-600 rounded-full flex items-center justify-center mb-0.5 md:mb-1 mx-auto">
@@ -112,80 +102,24 @@ export default function QuoraPlusSubscription() {
               </div>
             </div>
 
-            {/* Pricing Options - Compact */}
-            <div className="grid grid-cols-2 gap-1.5 md:gap-2">
-              <button
-                onClick={() => setPlanType("yearly")}
-                className={`relative rounded-lg p-1.5 md:p-2 border-2 transition-all ${
-                  planType === "yearly"
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-300 bg-white hover:border-gray-400"
-                }`}
-              >
-                <div className="flex items-start justify-between mb-0.5 md:mb-1">
-                  <div className="flex items-center gap-1">
-                    <div
-                      className={`w-3 h-3 md:w-4 md:h-4 rounded-full border-2 flex items-center justify-center ${
-                        planType === "yearly"
-                          ? "border-blue-500"
-                          : "border-gray-400"
-                      }`}
-                    >
-                      {planType === "yearly" && (
-                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full"></div>
-                      )}
-                    </div>
-                    <span className="text-xs md:text-sm font-semibold text-gray-900">
-                      Yearly
-                    </span>
-                  </div>
-                  <span className="bg-blue-600 text-white text-[10px] md:text-xs font-semibold px-1 md:px-1.5 py-0.5 rounded-full">
-                    Save 43%
-                  </span>
-                </div>
-                <div className="ml-4 md:ml-5">
-                  <p className="text-sm md:text-base font-bold text-blue-600">
-                    $3.99/mo
-                  </p>
-                </div>
-              </button>
-
-              <button
-                onClick={() => setPlanType("monthly")}
-                className={`rounded-lg p-1.5 md:p-2 border-2 transition-all ${
-                  planType === "monthly"
-                    ? "border-blue-500 bg-blue-50"
-                    : "border-gray-300 bg-white hover:border-gray-400"
-                }`}
-              >
-                <div className="flex items-center gap-1 mb-0.5 md:mb-1">
-                  <div
-                    className={`w-3 h-3 md:w-4 md:h-4 rounded-full border-2 flex items-center justify-center ${
-                      planType === "monthly"
-                        ? "border-blue-500"
-                        : "border-gray-400"
-                    }`}
-                  >
-                    {planType === "monthly" && (
-                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full"></div>
-                    )}
-                  </div>
-                  <span className="text-xs md:text-sm font-semibold text-gray-900">
-                    Monthly
-                  </span>
-                </div>
-                <div className="ml-4 md:ml-5">
-                  <p className="text-sm md:text-base font-bold text-gray-600">
-                    $6.99/mo
-                  </p>
-                </div>
-              </button>
+            {/* Pricing Display */}
+            <div className="bg-blue-50 rounded-lg p-4 border-2 border-blue-200">
+              <div className="text-center">
+                <p className="text-sm text-gray-600 mb-1">Best Value</p>
+                <p className="text-3xl font-bold text-blue-600 mb-1">
+                  $3.99/mo
+                </p>
+                <p className="text-xs text-gray-500">Billed yearly at $47.88</p>
+                <span className="inline-block bg-blue-600 text-white text-xs font-semibold px-3 py-1 rounded-full mt-2">
+                  Save 43%
+                </span>
+              </div>
             </div>
           </div>
 
           {/* Bottom Section */}
           <div className="space-y-1.5 md:space-y-2 pb-2">
-            {/* Trial Info - Compact */}
+            {/* Trial Info */}
             <div className="flex justify-between items-center px-1 text-xs md:text-sm">
               <span className="font-semibold text-gray-900">
                 30-day free trial
@@ -198,7 +132,7 @@ export default function QuoraPlusSubscription() {
                 Starting Jan 9, 2026
               </span>
               <span className="text-xs md:text-sm font-semibold text-gray-900">
-                ${planType === "yearly" ? "47.88" : "83.88"}/yr
+                $47.88/yr
               </span>
             </div>
 
@@ -206,40 +140,13 @@ export default function QuoraPlusSubscription() {
               Auto-renews yearly. Cancel anytime in settings.
             </p>
 
-            {/* Razorpay Payment Button */}
-            <div className="space-y-3">
-              <RazorpayPayment
-                amount={planAmount}
-                planName={planDescription}
-                onSuccess={handlePaymentSuccess}
-                onFailure={handlePaymentFailure}
-              />
-
-              <div className="text-center text-gray-400 font-semibold text-xs">
-                OR
-              </div>
-
-              {/* Alternative Payment Options */}
-              <div className="grid grid-cols-2 gap-2">
-                <Link href="/upi-payment">
-                  <button className="w-full bg-yellow-400 hover:bg-yellow-500 text-blue-800 font-semibold py-2 rounded-lg transition-colors text-xs">
-                    UPI
-                  </button>
-                </Link>
-                <Link href="/card-payment">
-                  <button className="w-full bg-gray-900 hover:bg-gray-800 text-white font-semibold py-2 rounded-lg transition-colors text-xs">
-                    Card
-                  </button>
-                </Link>
-              </div>
-
-              {/* Trial Button */}
-              <Link href="/trial-confirmation">
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2">
-                  Try 30 Days Free
-                </button>
-              </Link>
-            </div>
+            {/* Single Button */}
+            <button
+              onClick={handleStartTrial}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 rounded-xl transition-colors shadow-lg mt-2"
+            >
+              Try 30 Days Free
+            </button>
           </div>
         </div>
       </div>
