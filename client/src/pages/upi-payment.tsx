@@ -107,7 +107,7 @@ export default function UPIPayment() {
                 description: "Your subscription has been activated.",
               });
               setTimeout(() => {
-                setLocation("/trial-confirmation");
+                setLocation("/");
               }, 1500);
             } else {
               throw new Error("Payment verification failed");

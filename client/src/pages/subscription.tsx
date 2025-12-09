@@ -6,7 +6,8 @@ export default function QuoraPlusSubscription() {
   const [, setLocation] = useLocation();
 
   const handleStartTrial = () => {
-    setLocation("/trial-confirmation");
+    // Trial button clicked
+    console.log('Trial started');
   };
 
   return (
