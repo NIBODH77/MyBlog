@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { X, Image, Video, Link as LinkIcon, AlignLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { TranslatedText } from '@/hooks/useTranslation';
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 interface AddQuestionModalProps {
   isOpen: boolean;
@@ -33,6 +34,11 @@ export default function AddQuestionModal({ isOpen, onClose }: AddQuestionModalPr
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl p-0 overflow-hidden rounded-lg shadow-2xl max-h-[90vh]">
+        <VisuallyHidden>
+          <DialogTitle>
+            {activeTab === 'question' ? 'Add Question' : 'Create Post'}
+          </DialogTitle>
+        </VisuallyHidden>
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-200 p-4 sticky top-0 bg-white z-10">
           <div className="flex gap-8">
